@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+/*
+I didn't add much comments in this style, we don't have much confusing parts yet.
+plus this style sheet is for the backend so, no need to edit it yet until we finish the overall look and feel
+*/
+
+body,
+button {
+  font-family: "Poppins", sans-serif, Courier, monospace;
+}
+
+:root {
+  /* Variables */
+  --offcanvas-width: 270px;
+  --topMenu: 56px;
+  --darkblue: #131532;
+  --lighterblue: #1e203c;
+  --lightgreen: #06d6a0;
+  --ligthred: #e63946;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.dashboard-home {
+  margin-bottom: 100px !important;
+}
+.admin-top-menu {
+  background-color: var(--darkblue);
+}
+#dashboard-sidebar {
+  width: var(--offcanvas-width);
+  background: var(--darkblue);
+}
+
+#exit-btn {
+  color: var(--darkblue);
+}
+.active {
+  background: var(--lighterblue);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-left: 5px solid var(--lightgreen);
+}
+
+.loss {
+  background: var(--ligthred);
+  color: #fff;
+}
+.gain {
+  background: var(--lightgreen);
+  color: #fff;
+}
+.bi-power {
+  color: var(--ligthred);
+}
+
+/* 
+  Smaller Screens
+*/
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  offcanvas-backdrop::before {
+    display: none;
+  }
+  #dashboard-sidebar {
+    transform: none;
+    visibility: visible !important;
+    top: var(--topMenu);
+    height: calc(100%-var(--topMenu));
+    background: var(--darkblue);
+  }
+  #display-area,
+  .wrapper {
+    margin-left: var(--offcanvas-width);
+  }
+  #exit-btn {
+    color: var(--lightgreen);
+  }
+}
