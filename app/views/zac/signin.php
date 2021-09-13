@@ -1,5 +1,7 @@
 <?php    
  $this->view("zac/header",$data);
+
+
 ?>
 
 <!-- signin page starts here -->
@@ -10,23 +12,30 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card shadow rounded" >
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Login</h2>
+              <h2 class="text-uppercase text-center mb-4">Login</h2>
+              <?php
+               if(isset($_GET["signup"])){
+                 ?>
+                  <p class=" text-success text-center mb-1">Account created successfully, signin below</p>
+                <?php } 
+            
+              ?>
 
               <form action="#" method="post">
-                <div class="form-outline mb-5">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email.."/>
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" class="form-control form-control-lg" placeholder="Your Email.."/>
                 </div>
 
-                <div class="form-outline mb-5">
-                   <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" />
+                <div class="form-outline mb-4">
+                   <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
                 </div>
-                <div class="form-check d-flex justify-content-start mb-5">
+                <div class="form-check d-flex justify-content-start mb-4">
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
                     value=""
-                    id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
+                    id="terms" />
+                  <label class="form-check-label" for="terms">
                      <a href="#!" class="text-body"><u>Remember me</u></a>
                   </label>
                 </div>

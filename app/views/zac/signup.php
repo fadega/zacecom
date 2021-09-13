@@ -8,32 +8,40 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card shadow rounded" >
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create account</h2>
+              <h2 class="text-uppercase text-center mb-2">Create account</h2>
+               <span class="text-danger"> <?php checkErrorMessage();?></span>
 
               <form action="#" method="post">
 
-                <div class="form-outline mb-5">
-                     <input type="text" name="name" id="name" class="my-2 form-control form-control-lg" placeholder="Your Name.." />
+                <div class="form-outline mb-4">
+                     <input type="text" name="name" id="name" class="my-2 form-control form-control-lg" placeholder="Name*.." required />
                 </div>
 
-                <div class="form-outline mb-5">
-                  <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Your Email.."/>
+                <div class="form-outline mb-4">
+                  <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Email*.." required/>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" name="phone" id="phone" class="form-control form-control-lg" placeholder="Phone.." />
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" name="address" id="address" class="form-control form-control-lg" placeholder="Address.." />
                 </div>
 
-                <div class="form-outline mb-5">
-                   <input type="password" name="password" id="pass" class="form-control form-control-lg" placeholder="Password" />
+                <div class="form-outline mb-4">
+                   <input type="password" name="password" id="pass" class="form-control form-control-lg" placeholder="Password*" required/>
                 </div>
 
-                <div class="form-outline mb-5">
-                   <input type="password" name="repeatpass" id="repeatpass" class="form-control form-control-lg" placeholder="Repeat password" />
+                <div class="form-outline mb-4">
+                   <input type="password" name="password2" id="repeatpass" class="form-control form-control-lg" placeholder="Repeat password*" required/>
                 </div>
 
-                <div class="form-check d-flex justify-content-start mb-5">
+                <div class="form-check d-flex justify-content-start mb-4">
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
-                    value=""
-                    id="checkagree"
+                    value="checked"
+                    name="termscheck"
+                   
                   />
                   <label class="form-check-label" for="form2Example3g">
                     I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>

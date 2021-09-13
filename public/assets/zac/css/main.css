@@ -654,6 +654,22 @@ a {
 .about-page .right-content span a:hover i {
   background-color: var(--brightergreen);
 }
+/* Styles for form controls and input */
+
+.form-control {
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid #eee;
+}
+.form-control input[type="text"]:focus {
+  outline: none;
+}
+/* input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+} */
 
 /* Contact Page Style */
 /* I put contact page styles in a different file - contact.css  under assets/zac/css  except these two line - they are for all*/
