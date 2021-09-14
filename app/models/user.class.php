@@ -4,9 +4,6 @@
  */
 class User{
 
-
-
-    
 /**
  * We accept user signup input and we validate the input.
  * No need to sanitize the input because we are using prepared statements, we just validate if the inputs 
@@ -18,6 +15,7 @@ class User{
 
         //create instance to establish connection to the databse
        $instance = Database::db_connect();
+   
 
        //Get POST data from user
        $name        = trim($POST['name']);
@@ -26,54 +24,57 @@ class User{
        $password2   = trim($POST['password2']);
        $phone       = trim($POST['phone']);
        $address     = trim($POST['address']);
-       $checkagree  = $POST['termscheck'];
+       //$checkagree  = $POST['termscheck'];
 
         
-       /**
-        * call validation functions - from /core/functions.php
-        */
+       //call validation function - from /core/functions.php
        $error = validateInput($name, $email, $password,$password2,$phone,$address);
        if($error==""){
            //if there is no validation error, prepare data to push it to the database;
-           $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+           $hashedPass = hash('sha1',$password);
            $data['name']     = $name; 
            $data['email']    = $email; 
            $data['password'] = $hashedPass;
            $data['userid']   = $this->generate_random_userid(60);
            $data['phone']    = $phone;
            $data['address']  = $address;
+           
            //fixed entries
            $data['date'] = date("Y-m-d H:i:s");
            $data['role'] = "customer";
 
             //Before pushing data to database, check if there is a user with the same email already in the database
-            $query = "SELECT email FROM user WHERE emal = :email limit 1";
+            $query = "SELECT email FROM user WHERE email = :email limit 1";
             $arr['email'] = $data['email'];
             $check = $instance->read($query,$arr);
-            if(is_array($check)){
-               echo "user with this email already exists, login instead <br />";
+            if(is_array($check) && count($check)>0){
+                $message ='<a href="'.ROOT.'signin">Login</a> instead';
+                $_SESSION['duplicateemail'] = "User already exists, ".$message;
+               
             }
             
             //One last check for userid before pushing data to database
             $arr =[]; //unset the array from previous value
-            $query = "SELECT userid FROM user WHERE userid = :userid limit 1";
+            $sql = "SELECT userid FROM user WHERE userid = :userid limit 1";
             $arr['userid'] = $data['userid'];
-            $check = $instance->read($query,$arr);
+            $check = $instance->read($sql,$arr);
             if(is_array($check)){
                 //generate another random userid
-                $data['userid']   = $this->generate_random_userid(60);;
+                $data['userid']   = $this->generate_random_userid(60);
+               
             }
 
+            //Push data to database
            $query = "INSERT INTO user (userid,name,email,phone,password,role,address,date) VALUES( :userid, :name, :email, :phone, :password, :role, :address, :date)";
-           $result = $instance->write($query,$data);
-           if($result){
+           $success = $instance->write($query,$data);
+           if($success){
               //redirect and exit from here;
                header('location:'.ROOT.'signin?signup=success');
                die;
            }
  
        }else{
-           $_SESSION['error'] = $error;
+           $_SESSION['error']  = $error;
            
        }
      
@@ -84,13 +85,57 @@ class User{
 
 
     /**
-     * 
+     * This function confirms user's registration and logs them in.
      * @param array $POST
      * @return void
      */
-    public function login($POST){
+    public function signin($POST){
+        //Establish connection
+       $instance = Database::db_connect();
+        //Get POST data from user
+        
+     
+       $data['email']       = trim($POST['email']);
+       $data['password']  = trim($POST['password']);
+      //$data['keepmesigned']  = trim($POST['keepmesigned']);
+     
+       $error = "";
+       if(empty($data['email']) || !preg_match("/^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$/",$data['email'])){
+               $error.= 'Wrong eamil or password<br />';
+   
+        }
+        if(strlen($data['password']) < 8) {
+            $error.= "Oops! Wrong eamil or password <br />";
+            }
+
+        if($error == ""){
+            //check user in database
+            //hash the password input
+            $data['password'] = hash('sha1',$data['password']);
+
+            //get a user with these 
+            $query = "SELECT * FROM user WHERE email = :email && password =:password limit 1";
+            $result = $instance->read($query,$data);
+            if(is_array($result)){
+                
+                 //store logged user details
+                $_SESSION['loggeduser']  = $result[0]['email'];
+                // show($_SESSION['loggeduser']);
+                header('location:'.ROOT.'profile?signin=success');
+                die;
+  
+            }
+                   
+            $error.= "Oops! Wrong credentials <br />";
+
+        }else{
+        
+            $_SESSION['signin_error']  = $error;
+        
+        }
         
     }
+
 
     public function getUser($id){
         //get user with this id
@@ -120,15 +165,6 @@ class User{
     }
 
 
-    function generateRandomString($length = 25) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
    
 
     

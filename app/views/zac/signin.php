@@ -20,20 +20,21 @@
                 <?php } 
             
               ?>
+              <span class="text-danger"> <?php checkErrorMessage();?></span>
 
               <form action="#" method="post">
                 <div class="form-outline mb-4">
-                  <input type="email" id="email" class="form-control form-control-lg" placeholder="Your Email.."/>
+                  <input type="email" name="email" class="form-control form-control-lg" placeholder="Email.." required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                   <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
+                   <input type="password" name="password" class="form-control form-control-lg" placeholder="Password.." required/>
                 </div>
                 <div class="form-check d-flex justify-content-start mb-4">
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
-                    value=""
+                    name="keepmesigned"
                     id="terms" />
                   <label class="form-check-label" for="terms">
                      <a href="#!" class="text-body"><u>Remember me</u></a>
@@ -41,7 +42,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button" id="register" class="btn btn-lg px-5 " style="background:#06d6a0;">Login</button>
+                  <button type="submit" name="signin" class="btn btn-lg px-5 " style="background:#06d6a0;">Login</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? <a href="<?=ROOT?>signup" class="fw-bold text-body"><u>Register here</u></a></p>

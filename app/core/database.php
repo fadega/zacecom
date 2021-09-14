@@ -18,48 +18,18 @@ class Database{
   
     }
 
-    public static function db_connect(){
-        if(self::$conn){
-            //echo "connected - message  from the core database.php class this is the new dbconnect method";
-            return self::$conn;
-        }
-        $instance = new self();
-        return $instance;
-    }
-
     /**
-     * Method that establishes connection to the database
+     * Creates an instance of the class database
      * @return object
      */
-   /*
-     public function db_connect(){
-
-         //1. connecting to the MySQLi way
-        // $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        // if($conn){
-        //     // echo "connected - message  from the core database.php class this time through mysqli <br .>";
-        //     return $conn;
-        // }else{
-        //     die("ERROR: Could not connect. " . $conn->connect_error);
-        // }
-
-       //2. connecting to the PDO way
-
-
-        try{
-            // $dsn = "mysql:host=localhost;dbname=cmszac";
-            $dsn = DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME;
-            $conn = new PDO($dsn,DB_USER,DB_PASS);
-            echo "connected - message  from the core database.php class <br .>";
-            return $conn;
-    
-        }catch(PDOException $e){
-            die("Connection Error ".$e->getMessage());
+    public static function db_connect(){
+        if(self::$conn){
+           return self::$conn;
         }
-        
-    
-    } */
-    
+        // $instance = new self();
+        return $instance = new self();
+    }
+
     
     /**
      * Method reads data fron the database
@@ -69,30 +39,19 @@ class Database{
      */
     
      public function read($query, $data = []){
-        $DB = $this->db_connect();
-        $stmt = $DB->prepare($query);
         
-        //we don't pass data in select query so we check first if data is passed
-        if(count($data)==0){
-            $stmt = $DB->query($query);
-            $check = 0;
-            if($stmt){
-                $check =1;
+        $stmt = self::$conn->prepare($query);
+        $result = $stmt->execute($data);
+     
+        if($result){
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(is_array($data) && count($data) > 0){
+             
+                return $data;
             }
-        }else{
-
-            $check = $stmt->execute($data);
         }
+        return false;
 
-        if($check){
-             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);  //this is for PDO
-            //$data = $stmt->fetch_assoc();   //this is for mysqli
-            return $data;
-
-        }else{
-            return false;
-        }
-    
     } 
 
        
@@ -102,28 +61,17 @@ class Database{
      * @param mixed $data=[] -> paramaters passed, for example insert/update data
      * @return boolean
      */
-     public function write($query, $data=[]){
+     public function write($query, $data = []){
 
-        $DB = $this->db_connect();
-        $stmt = $DB->prepare($query);
-        
-        if(count($data)==0){
-            $stmt = $DB->query($query);
-            $result = 0;
-            if($stmt){
-                $result =1;
-            }
-        }else{
-
-            $result = $stmt->execute($data);
-        }
-
+        $stmt = self::$conn->prepare($query);
+        $result = $stmt->execute($data);
+       
         if($result){
-            return true;
-
-        }else{
-            return false;
+        
+          return true;
+            
         }
+        return false;
     
     } 
   

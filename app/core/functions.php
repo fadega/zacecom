@@ -13,15 +13,18 @@ function show($debug_stuff){
     echo "<pre>";
     print_r($debug_stuff);
     echo "</pre>";
+    
 }
 
+//Function to validate user input
 function validateInput($name, $email, $password,$password2,$phone,$address){
     $error = "";
+    //email
     if(empty($email) || !preg_match("/^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$/",$email)){
             $error.= 'The email is not formatted properly<br />';
 
         }
-    //email
+    //name
     if(empty($name) || !preg_match("/^[a-zA-Z]+$/",$name)){
             $error.= 'Name should containly alphabets onlyt<br />';
             
@@ -32,9 +35,9 @@ function validateInput($name, $email, $password,$password2,$phone,$address){
     $number    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
     
-    // if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-    //     $error.= "Password doesn't meet the minimum requirement. <br />";
-    //     }
+    if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+        $error.= "Password doesn't meet the minimum requirement. <br />";
+        }
     if($password !==$password2){
     $error.= 'Password mismatch <br />';
     }
@@ -61,4 +64,13 @@ function checkErrorMessage(){
         echo $_SESSION['error'];
         unset($_SESSION['error']);
     }
+    if(isset($_SESSION['duplicateemail']) && $_SESSION['duplicateemail'] !=""){
+        echo $_SESSION['duplicateemail'];
+        unset($_SESSION['duplicateemail']);
+    }
+    if(isset($_SESSION['signin_error']) && $_SESSION['signin_error'] !=""){
+        echo $_SESSION['signin_error'];
+        unset($_SESSION['signin_error']);
+    }
+    
 }

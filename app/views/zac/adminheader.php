@@ -64,10 +64,12 @@ $conn = $db->db_connect();
         <!-- End Hambuger Menu icon Toggler (smaller screens) -->
 
         <!-- Search Box and button -  -->
+      
         <div class="collapse navbar-collapse" id="topNav">
          
           <!-- Logout/profile dropdown  -->
           <ul class="navbar-nav d-flex ms-auto">
+          <a class ="text-light mt-2" href=""><?=$_SESSION['loggeduser'];?></a>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle ms-2 btn"
                  href="#" role="button"
@@ -83,7 +85,7 @@ $conn = $db->db_connect();
             </li>
           </ul>
           <!-- End Logout/profile dropdown -->
-
+          
         </div> 
       
       </div>
