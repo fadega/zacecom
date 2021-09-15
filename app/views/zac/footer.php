@@ -16,6 +16,9 @@
                 <li><a href="<?=ROOT?>">Privacy Policy</a></li>
                 <li><a href="<?=ROOT?>">Terms of Service</a></li>
                 <li><a href="<?=ROOT?>contact">Contact Us</a></li>
+                <?php if(isset($data['role']) && $data['role']=='admin'){?>
+                   <li><a href="<?=ROOT?>admin">Admin</a></li>
+                  <?php } ?>
               </ul>
             </div>
           </div>

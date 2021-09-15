@@ -112,9 +112,7 @@ class User{
         if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($data['password']) < 8) {
             $error.= "Wrong eamil or password. <br />";
             }
-        // if(strlen($data['password']) < 8) {
-        //     $error.= "Oops! Wrong eamil or password <br />";
-        //     }
+        
 
         if($error == ""){
             //check user in database

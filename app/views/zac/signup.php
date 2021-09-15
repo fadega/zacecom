@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                   <input type="password" name="password2" id="repeatpass" value="<?=isset($_POST['password2']) ? $_POST['password2'] : ""?>"  class="form-control form-control-lg" placeholder="Repeat password*" required/>
+                   <input type="password" name="password2" id="repeatpass"   class="form-control form-control-lg" placeholder="Repeat password*" required/>
                 </div>
 
                 <div class="form-check d-flex justify-content-start mb-4">
