@@ -93,6 +93,10 @@ a {
   top: 105px;
   transform: translateX(-50%);
 }
+#navbarResponsive li a {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
 
 .navbar-dark .navbar-nav .nav-item {
   margin: 0px 15px;

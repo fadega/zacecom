@@ -104,9 +104,17 @@ class User{
                $error.= 'Wrong eamil or password<br />';
    
         }
-        if(strlen($data['password']) < 8) {
-            $error.= "Oops! Wrong eamil or password <br />";
+        $uppercase = preg_match('@[A-Z]@', $data['password']);
+        $lowercase = preg_match('@[a-z]@', $data['password']);
+        $number    = preg_match('@[0-9]@', $data['password']);
+        $specialChars = preg_match('@[^\w]@', $data['password']);
+        
+        if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($data['password']) < 8) {
+            $error.= "Wrong eamil or password. <br />";
             }
+        // if(strlen($data['password']) < 8) {
+        //     $error.= "Oops! Wrong eamil or password <br />";
+        //     }
 
         if($error == ""){
             //check user in database
@@ -114,63 +122,144 @@ class User{
             $data['password'] = hash('sha1',$data['password']);
 
             //get a user with these 
-            $query = "SELECT * FROM user WHERE email = :email && password =:password limit 1";
+            $query = "SELECT * FROM user WHERE email = :email && password = :password limit 1";
             $result = $instance->read($query,$data);
             if(is_array($result)){
-                
                  //store logged user details
-                $_SESSION['loggeduser']  = $result[0]['email'];
-                // show($_SESSION['loggeduser']);
-                header('location:'.ROOT.'profile?signin=success');
+                $_SESSION['logged']  = $result[0];
+                show( $_SESSION['logged']);
+                header('location:'.ROOT.'profile');
                 die;
   
+              
+
+                //debugging 
+              /*  show($data); //this line prints the array below similar to $_SESSION['logged'] format
+                Array
+                    (
+                        [email] => abun@zacmail.com
+                        [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
+                    )
+                //show($result); //this line prints the array below
+                Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 90
+                            [userid] => fCVfzO3rNA3pvtix2KeTrB27YYokFc
+                            [name] => Abun
+                            [email] => abun@zacmail.com
+                            [phone] => 12457812
+                            [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
+                            [role] => customer
+                            [address] => 23 Abc St
+                            [date] => 2021-09-14 11:49:57
+                        )
+
+                )
+                $_SESSION['logged']  = $result[0];
+                show($_SESSION['logged']);  //this line prints the array below
+                Array
+                (
+                    [id] => 90
+                    [userid] => fCVfzO3rNA3pvtix2KeTrB27YYokFc
+                    [name] => Abun
+                    [email] => abun@zacmail.com
+                    [phone] => 12457812
+                    [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
+                    [role] => customer
+                    [address] => 23 Abc St
+                    [date] => 2021-09-14 11:49:57
+                )
+
+               $_SESSION['logged']  = $result[0]['name'];
+               the above line gives us - Abun
+                */
+               
             }
                    
             $error.= "Oops! Wrong credentials <br />";
 
-        }else{
-        
-            $_SESSION['signin_error']  = $error;
-        
         }
+            //if execution gets here, it meeans credentials weren't OK
+            $_SESSION['error']  = $error;
+        
+        
         
     }
 
 
+    /**
+     * Get a user from database
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getUser($id){
         //get user with this id
    
 
     }
 
-      /**
-     * This function will generate random user id
-     *
-     * @param [type] $length
-     * @return void
+      
+    /**
+     * Checks if user is logged
+     * @return array
      */
-    public function generate_random_userid($len){
-        
-       $array = [0,1,2,3,4,5,6,7,8,9, 'A','a', 'B', 'b','C', 'c', 'D', 'd','E', 'e', 'F', 'f', 'G', 'g', 'H' ,'h', 'I', 'i', 'J', 'j' ,'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P' ,'p' ,'Q','q', 'R', 'r', 'S', 's', 'T', 't' ,'U' ,'u', 'V', 'v', 'W', 'w' ,'X' ,'x' ,'Y' ,'y' ,'Z' ,'z'];
-       $randomuserid = "";
-       $length = rand(6,$len);
-       for($i=0; $i<$length; $i++){
-           $random = rand(0,61);
-           $randomuserid .= $array[$random];
-       }
-
-       
-        return $randomuserid;
+    public function checkLogin(){
+        if(isset($_SESSION['logged'])){
+            $user['userid'] = $_SESSION['logged']['userid'];
+            $sql = "SELECT * FROM user WHERE userid = :userid limit 1";
+            $db = Database::db_connect();
+            $result = $db->read($sql,$user);
+            if(is_array($result)){
+                //user is logged in
+                 return $result[0]; //return the first/only row[array]
+            }
+        }
+        return false;
 
     }
 
 
-   
+    /**
+     * Log user out 
+     * @return void
+     */
+    public function signout(){
+
+        if(isset($_SESSION['logged'])){
+            unset($_SESSION['logged']);
+              //redirect to home
+            header("location:".ROOT."signin");
+            die;
+        }
+      
+    }
+
+
+      /**
+     * Generatea random user id for new user
+     * @param integer $length
+     * @return string
+     */
+    public function generate_random_userid($len){
+        
+        $array = [0,1,2,3,4,5,6,7,8,9, 'A','a', 'B', 'b','C', 'c', 'D', 'd','E', 'e', 'F', 'f', 'G', 'g', 'H' ,'h', 'I', 'i', 'J', 'j' ,'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P' ,'p' ,'Q','q', 'R', 'r', 'S', 's', 'T', 't' ,'U' ,'u', 'V', 'v', 'W', 'w' ,'X' ,'x' ,'Y' ,'y' ,'Z' ,'z'];
+        $randomuserid = "";
+        $length = rand(6,$len);
+        for($i=0; $i<$length; $i++){
+            $random = rand(0,61);
+            $randomuserid .= $array[$random];
+        }
+ 
+        
+         return $randomuserid;
+ 
+     }    
+
 
     
-
-
     
     
-    
-}
+} //end of class

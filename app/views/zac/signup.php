@@ -14,25 +14,25 @@
               <form action="#" method="post">
 
                 <div class="form-outline mb-4">
-                     <input type="text" name="name" id="name" class="my-2 form-control form-control-lg" placeholder="Name*.." required />
+                     <input type="text" name="name" id="name"  value="<?=isset($_POST['name']) ? $_POST['name'] : ""?>" class="my-2 form-control form-control-lg" placeholder="Name*.." required />
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Email*.." required/>
+                  <input type="email" name="email" id="email"  value="<?=isset($_POST['email']) ? $_POST['email'] : ""?>" class="form-control form-control-lg" placeholder="Email*.." required/>
                 </div>
                 <div class="form-outline mb-4">
-                  <input type="text" name="phone" id="phone" class="form-control form-control-lg" placeholder="Phone.." />
+                  <input type="text" name="phone" id="phone"  value="<?=isset($_POST['phone']) ? $_POST['phone'] : ""?>" class="form-control form-control-lg" placeholder="Phone.." />
                 </div>
                 <div class="form-outline mb-4">
-                  <input type="text" name="address" id="address" class="form-control form-control-lg" placeholder="Address.." />
-                </div>
-
-                <div class="form-outline mb-4">
-                   <input type="password" name="password" id="pass" class="form-control form-control-lg" placeholder="Password*" required/>
+                  <input type="text" name="address" id="address" value="<?=isset($_POST['address']) ? $_POST['address'] : ""?>"  class="form-control form-control-lg" placeholder="Address.." />
                 </div>
 
                 <div class="form-outline mb-4">
-                   <input type="password" name="password2" id="repeatpass" class="form-control form-control-lg" placeholder="Repeat password*" required/>
+                   <input type="password" name="password" id="pass" value="<?=isset($_POST['password']) ? $_POST['password'] : ""?>"  class="form-control form-control-lg" placeholder="Password*" required/>
+                </div>
+
+                <div class="form-outline mb-4">
+                   <input type="password" name="password2" id="repeatpass" value="<?=isset($_POST['password2']) ? $_POST['password2'] : ""?>"  class="form-control form-control-lg" placeholder="Repeat password*" required/>
                 </div>
 
                 <div class="form-check d-flex justify-content-start mb-4">

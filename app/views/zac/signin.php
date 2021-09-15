@@ -18,17 +18,18 @@
                  ?>
                   <p class=" text-success text-center mb-1">Account created successfully, signin below</p>
                 <?php } 
-            
+                
               ?>
               <span class="text-danger"> <?php checkErrorMessage();?></span>
+              
 
-              <form action="#" method="post">
+              <form method="post">
                 <div class="form-outline mb-4">
-                  <input type="email" name="email" class="form-control form-control-lg" placeholder="Email.." required/>
+                  <input type="email" name="email" value="<?=isset($_POST['email']) ? $_POST['email'] : ""?> "class="form-control form-control-lg" placeholder="Email.." required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                   <input type="password" name="password" class="form-control form-control-lg" placeholder="Password.." required/>
+                   <input type="password" name="password" value="<?=isset($_POST['password']) ? $_POST['password'] : ""?>" class="form-control form-control-lg" placeholder="Password.." required/>
                 </div>
                 <div class="form-check d-flex justify-content-start mb-4">
                   <input

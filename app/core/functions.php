@@ -26,7 +26,7 @@ function validateInput($name, $email, $password,$password2,$phone,$address){
         }
     //name
     if(empty($name) || !preg_match("/^[a-zA-Z]+$/",$name)){
-            $error.= 'Name should containly alphabets onlyt<br />';
+            $error.= 'Name should only contain alphabets<br />';
             
     }
     //Password 
@@ -36,7 +36,7 @@ function validateInput($name, $email, $password,$password2,$phone,$address){
     $specialChars = preg_match('@[^\w]@', $password);
     
     if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-        $error.= "Password doesn't meet the minimum requirement. <br />";
+        $error.= "Password doesn't meet the minimum requirements. <br />";
         }
     if($password !==$password2){
     $error.= 'Password mismatch <br />';

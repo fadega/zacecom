@@ -21,8 +21,7 @@ $conn = $db->db_connect();
   <!-- Bootstrap icons  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"
-    />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"S />
 
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="<?=ASSETS?>zac/css/fontawesome.css">
@@ -69,7 +68,8 @@ $conn = $db->db_connect();
          
           <!-- Logout/profile dropdown  -->
           <ul class="navbar-nav d-flex ms-auto">
-          <a class ="text-light mt-2" href=""><?=$_SESSION['loggeduser'];?></a>
+            <!-- put something if some is loggedin -->
+            <a class="text-light mt-2 pt-1" href=""><?=$data['user_email']?>  </a>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle ms-2 btn"
                  href="#" role="button"
@@ -77,8 +77,9 @@ $conn = $db->db_connect();
                    <i class="bi bi-person-circle"></i>
                  </a>
               <ul class="dropdown-menu dropdown-menu-end">
+                
                 <li><a class="dropdown-item" href="<?=ROOT?>profile">Profile </a></li>
-                <li><a class="dropdown-item" href="<?=ROOT?>home">Logout</a></li>
+                <li><a class="dropdown-item" href="<?=ROOT?>signout">Logout</a></li>
                 
               </li>
               </ul>
