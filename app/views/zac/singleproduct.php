@@ -66,7 +66,7 @@
                 	onfocus="if(this.value == '1') { this.value = ''; }" 
                     onBlur="if(this.value == '') { this.value = '1';}"
                     value="1">
-                <input type="submit" class="button btn-order "  value="Place Order!">
+                <input type="submit" class="button btn-order "  value="Add to cart!">
               </form>
               <div class="down-content">
                 <div class="categories">

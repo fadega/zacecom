@@ -73,7 +73,7 @@
                 </li>
                 <?php if(isset($data['user_email'])):?>
                   <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>profile"><?=$data['name']?></i>  </a>
+                  <a class="nav-link" href="<?=ROOT?>profile">Account</i>  </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=ROOT?>signout">Logout<i class="bi bi-box-arrow-in-right mt-0"></i>  </a>

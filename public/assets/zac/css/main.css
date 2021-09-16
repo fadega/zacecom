@@ -96,6 +96,7 @@ a {
 #navbarResponsive li a {
   font-size: 16px !important;
   font-weight: 400 !important;
+  text-transform: capitalize !important;
 }
 
 .navbar-dark .navbar-nav .nav-item {

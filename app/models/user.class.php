@@ -125,10 +125,18 @@ class User{
             if(is_array($result)){
                  //store logged user details
                 $_SESSION['logged']  = $result[0];
-                show( $_SESSION['logged']);
-                header('location:'.ROOT.'profile');
-                die;
+                //show( $_SESSION['logged']);
+                if($_SESSION['logged']['role']=="admin"){
+                    //admin user
+                    header('location:'.ROOT.'profile');
+                    die;
   
+                }else{
+                    //if normal user 
+                    header('location:'.ROOT.'home');
+                    die;
+                }
+                
               
 
                 //debugging 

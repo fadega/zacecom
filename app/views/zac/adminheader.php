@@ -32,6 +32,9 @@ $conn = $db->db_connect();
 
 
 
+
+
+
 </head>
 <body>
     <!-- Dashboard top Navbar  -->
@@ -157,7 +160,7 @@ $conn = $db->db_connect();
               </a>
           </li>
           <li>
-             <a href="<?=ROOT?>home" class="nav-link ps-3  me-lg-5 ">
+             <a href="<?=ROOT?>signout" class="nav-link ps-3  me-lg-5 ">
              <i class="bi bi-power mt-1"></i> 
              <span> Logout</span>
               </a>
