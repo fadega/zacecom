@@ -21,7 +21,20 @@ class Products extends Controller{
 
         //you can do this if passing data to view
         $data["Page_title"] = "Products";
-        $this->view("zac/products",$data);
+        // $this->view("zac/products",$data);
+        if(isset($_SESSION['logged'])){
+
+            if($_SESSION['logged']['role']=="admin"){
+                $this->view("zac/products",$data);
+            }else if($_SESSION['logged']['role']=="customer"){
+                $this->view("zac/profile",$data);
+            }
+            
+        }else{
+            //intentionally lead them to 404 page
+            $this->view("zac/home",$data);
+            // die;
+        }
         
     }
 

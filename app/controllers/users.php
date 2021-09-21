@@ -21,7 +21,22 @@ class Users extends Controller{
 
         //you can do this if passing data to view
         $data["Page_title"] = "Users";
-        $this->view("zac/users",$data);
+        // $this->view("zac/users",$data);
+
+
+        if(isset($_SESSION['logged'])){
+
+            if($_SESSION['logged']['role']=="admin"){
+                $this->view("zac/users",$data);
+            }else if($_SESSION['logged']['role']=="customer"){
+                $this->view("zac/profile",$data);
+            }
+            
+        }else{
+            //intentionally lead them to 404 page
+            $this->view("zac/home",$data);
+            // die;
+        }
         
     }
 

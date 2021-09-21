@@ -127,18 +127,16 @@ class User{
                 $_SESSION['logged']  = $result[0];
                 //show( $_SESSION['logged']);
                 if($_SESSION['logged']['role']=="admin"){
-                    //admin user
-                    header('location:'.ROOT.'profile');
+                    //if admin user
+                    header('location:'.ROOT.'admin');
                     die;
   
                 }else{
-                    //if normal user 
-                    header('location:'.ROOT.'home');
+                    //if standard user 
+                    header('location:'.ROOT.'profile');
                     die;
                 }
-                
-              
-
+ 
                 //debugging 
               /*  show($data); //this line prints the array below similar to $_SESSION['logged'] format
                 Array

@@ -5,11 +5,6 @@
 
 
 ?>
-   
-   
-   
-   
-   
    <!-- Admin assets and libraries -->
    <!-- Bootstrap Local  JavaScript Libraries-->
    <script src="<?=ASSETS?>zac/vendor/jquery/jquery.min.js"></script>
@@ -33,11 +28,6 @@
     <script src="<?=ASSETS?>js/jquery.dataTables.min.js"></script>
     <script src="<?=ASSETS?>js/dataTables.bootstrap5.min.js"></script>
     <script src="<?=ASSETS?>js/script.js"></script> -->
-
-  
-
-
-
 
 </body>
 </html>

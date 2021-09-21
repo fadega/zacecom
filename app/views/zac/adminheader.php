@@ -30,6 +30,17 @@ $conn = $db->db_connect();
   <link rel="stylesheet" href="<?=ASSETS?>zac/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="<?=ASSETS?>zac/css/dashboard-styles.css">
 
+  <!-- jQuery CDN -->
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+  <!-- External sidebar styles -->
+    <!-- Custom styles for this template -->
+    <!-- <link href="<?=ASSETS?>admin/css/style.css" rel="stylesheet">
+    <link href="<?=ASSETS?>admin/css/style-responsive.css" rel="stylesheet"> -->
+
 
 
 
@@ -83,6 +94,7 @@ $conn = $db->db_connect();
                 
                 <li><a class="dropdown-item" href="<?=ROOT?>profile">Profile </a></li>
                 <li><a class="dropdown-item" href="<?=ROOT?>signout">Logout</a></li>
+                <li><a class="dropdown-item" href="<?=ROOT?>">Public</a></li>
                 
               </li>
               </ul>
@@ -113,51 +125,129 @@ $conn = $db->db_connect();
     </div>
      
       <!-- offcanvas Menu -->
+      
       <nav class="navbar-dark">
+      
         <ul class="navbar-nav" id="dashboardlinks">
-           <li>
-              <a href="<?=ROOT?>orders" class="nav-link ps-3 me-lg-5">
-                <span><i class="bi bi-table"></i></span>
-                Orders
-              </a>
-          </li>
-
+          <!-- Product NEW -->
+          <?php if($data['role']=='customer'){ ?>
+              <div class="d-none"> <!--blocker -->
+          <?php } ?>
+            <li>
+            <a href="<?=ROOT?>admin/categories/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#category-collapse" role="button" aria-expanded="false" aria-controls="category-collapse">
+              <span class="me-2"><i class="bi bi-diagram-3-fill"></i></span>  
+              <span>Categories</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="category-collapse">
+            <li>
+                  <a href="<?=ROOT?>admin/categories" class="nav-link">View Categories</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/categories/add" class="nav-link">Add New Category</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/categories/edit" class="nav-link">Edit Category details</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/categories/delete" class="nav-link">Delete Category</a>
+                </li>
+            </ul>
+             
+         </li>
           <li>
-            <a href="<?=ROOT?>products" class="nav-link ps-3 me-lg-5 ">
-              <span class="me-2"><i class="bi bi-box-seam"></i></span>
-              Products
+            <a href="<?=ROOT?>admin/products/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#product-collapse" role="button" aria-expanded="false" aria-controls="product-collaps">
+                <span class="me-2"><i class="bi bi-box-seam"></i></span>  
+              <span>Products</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="product-collapse">
+                <li>
+                  <a href="<?=ROOT?>admin/products/view" class="nav-link">View Products</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/products/add" class="nav-link">Add New Product</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/products/edit" class="nav-link">Edit Product details</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/products/delete" class="nav-link">Delete Product</a>
+                </li>
+            </ul>
+             
+        </li>
+
+        <li>
+            <a href="<?=ROOT?>admin/Customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
+              <span class="me-2"><i class="bi bi-people-fill"></i></span>  
+              <span>Customer</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="customer-collapse">
+               <li>
+                  <a href="<?=ROOT?>admin/customers/view" class="nav-link">View Customers</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/customer/add" class="nav-link">Add New Customer</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/customer/edit" class="nav-link">Edit Customer details</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/customer/delete" class="nav-link">Delete Customer</a>
+                </li>
+            </ul>
+             
+        </li>
+
+
+        <li>
+            <a href="<?=ROOT?>admin/users/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#user-collapse" role="button" aria-expanded="false" aria-controls="user-collapse">
+              <span class="me-2"><i class="bi bi-person-badge-fill"></i></span> 
+              <span>Users</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="user-collapse">
+                <li>
+                  <a href="<?=ROOT?>admin/users/view" class="nav-link">View Users</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/user/add" class="nav-link">Add New User</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/user/edit" class="nav-link">Edit User details</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/user/delete" class="nav-link">Delete User</a>
+                </li>
+            </ul>
+             
+        </li>
+
+        <li>
+            <a href="<?=ROOT?>orders" class="nav-link ps-3 me-lg-5">
+              <span><i class="bi bi-table"></i></span>
+              Orders
             </a>
           </li>
+
+          <?php if($data['role']=='customer'){ ?>
+          </div> <!--blocker -->
+          <?php } ?>
+
+          
           <li>
-             <a href="<?=ROOT?>categories" class="nav-link ps-3 py-2 me-lg-5"  onclick="showCategory()">
-                <span><i class="bi bi-diagram-3-fill"></i></span>
-                  Categories     
+             <a href="<?=ROOT?>profile" class="nav-link ps-3 me-lg-5 ">
+             <span><i class="bi bi-person-circle"></i> </span>
+                  Profile
               </a>
-           </li>
-          <li>
-             <a href="<?=ROOT?>customers" class="nav-link ps-3 mb-3 me-lg-5 ">
-                <span><i class="bi bi-people-fill"></i></span>
-                  Customers
-             </a>
-          </li>
-          <hr style="width:300px;">
-          <li>
-             <a href="<?=ROOT?>users" class="nav-link ps-3 mt-2 me-lg-5 ">
-               <span><i class="bi bi-person-badge-fill"></i></span>
-                  Users
-             </a>
           </li>
           <li>
              <a href="<?=ROOT?>settings" class="nav-link ps-3 mb-1 me-lg-5 ">
                <span><i class="bi bi-gear"></i> </span>
                   Settings
              </a>
-          </li>
-          <li>
-             <a href="<?=ROOT?>profile" class="nav-link ps-3 me-lg-5 ">
-             <span><i class="bi bi-person-circle"></i> </span>
-                  Profile
-              </a>
           </li>
           <li>
              <a href="<?=ROOT?>signout" class="nav-link ps-3  me-lg-5 ">

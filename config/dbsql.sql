@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS category ( 
      id int NOT NUll AUTO_INCREMENT PRIMARY KEY,
      categoryName VARCHAR(50) NOT NULL,
+	 status TINYINT, 
      UNIQUE(categoryName)
     
 ); 
@@ -23,15 +24,19 @@ CREATE TABLE IF NOT EXISTS product (
 	name VARCHAR(255),
 	description VARCHAR(255),
 	price DECIMAL(10,2),
-	category VARCHAR(50),
-	image1 VARCHAR(255),
-	image2 VARCHAR(255),
-	image3 VARCHAR(255),
-	image4 VARCHAR(255),
-	image5 VARCHAR(255),
-	startdate DATE NOT NULL,
-    modifieddate DATE,
-    foreign key(category) references category(categoryName) ON UPDATE CASCADE ON DELETE CASCADE
+	category int not null,
+	quantity int not null,
+	enteredby varchar(255),
+	image1 VARCHAR(500),
+	image2 VARCHAR(500),
+	image3 VARCHAR(500),
+	image4 VARCHAR(500),
+	image5 VARCHAR(500),
+	enteredon DATETIME NOT NULL,
+    modifiedon DATETIME,
+	slag VARCHAR(200),
+    foreign key(enteredby) references user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    foreign key(category) references category(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS inventory (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -8,10 +8,116 @@ $this->view("zac/adminheader",$data);
 
 
 <!-- Profile section starts here-->
-<section class="mt-5 p-4 bg-light" id="display-area">
-<h3>Profile</h3>
+<section class="mt-5 p-5" id="profile-wrapper" >
+<!-- <h3>Profile</h3> -->
+<div class="wrapper" style="background-color: #FFF;">
+ <div class="row mt-5">
+     <div class="col-md-6">
+         <div class="row">
+             <div class="col-4">
+                <img  src="<?=ASSETS?>zac/images/xyz.png" alt=" profile image" style="border-radius:50%;max-height:150px;">
+               <div class="row">
+                   <div class="col-md-1">
+                     <span id="active-dot"> </span>
+                     
+                   </div>
+                   <div class="col-md-3">
+                     <span  class="ms-3 mt-2 text-success active-text">Active</span>
+                       </div>
+                       <div class="col-md-8">
+                       
+                       </div>
+                    
+               </div>
+             </div>
+             <div class="col-8  py-5">
+                 <p >Regina</p>
+                 <p class="text-secondary">Customer since 2019</p>
+                 
+             </div>
+         </div>
+
+     </div>
+     <div class="col-md-3">
+         <div class="box shadow text-center py-3 rounded">
+            <p class="display-1 text-success fw-bold">50</p>
+            <p class="text-success ">completed Orders</p>
+         </div>
+         
+     </div>
+     <div class="col-md-3">
+     <div class="box shadow text-center py-3 rounded">
+            <p class="display-1 text-danger fw-bold">7</p>
+            <p class="text-danger ">Return Requested</p>
+         </div>
+     </div>
 
 
+ </div>
+
+ <div class="row mt-5">
+     <div class="col-md-5">
+         
+         <div class="row shadow-sm">
+             <div class="col-md-8">
+             <h5 class="mb-3">Profile Details</h5>
+             <p class="mt-2">Name  <span class="text-secondary ms-5">Regina ABC</span></p>
+             <p>Email  <span class="text-secondary ms-5">regina@g.co </span></p>
+             <p>Phone <span class="text-secondary ms-5">121421424324</span></p>
+             <p>Address <span class="text-secondary ms-4">123 XYZ St</span></p>
+
+             </div>
+             <div class="col-md-4">
+             <i class="bi bi-pencil-square edit-profile-icon"></i>
+             <span> <a href="#" class="text-dark">Edit Details</a> </span>
+             </div>
+
+         </div>
+
+     </div>
+
+     <div class="col-md-7 shadow-sm">
+         <h5>Order History</h5>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Order#</th>
+                <th>Date </th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>x073642</td>
+                <td>12/06/2021 </td>
+                <td>Mug</td>
+                <td>5</td>
+                <td>$37.89</td>
+                <td class="text-primary">Confirmed</td>
+            </tr>
+            <tr>
+                <td>x032325</td>
+                <td>12/06/2021 </td>
+                <td>T-shirt</td>
+                <td>2</td>
+                <td>$29.89</td>
+                <td class="text-success">Complete</td>
+            </tr>
+            <tr>
+                <td>x032325</td>
+                <td>12/06/2021 </td>
+                <td>T-shirt</td>
+                <td>1</td>
+                <td>$14.89</td>
+                <td class="text-success">Complete</td>
+            </tr>
+
+        </table>
+
+     </div>
+ </div>
+
+ </div><!--End wrapper-->
 </section> 
 <!-- End Profiles section -->
 

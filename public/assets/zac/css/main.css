@@ -6,7 +6,7 @@ Main styles for all user facing pages except contact us page.
 
 :root {
   /* Variables */
-  --offcanvas-width: 270px;
+  --offcanvas-width: 240px;
   --topMenu: 56px;
   --darkblue: #131532;
   --lighterblue: #1e203c;

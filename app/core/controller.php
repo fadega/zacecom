@@ -13,6 +13,8 @@ class Controller{
   * 
   */
  protected function view($view, $data = []){
+    
+    extract($data); //using this, we can access each element inside $data  can be echoed as a ssingle variable
     if(file_exists("../app/views/".$view.".php")){
         include "../app/views/".$view.".php";
  

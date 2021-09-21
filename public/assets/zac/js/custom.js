@@ -1,6 +1,13 @@
-$( document ).ready(function( $ ) {
+ $( document ).ready(function() {
 
 
+
+
+
+
+    // =============================================================
+
+  
 	"use strict";
 
 
@@ -120,13 +127,6 @@ function showCategory(){
 
     }
   
-    // $(document).click(function(event) {
-    //     // var text = $(event.target).text();
-    //     var an = $(event.target);
-    //     an= an.classList.add("active");
-        
-    // });
-
             // Get the container element
         var list = document.getElementById("dashboardlinks");
 
@@ -159,108 +159,80 @@ function showCategory(){
 
 }
 
-// Charts 
-let labels1 = ['Clothing', 'Stationary','House'];
-let data1 = [34,52, 14];
-let colors1 = ['#74c69d','#bde0fe','#f2cc8f'];
-
-
-let char = document.getElementById("salesChart").getContext('2d');
-
-let chart1 = new Chart(char,{
-	type:'doughnut',
-	data:{
-		labels: labels1,
-		datasets:[{
-			data:data1,
-			backgroundColor:colors1
-		}]
-	},
-	options:{
-		table:{
-			text: "Do you like Doughnuts?",
-			display: true
-		},
-		legend:{
-			display:false
-		}
-	}
-});
-
 
 //example from chart.js 
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'July'],
-        datasets: [{
-            label: 'Sales trend Jan - July 2021',
-            data: [120, 75, 150, 500, 450, 900],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            },
-			label:{
-				display:false
-			}
-        }
-    }
-});
+// var ctx = document.getElementById('sales').getContext('2d');
+// var ch = new Chart(ctx, {
+//     type: 'line',
+//     data: {
+//         lab: ['Jan', 'Feb', 'March', 'April', 'May', 'July'],
+//         datasets: [{
+//             label: 'Sales trend Jan - July 2021',
+//             data: [120, 75, 150, 600, 450, 1800],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             },
+// 			label:{
+// 				display:false
+// 			}
+//         }
+//     }
+// });
 
 
 
-var ctx = document.getElementById('customervisitor').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Buyers', 'Visitors',],
-        datasets: [{
-            label: '# of buyers',
-            data: [200, 1200],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+// var ctx = document.getElementById('customervisitor').getContext('2d');
+// var chart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: ['Buyers', 'Visitors',],
+//         datasets: [{
+//             label: '# of buyers',
+//             data: [200, 2000],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)'
                 
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)'
                
-            ],
-            borderWidth: 1
-        }]
-    },
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
 	
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
 
 
 

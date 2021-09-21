@@ -5,6 +5,7 @@
  * This is a core class that deals with database connectivity
  */
 class Database{
+    
 
     public static $conn;
     public function __construct()
@@ -27,6 +28,13 @@ class Database{
            return self::$conn;
         }
         // $instance = new self();
+        return $instance = new self();
+    }
+
+    //to avoid calling the same instance
+    public static function newInstance(){
+      
+       // $instance = new self();
         return $instance = new self();
     }
 
