@@ -66,7 +66,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>product">Shop</a>
+                  <a class="nav-link" href="<?=ROOT?>shop">Shop</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=ROOT?>about">About</a>

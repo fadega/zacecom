@@ -119,7 +119,7 @@ class User{
             //hash the password input
             $data['password'] = hash('sha1',$data['password']);
 
-            //get a user with these 
+            //get a user with these credentials 
             $query = "SELECT * FROM user WHERE email = :email && password = :password limit 1";
             $result = $instance->read($query,$data);
             if(is_array($result)){

@@ -2,7 +2,7 @@
 
 
 
-class Product extends Controller{
+class Shop extends Controller{
 
       function index(){
 
@@ -22,7 +22,7 @@ class Product extends Controller{
         //pass data to view
         $data["Page_title"] = "Products";
         // load view - product.php
-        $this->view("zac/product",$data);
+        $this->view("zac/shop",$data);
         
     }
 

@@ -45,6 +45,6 @@ $this->view("zac/adminheader",$data);
 <!-- Admin assets and scripts are called by this line -->
 <?php $this->view("zac/adminassets",$data); 
 
-$this->view("zac/adminfooter",$data);
+// $this->view("zac/adminfooter",$data);
 
 ?>

@@ -1,15 +1,10 @@
- $( document ).ready(function() {
+ 
+ window.addEventListener('DOMContentLoaded', (event) => {
+    // console.log('DOM fully loaded and parsed');
 
+    // "use strict";
 
-
-
-
-
-    // =============================================================
-
-  
-	"use strict";
-
+    //carousel for home page featured and may-like sections
 
 		$('.owl-carousel').owlCarousel({
 		    items:4,
@@ -84,12 +79,9 @@
 			// loop:false
 	
 		})
-		 
-
-
-	
  
-});
+
+    }); // document is loaded
 
 //loop and change the active link
 

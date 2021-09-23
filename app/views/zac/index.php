@@ -14,7 +14,7 @@
               <p><strong>My Smart Community</strong> offers consulting and media services with a focus on making our communities more accessible, liveable and sustainable for all.</p>
               <p> We have a focus on Smart Mobility, Smart project management, Smart technology in regional communities, dealing with disruption and facilitating genuine collaboration.</p>
               <div class="main-button">
-                <a href="<?=ROOT?>products" class="btn btn-lg btn-banner fw-bold ">Shop Now</a>
+                <a href="<?=ROOT?>shop" class="btn btn-lg btn-banner fw-bold ">Shop Now</a>
               </div>
             </div>
           </div>

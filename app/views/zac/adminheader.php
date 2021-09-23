@@ -143,7 +143,7 @@ $conn = $db->db_connect();
             <li>
                   <a href="<?=ROOT?>admin/categories" class="nav-link">View Categories</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="<?=ROOT?>admin/categories/add" class="nav-link">Add New Category</a>
                 </li>
                 <li>
@@ -151,7 +151,7 @@ $conn = $db->db_connect();
                 </li>
                 <li>
                   <a href="<?=ROOT?>admin/categories/delete" class="nav-link">Delete Category</a>
-                </li>
+                </li> -->
             </ul>
              
          </li>
@@ -163,9 +163,9 @@ $conn = $db->db_connect();
             </a>
             <ul class="navbar-nav ms-5 collapse" id="product-collapse">
                 <li>
-                  <a href="<?=ROOT?>admin/products/view" class="nav-link">View Products</a>
+                  <a href="<?=ROOT?>admin/products" class="nav-link">View Products</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="<?=ROOT?>admin/products/add" class="nav-link">Add New Product</a>
                 </li>
                 <li>
@@ -173,7 +173,7 @@ $conn = $db->db_connect();
                 </li>
                 <li>
                   <a href="<?=ROOT?>admin/products/delete" class="nav-link">Delete Product</a>
-                </li>
+                </li> -->
             </ul>
              
         </li>
@@ -186,9 +186,9 @@ $conn = $db->db_connect();
             </a>
             <ul class="navbar-nav ms-5 collapse" id="customer-collapse">
                <li>
-                  <a href="<?=ROOT?>admin/customers/view" class="nav-link">View Customers</a>
+                  <a href="<?=ROOT?>admin/customers" class="nav-link">View Customers</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="<?=ROOT?>admin/customer/add" class="nav-link">Add New Customer</a>
                 </li>
                 <li>
@@ -196,7 +196,7 @@ $conn = $db->db_connect();
                 </li>
                 <li>
                   <a href="<?=ROOT?>admin/customer/delete" class="nav-link">Delete Customer</a>
-                </li>
+                </li> -->
             </ul>
              
         </li>
@@ -210,9 +210,9 @@ $conn = $db->db_connect();
             </a>
             <ul class="navbar-nav ms-5 collapse" id="user-collapse">
                 <li>
-                  <a href="<?=ROOT?>admin/users/view" class="nav-link">View Users</a>
+                  <a href="<?=ROOT?>admin/user" class="nav-link">View Users</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="<?=ROOT?>admin/user/add" class="nav-link">Add New User</a>
                 </li>
                 <li>
@@ -220,7 +220,7 @@ $conn = $db->db_connect();
                 </li>
                 <li>
                   <a href="<?=ROOT?>admin/user/delete" class="nav-link">Delete User</a>
-                </li>
+                </li> -->
             </ul>
              
         </li>

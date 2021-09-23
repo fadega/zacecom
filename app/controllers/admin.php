@@ -39,7 +39,7 @@ class Admin extends Controller{
     }
 
 
-     //defualt method
+     //Categories Method
      function categories(){
       
         // check if user is logged in
@@ -58,15 +58,17 @@ class Admin extends Controller{
 
         //get table displayed in the categories area
         $conn =  Database::newInstance();
-        $categories = $conn->read("SELECT *FROM category order by categoryName asc"); 
+        $sql= "SELECT *FROM category order by id ";
+        $categories = $conn->read($sql,[]); 
         
         $category = $this->loadModel('Category');
         $tbl_rows = $category->make_table($categories);
+        $data["tbl_rows"] = $tbl_rows;
         // print_r($tbl_rows);
-        if(is_array($categories)){
-             $data["tbl_rows"] = $tbl_rows;
+        // if(is_array($categories)){
+        //      $data["tbl_rows"] = $tbl_rows;
             
-        }
+        // }
 
 
         $data["Page_title"] = "admin";
@@ -90,9 +92,8 @@ class Admin extends Controller{
 
 
 
-
-    //defualt method
-    function products(){
+    //Products  Method
+     function products(){
       
         // check if user is logged in
         $user = $this->loadModel('user');
@@ -104,7 +105,22 @@ class Admin extends Controller{
             $data['userid']=$user_info['userid'];
     
         }
-      
+   
+        //get table displayed in the categories area
+        $conn =  Database::newInstance();
+        $sql= "SELECT *FROM product order by name";
+        $products = $conn->read($sql,[]); 
+        
+        $product = $this->loadModel('Product');
+        $tbl_rows = $product->make_table($products);
+        $data["tbl_rows"] = $tbl_rows;
+        // print_r($tbl_rows);
+        // if(is_array($products)){
+        //      $data["tbl_rows"] = $tbl_rows;
+            
+        // }
+
+
         $data["Page_title"] = "admin";
         if(isset($_SESSION['logged'])){
 
@@ -118,8 +134,15 @@ class Admin extends Controller{
             //intentionally lead them to 404
             $this->view("zac/home",$data);
         }
+       
   
     }
+
+
+
+    
+
+
 
 
 }
