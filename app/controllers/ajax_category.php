@@ -73,38 +73,7 @@ class Ajax_category extends  Controller{
       }
 
 
-
-      // if(is_object($data)){
-      //   echo "data_type is set <br>";
-      //   if($data->data_type == "add_new"){
-      //     //add new category
-      //      $category = $this->loadModel('Category');
-      //      $check =  $category->create($data);
-
-      //      if($check && $_SESSION['error']=="" ){
-      //          $arr['message'] ="Category added successfully";
-      //          $arr['message_type'] = "info";
-      //          $cats = $category->getCategories();
-      //         //  print_r($cats);
-      //          $arr['data'] = $category->make_table($cats);
-
-      //          echo json_encode($arr);
-
-      //      }else{
-      //         $arr['message'] = $_SESSION['error'];
-      //         $arr['message_type'] = "error";
-      //         $arr['data'] = "";
-           
-      //         echo json_encode($arr);
-
-      //         unset($_SESSION['error']);
-          
-      //      }
-     
-      //      }
-       
-      // }
-    
+   
 
 
     } //Method index ends here

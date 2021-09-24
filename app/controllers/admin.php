@@ -11,10 +11,12 @@ class Admin extends Controller{
         $user = $this->loadModel('user');
         $user_info = $user->checkLogin();
         if(is_array($user_info)){
-            $data['user_email'] = $user_info['email'];
-            $data['name']=$user_info['name'];
-            $data['role']=$user_info['role'];
-            $data['userid']=$user_info['userid'];
+            $data['user_email']  = $user_info['email'];
+            $data['name']        = $user_info['name'];
+            $data['role']        = $user_info['role'];
+            $data['userid']      = $user_info['userid'];
+            $data['phone']       = $user_info['phone'];
+            $data['address']     = $user_info['address'];
             
         
         }
@@ -47,14 +49,21 @@ class Admin extends Controller{
         $user_info = $user->checkLogin();
         if(is_array($user_info)){
             $data['user_email'] = $user_info['email'];
-            $data['name']=$user_info['name'];
-            $data['role']=$user_info['role'];
-            $data['userid']=$user_info['userid'];
+            $data['name'] = $user_info['name'];
+            $data['role'] = $user_info['role'];
+            $data['userid'] = $user_info['userid'];
+
+            $data['user_email']  = $user_info['email'];
+            $data['name']        = $user_info['name'];
+            $data['role']        = $user_info['role'];
+            $data['userid']      = $user_info['userid'];
+            $data['phone']       = $user_info['phone'];
+            $data['address']     = $user_info['address'];
+            
     
         }
       
-        
-
+      
 
         //get table displayed in the categories area
         $conn =  Database::newInstance();
@@ -99,10 +108,19 @@ class Admin extends Controller{
         $user = $this->loadModel('user');
         $user_info = $user->checkLogin();
         if(is_array($user_info)){
-            $data['user_email'] = $user_info['email'];
-            $data['name']=$user_info['name'];
-            $data['role']=$user_info['role'];
-            $data['userid']=$user_info['userid'];
+            $data['user_email']    = $user_info['email'];
+            $data['name']          = $user_info['name'];
+            $data['role']          = $user_info['role'];
+            $data['userid']        = $user_info['userid'];
+
+            $data['user_email']  = $user_info['email'];
+            $data['name']        = $user_info['name'];
+            $data['role']        = $user_info['role'];
+            $data['userid']      = $user_info['userid'];
+            $data['phone']       = $user_info['phone'];
+            $data['address']     = $user_info['address'];
+            
+            
     
         }
    
@@ -110,6 +128,12 @@ class Admin extends Controller{
         $conn =  Database::newInstance();
         $sql= "SELECT *FROM product order by name";
         $products = $conn->read($sql,[]); 
+
+        //feed combobox of the modal
+        $query= "SELECT *FROM category order by name";
+        $categories = $conn->read($query,[]); 
+        $data["categories"] = $categories;
+        
         
         $product = $this->loadModel('Product');
         $tbl_rows = $product->make_table($products);

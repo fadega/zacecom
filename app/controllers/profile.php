@@ -13,6 +13,14 @@ class Profile extends Controller{
                 $data['name']=$user_info['name'];
                 $data['role']=$user_info['role'];
                 $data['userid']=$user_info['userid'];
+
+                $data['user_email']  = $user_info['email'];
+                $data['name']        = $user_info['name'];
+                $data['role']        = $user_info['role'];
+                $data['userid']      = $user_info['userid'];
+                $data['phone']       = $user_info['phone'];
+                $data['address']     = $user_info['address'];
+                
                 
             // show($data['user_email']);
             //show($user_info['role']);

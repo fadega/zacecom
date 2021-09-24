@@ -9,8 +9,7 @@ class Category{
        $_SESSION['error']="";
        $conn =  Database::db_connect();
        $arr['category'] = ucwords($data->category);
-      //  $arr['status'] = $data->status;
-    //    $arr['status'] = $data['status'];
+   
        if(!preg_match("/^[a-zA-Z ]+$/",trim($arr['category']))){
         //    echo "<br/> if you see this, the preg_match is bulshiting<br />";
            $_SESSION['error'] = "Please enter valid category name";
@@ -85,8 +84,8 @@ class Category{
             $result .= "<tr>";
          
               $result.='                    
-                   <td><a href="basic_table.html#" class="text-dark">'.$cat_row->id.'</a></td>
-                   <td><a href="basic_table.html#" class="text-dark">'.$cat_row->categoryName .'</a></td>
+                   <td><a href="#" class="text-dark">'.$cat_row->id.'</a></td>
+                   <td><a href="#" class="text-dark">'.$cat_row->categoryName .'</a></td>
                   
                    <td>
                        <button class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#editCategoryModal" onclick="edit_record('.$args.')"><i class="fa fa-pencil"></i></button>

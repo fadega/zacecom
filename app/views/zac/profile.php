@@ -14,43 +14,52 @@ $this->view("zac/adminheader",$data);
  <div class="row mt-5">
      <div class="col-md-6">
          <div class="row">
-             <div class="col-4">
+             <div class="col-5">
                 <img  src="<?=ASSETS?>zac/images/xyz.png" alt=" profile image" style="border-radius:50%;max-height:150px;">
-               <div class="row">
-                   <div class="col-md-1">
-                     <span id="active-dot"> </span>
-                     
-                   </div>
-                   <div class="col-md-3">
-                     <span  class="ms-3 mt-2 text-success active-text">Active</span>
-                       </div>
-                       <div class="col-md-8">
-                       
-                       </div>
-                    
-               </div>
              </div>
-             <div class="col-8  py-5">
-                 <p >Regina</p>
-                 <p class="text-secondary">Customer since 2019</p>
+             <div class="col-7  py-5 border-left">
+                 <p class="display-5"><?=$data['name']?></p>
+                 <p class="text-secondary"><?=$data['user_email']?></p>
                  
              </div>
          </div>
 
      </div>
-     <div class="col-md-3">
-         <div class="box shadow text-center py-3 rounded">
-            <p class="display-1 text-success fw-bold">50</p>
-            <p class="text-success ">completed Orders</p>
-         </div>
-         
-     </div>
-     <div class="col-md-3">
-     <div class="box shadow text-center py-3 rounded">
-            <p class="display-1 text-danger fw-bold">7</p>
-            <p class="text-danger ">Return Requested</p>
-         </div>
-     </div>
+     <?php if($data['role']=='custmer'):?>
+        <div class="col-md-3">
+            <div class="box shadow text-center py-3 rounded">
+                <p class="display-1 text-success fw-bold">50</p>
+                <p class="text-success ">completed Orders</p>
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+        <div class="box shadow text-center py-3 rounded">
+                <p class="display-1 text-danger fw-bold">7</p>
+                <p class="text-danger ">Return Requested</p>
+            </div>
+        </div>
+    <?php else:?>
+
+        <div class="col-md-3">
+            <div class="box shadow text-center py-3 rounded">
+                <p class="display-1 text-success fw-bold">21</p>
+                <p class="text-success ">Recieved Orders</p>
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+        <div class="box shadow text-center py-3 rounded">
+                <p class="display-1 text-warning fw-bold">10</p>
+                <p class="text-warning ">Pending Cancellations</p>
+            </div>
+        </div>
+
+
+    
+    <?php endif;?>
+
+
 
 
  </div>
@@ -61,10 +70,11 @@ $this->view("zac/adminheader",$data);
          <div class="row shadow-sm">
              <div class="col-md-8">
              <h5 class="mb-3">Profile Details</h5>
-             <p class="mt-2">Name  <span class="text-secondary ms-5">Regina ABC</span></p>
-             <p>Email  <span class="text-secondary ms-5">regina@g.co </span></p>
-             <p>Phone <span class="text-secondary ms-5">121421424324</span></p>
-             <p>Address <span class="text-secondary ms-4">123 XYZ St</span></p>
+             <p class="mt-2">Name  <span class="text-secondary ms-5"><?=$data['name']?></span></p>
+             <p>Email  <span class="text-secondary ms-5"><?=$data['user_email']?> </span></p>
+             <p>Phone <span class="text-secondary ms-5"><?=$data['phone']?>4</span></p>
+             <p>Address <span class="text-secondary ms-4"><?=$data['address']?></span></p>
+             <p>Role <span class="text-secondary ms-4"><?=$data['role']?></span></p>
 
              </div>
              <div class="col-md-4">
@@ -76,6 +86,7 @@ $this->view("zac/adminheader",$data);
 
      </div>
 
+     <?php if($data['role']=='customer'): ?>
      <div class="col-md-7 shadow-sm">
          <h5>Order History</h5>
         <table class="table table-striped table-hover">
@@ -115,6 +126,7 @@ $this->view("zac/adminheader",$data);
         </table>
 
      </div>
+     <?php endif;?>
  </div>
 
  </div><!--End wrapper-->

@@ -74,3 +74,37 @@ function checkErrorMessage(){
     }
     
 }
+
+function uploadImages(){
+
+    $size = 10;
+    $size =($size *1024 *1024);
+    $allowed[] = "image/jpeg";
+    $allowed[] = "image/png";
+    $arr = array();
+
+    $dir = "uploads/";
+
+    //if folder doesn't exist create it
+    if(!file_exists($dir)){
+      mkdir($dir,0777,true);
+    }
+
+  
+  foreach($_FILES as $key => $img_row){
+    if($img_row['error']=="" && in_array($img_row['type'], $allowed) ){
+      if($img_row['size'] < $size){
+        //upload image to folder
+        $destination = $dir.$img_row['name'];
+        move_uploaded_file($img_row['tmp_name'], $destination);
+        $arr[$key] = $destination;
+
+      }else{
+        $_SESSION['error'] .= $key ."is larger than xax upload size (5 megabyte) <br/>";
+      }
+
+    }
+
+   }
+   return $arr;
+}

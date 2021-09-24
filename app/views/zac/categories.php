@@ -10,7 +10,7 @@ $this->view("zac/adminheader",$data);
 <section class="mt-5 p-4 bg-light" id="display-area">
 
 <h3 class="my-4">Admin</h3>
-    
+
 
 <div class="row mt">
                   <div class="col-md-12">
@@ -18,8 +18,8 @@ $this->view("zac/adminheader",$data);
                           <table class="table table-striped table-advance table-hover">
 	                  	  	  <!-- <h4><i class="fa fa-angle-right"></i>Product Categories</h4> -->
 	                  	  	  <h4> Categories <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i>Add Category</button></h4>
-	                  	  	  
-                          
+
+
                               <!-- Add Category Modal -->
                                   <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModal" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -60,7 +60,7 @@ $this->view("zac/adminheader",$data);
                                   </div>
                                <!-- END EDIT category Modal -->
 
-                    
+
                             <!-- <hr> -->
                               <thead>
                               <tr>
@@ -72,11 +72,11 @@ $this->view("zac/adminheader",$data);
                               </thead>
                               <tbody id="table_body">
                                   <?php
-                                       
+
                                     //this line prints table [check full code on admin.php]
-                                                      
+
                                     echo $tbl_rows;
-                                    // echo  $data['tbl_rows'];                              
+                                    // echo  $data['tbl_rows'];
                                 ?>
                               <!-- <tr>
                                   <td><a href="basic_table.html#" class="text-dark">Clothing</a></td>
@@ -87,7 +87,7 @@ $this->view("zac/adminheader",$data);
                                       <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr> -->
-            
+
                               </tbody>
                           </table>
 
@@ -113,7 +113,7 @@ $this->view("zac/adminheader",$data);
         send_data({
             category:category,
             data_type:"add_new"
-            }); 
+            });
 
     }
 
@@ -133,22 +133,22 @@ $this->view("zac/adminheader",$data);
         ajax.open("POST","<?=ROOT?>ajax_category", true);
         ajax.send(JSON.stringify(data));
 
-   
-    }  
+
+    }
 
     /**
-     * This is a complex function that handles ajax response 
+     * This is a complex function that handles ajax response
      * New line braces { } are used to make where each condition ends - this style isn't followed in the rest of the code
      * @param mixed result - ajax response data
      * @return void - prints table and error messages
      */
     function  handle_results(result)
-    {      
-        // console.log(typeof result);
-        //   console.log(result);
+    {
+        console.log(typeof result);
+          console.log(result);
           if(result!=="")
           {
-                    
+
             let obj= JSON.parse(result);
             // alert("Obje alert ", obj);
             // alert(obj.data_type);
@@ -159,7 +159,7 @@ $this->view("zac/adminheader",$data);
                     // alert("add reached");
                     if(obj.message_type=="info")
                     {
-                        
+
                         document.getElementById("catname").value = "";
 
                         let table_body = document.getElementById("table_body");
@@ -174,25 +174,25 @@ $this->view("zac/adminheader",$data);
 
                 }else if(obj.data_type == "delete_row")
                 {
-                    
+
                     let table_body = document.getElementById("table_body");
                     table_body.innerHTML=obj.data;
                    // alert(obj.message);
-                    
+
                 }else if(obj.data_type == "edit_row")
                 {
                     let table_body = document.getElementById("table_body");
                     table_body.innerHTML=obj.data;
                     document.getElementById("editcatname").value="";
                    // alert(obj.message);
-                    
+
                 }
 
             }
         }
      }
-    
-      
+
+
     /**
      * Function to bring data to be edited
      * @param event e
@@ -204,11 +204,11 @@ $this->view("zac/adminheader",$data);
         txt_category.value = category;
 
         EDIT_ID =id;
-       
+
     }
 
     /**
-     * Function to actually pass data to pushed to database
+     * Function to actually send data to pushed to database
      * @param event e
      * @return void
      */
@@ -221,7 +221,7 @@ $this->view("zac/adminheader",$data);
         send_data({
             id:EDIT_ID,
             category:category,
-            data_type: "edit_row"   
+            data_type: "edit_row"
         });
 
     }
@@ -233,34 +233,34 @@ $this->view("zac/adminheader",$data);
      * @return void
      */
     function delete_record(e,id){
-        
+
         if(!confirm("Are you sure to delete the record?")){
             return; //exit
         }
         send_data({
             id:id,
-            data_type: "delete_row"   
+            data_type: "delete_row"
         });
-        
+
     }
 
-   
-    
-    
+
+
+
  </script>
- 
+
 
 
  <!-- Table backup -->
 
- 
+
 <!-- div class="row mt">
                   <div class="col-md-12">
                       <div class="content-panel">
                           <table class="table table-striped table-advance table-hover">
 	                  	  	  <h4><i class="fa fa-angle-right"></i>Product Categories</h4> -->
 	                  	  	  <!-- <h4> Product Categories <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i>Add New</button></h4>
-	                  	                           
+
                             <hr>
                               <thead>
                               <tr>
@@ -274,15 +274,15 @@ $this->view("zac/adminheader",$data);
                               <tr>
                                   <td><a href="basic_table.html#" class="text-dark">Clothing</a></td>
                                   <td class="hidden-phone">Cloth items (T-shirts, Cap/Hat)</td>
-                                  
+
                                   <td><span class="label label-info label-mini">1</span></td>
                                   <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button> 
+                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                                       <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
                                       <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr>
-            
+
                               </tbody>
                           </table>
 
@@ -293,10 +293,10 @@ $this->view("zac/adminheader",$data);
 
 
 
- 
 
 
-</section> 
+
+</section>
 <!-- End Dashboard right side section-->
 
 
@@ -306,7 +306,7 @@ $this->view("zac/adminheader",$data);
 
 
 <!-- Admin footer and  assets  -->
-<?php $this->view("zac/adminassets",$data); 
+<?php $this->view("zac/adminassets",$data);
 
 // $this->view("zac/adminfooter",$data);
 

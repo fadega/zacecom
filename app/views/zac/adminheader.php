@@ -118,10 +118,20 @@ $conn = $db->db_connect();
   </div>
   <div class="offcanvas-body p-0">
     <div class="mb-5">
-      <a href="<?=ROOT?>admin" class="text-muted fw-bold  px-3">
-          <span><i class="bi bi-speedometer"></i></span>
-          Dashboard
-      </a>
+      <?php if($data['role']=="customer"): ?>
+        <a href="<?=ROOT?>profile" class="text-muted fw-bold  px-3">
+            <span><i class="bi bi-speedometer"></i></span>
+            Dashboard
+        </a>
+      <?php else:?>
+        <a href="<?=ROOT?>admin" class="text-muted fw-bold  px-3">
+            <span><i class="bi bi-speedometer"></i></span>
+            Dashboard
+        </a>
+
+        <?php endif;?>
+    
+
     </div>
      
       <!-- offcanvas Menu -->

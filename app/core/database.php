@@ -70,10 +70,7 @@ class Database{
      * @return boolean
      */
      public function write($query, $data = []){
-         echo "passed for insertion data <br/>";
-         echo "<pre>";
-        print_r($data);
-         echo "</pre>";
+       
         $stmt = self::$conn->prepare($query);
         $result = $stmt->execute($data);
        
