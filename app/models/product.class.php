@@ -5,16 +5,16 @@
 class Product{
     
  
-    public function create($data, $files){
+    public function create($data, $files){ //I am not using $files because I am using function(uploadimages) to access the global $_FILES
        $_SESSION['error']="";
        $conn =  Database::db_connect();
 
-       $conn   =  Database::newInstance();
+
        $pro_data    = [];
        $images = uploadImages(); //custom function in function.pho
       
        foreach($images as $key =>$value){
-         $pro_data[$key] = $value;
+         $pro_data[$key] = $value;     //keys are image1 image2 image 2 and values are whatever images added
  
        }
         
