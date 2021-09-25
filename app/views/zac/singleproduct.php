@@ -10,56 +10,63 @@
           <div class="col-md-12">
             <div class="section-heading">
               <div class="line-dec"></div>
-              <h1>Product Name</h1>
+              <h1> <?=$singlerow[0]['name']?></h1>
             </div>
           </div>
 
           <div class="col-md-6 py-3" style="border:1px solid #eee;">
             <div id="single-product-main-img">
+                <?php if(is_array($singlerow)):?>
+                   
                 <div class=" justify-content-center mb-3" >
-                    <img src="<?=ASSETS?>zac/images/7.png"  alt="Product image 1"/>
+                   <img src="<?=ROOT . $singlerow[0]['image1']?>"  alt="Product image "/>
+                   
                 </div>
+                <?php //endforeach;?>
+                <?php endif;?>
+
              </div>
+
              <div id ="single-product-slider" class="owl-carousel owl-theme">
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;">
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;" >
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;" >
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;" >
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;" >
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
-                <div class="item">
-                  <div class=" py-3 "style="border:1px solid #eee;" >
-                      <img src="<?=ASSETS?>zac/images/7.png" alt="Product image 1"/>
-                   </div>
-                </div> 
+                <?php if(is_array($singlerow)):?>
+                    <div class="item">
+                      <div class=" py-3 "style="border:1px solid #eee;">
+                      <img src="<?=ROOT . $singlerow[0]['image2']?>"  alt="Product image "/>
+                      </div>
+                    </div> 
+                    <div class="item">
+                      <div class=" py-3 "style="border:1px solid #eee;">
+                      <img src="<?=ROOT . $singlerow[0]['image3']?>"  alt="Product image "/>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class=" py-3 "style="border:1px solid #eee;">
+                      <img src="<?=ROOT . $singlerow[0]['image1']?>"  alt="Product image "/>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class=" py-3 "style="border:1px solid #eee;">
+                      <img src="<?=ROOT . $singlerow[0]['image2']?>"  alt="Product image "/>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class=" py-3 "style="border:1px solid #eee;">
+                      <img src="<?=ROOT . $singlerow[0]['image3']?>"  alt="Product image "/>
+                      </div>
+                    </div>
+               <?php endif;?>
               </div> 
           </div>          
         
           <div class="col-md-6">
             <div class="right-content">
-              <h4>Product Name</h4>
-              <h6>$29.00</h6>
-              <p> Price description ...bla bla bla Lorem ipsum dolor sit amet.bla bla bla Lorem ipsum dolor sit amet.bla bla bla Lorem ipsum dolor sit amet.bla bla bla Lorem ipsum dolor sit amet. </p>
-              <span>3 left on stock</span>
+              <?php if(is_array($singlerow)):?>
+              <h4> <?=$singlerow[0]['name']?></h4>
+              <h6> $ <?=$singlerow[0]['price']?></h6>
+              <p> <?=$singlerow[0]['description']?> </p>
+              <?php if($singlerow[0]['quantity'] < 5):?>
+              <span><?=$singlerow[0]['quantity']?> left in stock</span>
+              <?php endif;?>
               <form action="" method="get">
                 <label for="quantity">Quantity:</label>
                 <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
@@ -70,13 +77,14 @@
               </form>
               <div class="down-content">
                 <div class="categories">
-                  <h6>Category: <span><a href="#">House</a></span></h6>
+                  <h6>Category: <span><a href="#"><?=$categoryName[0]['categoryName']?></a></span></h6>
                 </div>
                 <div class="share">
                   <h6>Share: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
                 </div>
               </div>
             </div>
+            <?php endif;?>
           </div>
           <!-- End right section -->
         </div>
@@ -97,14 +105,20 @@
           </div>
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
-              <a href="<?=ROOT?>product?id=12>">
+            <?php if(is_array($products)):?>
+            <?php foreach($products as $product):?>
+              <a href="<?=ROOT?>singleproduct/<?=$product['slug']?>">
                 <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/1.png" alt="Item 1">
-                  <h4>Marble  - Whitea</h4>
-                  <h6>$13.00</h6>
+                  <img src="<?=ROOT . $product['image1']?>" alt="product image">
+                  <h4><?=$product['name']?></h4>
+                  <h6><?=$product['price']?></h6>
+                  <h6><?=$product['description']?></h6>
                 </div>
               </a>
-              <a href="<?=ROOT?>product?id=13">
+              <?php endforeach;?>
+            <?php endif;?>
+
+              <!-- <a href="<?=ROOT?>product?id=13">
                 <div class="featured-item">
                   <img src="<?=ASSETS?>zac/images/2.png" alt="Item 2">
                   <h4>Coffe cup</h4>
@@ -147,7 +161,7 @@
                 </div>
               </a>
             
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

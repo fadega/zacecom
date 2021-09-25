@@ -75,6 +75,12 @@ function checkErrorMessage(){
     
 }
 
+
+
+/**
+ * function that upload product images 
+ * @return array
+ */
 function uploadImages(){
 
     $size = 10;
@@ -107,4 +113,18 @@ function uploadImages(){
 
    }
    return $arr;
+}
+
+//
+
+/**
+ * Function returns a sanitized data
+ * @param string $slug 
+ * @return string 
+ */
+function esc($slug){
+
+    return addslashes($slug);
+
+
 }

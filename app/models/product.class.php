@@ -3,6 +3,7 @@
  * Undocumented class
  */
 class Product{
+
     
  
     public function create($data, $files){ //I am not using $files because I am using function(uploadimages) to access the global $_FILES
@@ -27,9 +28,14 @@ class Product{
       //  $pro_data['image2']      = NULL;                
       //  $pro_data['image3']      = NULL;                
        $pro_data['date']        = date("Y-m-d H:i:s"); 
+       $pro_data['slug']        = $this->strtoslug($data->name);
 
       
      
+      /*
+      Converted the code block below to a function(uploadImage  in functions.php)
+
+      */
        //This code repeats for update to  - make a funtion
        //set allowed files types and check files if exist
        //allowed images
@@ -69,7 +75,7 @@ class Product{
       
       
        //validate in backend
-       if(!preg_match("/^[a-zA-Z ]+$/",trim($pro_data['name']))){
+       if(!preg_match("/^[a-zA-Z 0-9]+$/",trim($pro_data['name']))){
               $_SESSION['error'] .= "Please enter valid product name <br/>";
 
        }
@@ -99,7 +105,7 @@ class Product{
                return false;
            } 
 
-           $query = "INSERT INTO product (name, description, price, category, quantity, image1,image2,image3,date) VALUES (:name, :description, :price, :category, :quantity, :image1,:image2,:image3,:date)";
+           $query = "INSERT INTO product (name, description, price, category, quantity, image1,image2,image3,date, slug) VALUES (:name, :description, :price, :category, :quantity, :image1,:image2,:image3,:date, :slug)";
      
            $check = $conn->write($query,$pro_data);
             if ($check) {
@@ -272,9 +278,22 @@ class Product{
   
       }
 
-      //<i class="fa fa-pencil"></i>
 
-      // <td><span onclick="disable_record('.$args.')" class ="label label-info label-mini text-secondary p-2 rounded" style="cursor:pointer; background-color:'.$color.'">'.$cat_row->status.'</span></td>
+      
+  public function strtoslug($url){
+    $url = preg_replace('~[^\\pL0-9_]+~u', '-',$url);
+    $url = trim($url, '-');
+    $url = iconv("utf-8","us-ascii//TRANSLIT", $url);
+    $url = strtolower($url);
+    $url = preg_replace('~[^-a-z0-9]+~','',$url);
+
+    return $url;
+
+  }
+    
+   
+
+
 
 } //end of class
 

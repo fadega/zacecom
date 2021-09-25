@@ -19,6 +19,16 @@ class Shop extends Controller{
            //show($user_info['role']);
         }
        
+
+        $db = Database::newInstance();
+        $categories = $db->read("SELECT *FROM category");
+
+        $conn = Database::newInstance();
+        $items_inshop = $conn->read("SELECT *FROM product limit 10");
+        
+        $data["items_inshop"] = $items_inshop;
+        $data["categories"] = $categories;
+
         //pass data to view
         $data["Page_title"] = "Products";
         // load view - product.php

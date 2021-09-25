@@ -39,7 +39,7 @@
 
             <?php if(is_array($ROWS)):?>
             <?php foreach($ROWS as $row):?>
-              <a href="<?=ROOT?>singleproduct?id=150">
+              <a href="<?=ROOT?>singleproduct/<?=$row['slug']?>">
                 <div class="featured-item">
                  <div style="overflow: hidden;"> <img class="product-image" src="<?=ROOT . $row['image1']?>" alt="product image"></div>
                   <h4><?=$row['name']?></h4>

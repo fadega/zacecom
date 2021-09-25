@@ -55,10 +55,10 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-lg-3 col-sm-4 col-md-4 col-5"> <a href="#" class="brand-wrap" data-abc="true">
-                 <span class="logo">ZAC-ECOM</span> </a> </div>
+                 <span class="logo">SMART-COM</span> </a> </div>
                 <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
                     <form action="#" class="search-wrap">
-                        <div class="input-group w-100 d-none"> <input type="text" class="form-control search-form" style="width:55%;" placeholder="Search">
+                        <div class="input-group w-100 "> <input type="text" class="form-control search-form" style="width:55%;" placeholder="Search">
                             <div class="input-group-append"> <button class="btn btn-primary search-button" type="submit"> <i class="fa fa-search"></i> </button> </div>
                         </div>
                     </form>
@@ -111,23 +111,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="<?=ROOT?>contact">Contact</a>
                 </li>
-                <?php if(isset($data['user_email'])):?>
-                  <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>profile">Account</i>  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>signout">Logout<i class="bi bi-box-arrow-in-right mt-0"></i>  </a>
-                </li>
-                <?php else:?>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>signin"><i class="bi bi-box-arrow-in-left"></i>Login</a>
-                </li>
-                <?php endif;?>
                 
-                
-                <li class="nav-item">
-                  <a class="nav-link" href="<?=ROOT?>cart">Cart</a>
-                </li>
                 
                
               </ul>

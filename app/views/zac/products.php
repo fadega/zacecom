@@ -368,7 +368,7 @@ $result= $conn->read($query);
                 {
                     let table_body = document.getElementById("product_table_body");
                     table_body.innerHTML=obj.data;
-                    alert(obj.message);
+                    // alert(obj.message);
 
                 }else if(obj.data_type == "edit_product")
                 {   
@@ -392,10 +392,10 @@ $result= $conn->read($query);
     function edit_record(id, e){
 
         var info = e.currentTarget.getAttribute("info");
-        // console.log(info);
-        info = JSON.parse(info.replaceAll("'",'"'));
+        console.log(info);
+        info = JSON.parse(info.replaceAll("'",'"')); //replace single quotes by double quotes to make it a proper json object
         info = JSON.parse(info);
-        // console.log(info);
+        console.log(info);
         EDIT_ID = info.id;
     
 
@@ -404,6 +404,8 @@ $result= $conn->read($query);
         let txt_price        = document.querySelector("#updateprice");
         let txt_quantity     = document.querySelector("#updatequantity");        
         let category    = document.querySelector('#updatecategory');
+        
+        //view what images were uploaded in the past
         let js_image1= document.querySelector(".js-image1");
         js_image1.innerHTML = `<img src="<?=ROOT?>${info.image1}" />` ;
 
@@ -414,11 +416,21 @@ $result= $conn->read($query);
         js_image3.innerHTML = `<img src="<?=ROOT?>${info.image3}" />` ;
 
      
-        txt_product.value        = info.name;
-        txt_description.value    = info.description;
-        txt_price.value         = info.price;
-        category.value           = info.category;
-        txt_quantity.value       = info.quantity;
+        txt_product.value      = info.name;
+        txt_description.value  = info.description;
+        txt_price.value        = info.price;
+        category.value         = info.category;
+        txt_quantity.value     = info.quantity;
+
+        let image1             = document.querySelector("#updateimage1");
+        let image2             = document.querySelector("#updateimage2");
+        let image3             = document.querySelector("#updateimage3");
+        image1.files[0]        = info.image1;
+        image2.files[0]        = info.image2;
+        image3.files[0]        = info.image3;
+
+        
+
      
 
        
