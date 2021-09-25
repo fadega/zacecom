@@ -36,79 +36,27 @@
           </div>
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
+
+            <?php if(is_array($ROWS)):?>
+            <?php foreach($ROWS as $row):?>
               <a href="<?=ROOT?>singleproduct?id=150">
                 <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/1.png" alt="Item 1">
-                  <h4>Fila Style Cap</h4>
-                  <h6>$13.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
+                 <div style="overflow: hidden;"> <img class="product-image" src="<?=ROOT . $row['image1']?>" alt="product image"></div>
+                  <h4><?=$row['name']?></h4>
+                  <h6>$<?=$row['price']?></h6>
+                  <h6><?=$row['description']?></h6>
+                  <?php if($row['quantity']<10):?>
+                    <p class="form-text text-danger fw-bold" ><?=$row['quantity']?> in stock</p>
+
+                    <?php endif;?>
+                  <button class="btn add-to-cart my-2 py-2">View item</button>
                   
                 </div>
               </a>
-              <a href="<?=ROOT?>singleproduct?id=14">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/2.png" alt="Item 2">
-                  <h4>Notebook</h4>
-                  <h6>$7.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=83">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/3.png" alt="Item 3">
-                  <h4>T-shirt</h4>
-                  <h6>$19.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=100">
-                <div class="featured-item">
-                 <img src="<?=ASSETS?>zac/images/4.png" alt="Item 4">
-                  <h4>White Marble Mug</h4>
-                  <h6>$8.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/5.png" alt="Item 5">
-                  <h4>Business Card</h4>
-                  <h6>$19.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=51">
-                <div class="featured-item">
-                 <img src="<?=ASSETS?>zac/images/6.png" alt="Item 6">
-                  <h4>Business card</h4>
-                  <h6>$15.00</h6>
-                  <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=25">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/7.png" alt="Item 7">
-                  <h4>Sticker</h4>
-                  <h6>$11.00</h6>
-                   <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=11">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/3.png" alt="Item 8">
-                  <h4>T-shirt</h4>
-                  <h6>$22.00</h6>
-                  <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
-              <a href="<?=ROOT?>singleproduct?id=15">
-                <div class="featured-item">
-                  <img src="<?=ASSETS?>zac/images/5.png" alt="Item 9">
-                  <h4>Business card</h4>
-                  <h6>$15.00</h6>
-                  <button class="btn add-to-cart my-2 py-2">View item</button>
-                </div>
-              </a>
+              <?php endforeach;?>
+              <?php endif;?>
+
+
             </div>
           </div>
         </div>

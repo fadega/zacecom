@@ -335,7 +335,7 @@ $result= $conn->read($query);
     function  handle_results(result)
     {
         //   console.log(typeof result);
-          console.log(result);
+        //   console.log(result);
           if(result!=="")
           {
             // console.log(result);
@@ -392,7 +392,7 @@ $result= $conn->read($query);
     function edit_record(id, e){
 
         var info = e.currentTarget.getAttribute("info");
-        console.log(info);
+        // console.log(info);
         info = JSON.parse(info.replaceAll("'",'"'));
         info = JSON.parse(info);
         // console.log(info);

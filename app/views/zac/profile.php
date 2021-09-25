@@ -25,7 +25,7 @@ $this->view("zac/adminheader",$data);
          </div>
 
      </div>
-     <?php if($data['role']=='custmer'):?>
+     <?php if($data['role']=='customer'):?>
         <div class="col-md-3">
             <div class="box shadow text-center py-3 rounded">
                 <p class="display-1 text-success fw-bold">50</p>

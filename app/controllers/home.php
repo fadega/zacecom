@@ -20,10 +20,21 @@ class Home extends  Controller{
            
         }
 
+        //read products to display in home
+
+        $conn = Database::newInstance();
+        $ROWS = $conn->read("SELECT *FROM product limit 10");
+       
+        $data['ROWS'] =$ROWS;
+
+
        $data["Page_title"] = "Home page";
         
        //load the home view - > index.php
         $this->view("zac/index",$data);
+
+
+
 
 
       

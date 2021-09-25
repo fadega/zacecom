@@ -137,49 +137,7 @@ class User{
                     die;
                 }
  
-                //debugging 
-              /*  show($data); //this line prints the array below similar to $_SESSION['logged'] format
-                Array
-                    (
-                        [email] => abun@zacmail.com
-                        [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
-                    )
-                //show($result); //this line prints the array below
-                Array
-                (
-                    [0] => Array
-                        (
-                            [id] => 90
-                            [userid] => fCVfzO3rNA3pvtix2KeTrB27YYokFc
-                            [name] => Abun
-                            [email] => abun@zacmail.com
-                            [phone] => 12457812
-                            [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
-                            [role] => customer
-                            [address] => 23 Abc St
-                            [date] => 2021-09-14 11:49:57
-                        )
-
-                )
-                $_SESSION['logged']  = $result[0];
-                show($_SESSION['logged']);  //this line prints the array below
-                Array
-                (
-                    [id] => 90
-                    [userid] => fCVfzO3rNA3pvtix2KeTrB27YYokFc
-                    [name] => Abun
-                    [email] => abun@zacmail.com
-                    [phone] => 12457812
-                    [password] => 1dabbcfc56294101a21d90e96f081c0b75287ff0
-                    [role] => customer
-                    [address] => 23 Abc St
-                    [date] => 2021-09-14 11:49:57
-                )
-
-               $_SESSION['logged']  = $result[0]['name'];
-               the above line gives us - Abun
-                */
-               
+                            
             }
                    
             $error.= "Oops! Wrong credentials <br />";

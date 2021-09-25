@@ -30,7 +30,7 @@ class Product{
 
       
      
-       
+       //This code repeats for update to  - make a funtion
        //set allowed files types and check files if exist
        //allowed images
       //  $allowed[] = "image/jpeg";
