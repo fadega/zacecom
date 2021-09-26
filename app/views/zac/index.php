@@ -2,6 +2,7 @@
 <?php
  
    $this->view("zac/header",$data);
+ 
 ?>
    <!-- Banner area starts here -->
     <div class="banner">
@@ -37,22 +38,12 @@
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
 
-            <?php if(is_array($ROWS)):?>
-            <?php foreach($ROWS as $row):?>
-              <a href="<?=ROOT?>singleproduct/<?=$row['slug']?>">
-                <div class="featured-item">
-                 <div style="overflow: hidden;"> <img class="product-image" src="<?=ROOT . $row['image1']?>" alt="product image"></div>
-                  <h4><?=$row['name']?></h4>
-                  <h6>$<?=$row['price']?></h6>
-                  <p><?=$row['description']?></p>
-                  <?php if($row['quantity']<10):?>
-                    <p class="form-text text-danger fw-bold" ><?=$row['quantity']?> in stock</p>
+            <?php if(is_array($ROWS)): ?>
+            <?php foreach($ROWS as $row): ?>
 
-                    <?php endif;?>
-                  <button class="btn add-to-cart my-2 py-2">View item</button>
-                  
-                </div>
-              </a>
+              <!-- we cutout one page from here looping product -->
+              <?php $this->view("zac/productloop",$row);?>
+              
               <?php endforeach;?>
               <?php endif;?>
 

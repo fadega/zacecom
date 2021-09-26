@@ -30,26 +30,19 @@
   
     <div class="featured container no-gutter">
 
-        <div class="row posts">
+        <div class="row products ">
+            <!-- Magic loop to bring products to product page -->
         <?php if(is_array($items_inshop)):?>
             <?php foreach($items_inshop as $item):?>
             <div id="1" class="item new col-md-4">
-              <a href="<?=ROOT?>singleproduct/<?=$item['slug']?>">
-                <div class="featured-item">
-                 
-                  <div style="overflow: hidden;"><img class="product-image" src="<?=ROOT . $item['image1']?>" alt="product image"></div>
-                  <h4><?=$item['name']?></h4>
-                  <h6><?=$item['price']?></h6>
-                  <p><?=$item['description']?></p>
-                  <button class="btn add-to-cart my-2 py-2">More Details </button>
-                </div>
-              </a>
+              <?php $this->view("zac/productloop",$item);?>
             </div>
             <?php endforeach;?>
             <?php endif;?>
 
        </div>
     </div>
+    <!-- show pagination if products exist and they are more than 9 -->
     <?php if($data['items_inshop']>0):?>
       <?php if(count($items_inshop)>9):?>
       <div class="page-navigation">

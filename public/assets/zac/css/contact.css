@@ -50,7 +50,7 @@ a:hover {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #000;
+  /* border-color: #000; */
 }
 
 .col-form-label {
@@ -80,8 +80,9 @@ a:hover {
   text-transform: uppercase;
 }
 .btn.btn-primary {
-  background: #35477d;
-  color: #fff;
+  /* background: #35477d; */
+  background: #fff;
+  color: var(--lightgreen);
   padding: 15px 20px;
 }
 .btn:hover {
@@ -145,7 +146,8 @@ a:hover {
 }
 #contact-new .btn-send-message :hover {
   background-color: #fff;
-  background: #06d6a0;
+  /* background: #06d6a0; */
+  color: rgba(255, 255, 255, 0.5);
 }
 
 label.error {

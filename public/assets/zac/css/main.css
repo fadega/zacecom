@@ -661,7 +661,14 @@ a {
   background-color: var(--brightergreen);
 }
 /* Styles for form controls and input */
-
+#btn-search {
+  color: var(--lightgreen);
+  background-color: #fff;
+}
+#search-field {
+  background-color: #fff !important;
+  /* border-radius: 5px !important; */
+}
 .form-control {
   border: 0;
   outline: none;
@@ -894,6 +901,9 @@ input:focus::placeholder {
 
 .search-form {
   border: 1px solid #ffffff !important;
+  /* border-bottom: 1px solid #fff !important; */
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .search-button {

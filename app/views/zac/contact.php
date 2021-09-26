@@ -49,7 +49,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <input type="submit" value="Send Message" class="btn btn-primary btn-send-message rounded-0 py-2 px-4">
+                  <input type="submit" value="Submit Message" style="color:#fff;  " class="btn btn-primary btn-send-message rounded-0 py-2 px-4">
                   <span class="submitting"></span>
                 </div>
               </div>

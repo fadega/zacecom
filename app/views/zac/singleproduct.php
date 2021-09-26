@@ -90,7 +90,6 @@
           </div>
 
 
-
           <!-- End right section -->
         </div>
       </div>
@@ -110,16 +109,11 @@
           </div>
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
+              <!-- Magic loop to bring products to suggestion section -->
             <?php if(is_array($products)):?>
-            <?php foreach($products as $product):?>
-              <a href="<?=ROOT?>singleproduct/<?=$product['slug']?>">
-                <div class="featured-item">
-                  <img src="<?=ROOT . $product['image1']?>" class="product-image" alt="product image">
-                  <h4><?=$product['name']?></h4>
-                  <h6>$<?=$product['price']?></h6>
-                  <p><?=$product['description']?></p>
-                </div>
-              </a>
+              <?php foreach($products as $product):?>
+                <?php $this->view("zac/productloop",$product);?>
+           
               <?php endforeach;?>
             <?php endif;?>
            </div>
@@ -135,3 +129,5 @@
 
     <!-- footer -->
     <?php   $this->view("zac/footer",$data); ?>
+
+
