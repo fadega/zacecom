@@ -25,6 +25,7 @@ class Cart extends Controller{
        
         //load view -> cart.php
         $this->view("zac/cart",$data);
+       
         
     }
 

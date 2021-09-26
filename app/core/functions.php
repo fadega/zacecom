@@ -104,6 +104,7 @@ function uploadImages(){
         $destination = $dir.$img_row['name'];
         move_uploaded_file($img_row['tmp_name'], $destination);
         $arr[$key] = $destination;
+        // resize_image($destination,$destination,500,575);
 
       }else{
         $_SESSION['error'] .= $key ."is larger than xax upload size (5 megabyte) <br/>";

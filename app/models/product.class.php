@@ -123,6 +123,7 @@ class Product{
 
       $conn   =  Database::newInstance();
       $arr    = [];
+      
       $images = uploadImages();
      
       foreach($images as $key =>$value){

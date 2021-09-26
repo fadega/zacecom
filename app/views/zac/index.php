@@ -44,7 +44,7 @@
                  <div style="overflow: hidden;"> <img class="product-image" src="<?=ROOT . $row['image1']?>" alt="product image"></div>
                   <h4><?=$row['name']?></h4>
                   <h6>$<?=$row['price']?></h6>
-                  <h6><?=$row['description']?></h6>
+                  <p><?=$row['description']?></p>
                   <?php if($row['quantity']<10):?>
                     <p class="form-text text-danger fw-bold" ><?=$row['quantity']?> in stock</p>
 

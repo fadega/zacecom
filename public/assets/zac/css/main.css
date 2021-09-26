@@ -215,8 +215,9 @@ a {
   transition: all 0.5s;
 }
 
-.featured-item h6 {
-  color: var(--brightergreen) !important;
+.featured-item h6,
+.right-content h6 {
+  color: var(--lightgreen) !important;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 0px;
@@ -669,12 +670,13 @@ a {
 .form-control input[type="text"]:focus {
   outline: none;
 }
-/* input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-} */
+
+.product-image {
+  transition: all 0.5s ease;
+}
+.product-image:hover {
+  transform: scale(1.5);
+}
 
 /* Contact Page Style */
 /* I put contact page styles in a different file - contact.css  under assets/zac/css  except these two line - they are for all*/

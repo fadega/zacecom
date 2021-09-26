@@ -37,10 +37,10 @@
               <a href="<?=ROOT?>singleproduct/<?=$item['slug']?>">
                 <div class="featured-item">
                  
-                  <img src="<?=ROOT . $item['image1']?>" alt="product image">
+                  <div style="overflow: hidden;"><img class="product-image" src="<?=ROOT . $item['image1']?>" alt="product image"></div>
                   <h4><?=$item['name']?></h4>
                   <h6><?=$item['price']?></h6>
-                  <h6><?=$item['description']?></h6>
+                  <p><?=$item['description']?></p>
                   <button class="btn add-to-cart my-2 py-2">More Details </button>
                 </div>
               </a>
