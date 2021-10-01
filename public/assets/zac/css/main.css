@@ -997,4 +997,12 @@ input:focus::placeholder {
   color: var(--lightgreen) !important;
 }
 
+@media only screen and (max-width: 767px) {
+  #head1andtwo h1 {
+    font-size: 20px !important;
+  }
+  #head1andtwo h2 {
+    font-size: 16px !important;
+  }
+}
 /* Merging Regina's code */

@@ -81,7 +81,7 @@ $this->view("zac/header",$data);
       <div class="col-md-6 mx-auto mt-5">
          <div class="payment">
             <div class="payment_header">
-               <div class="check"><i class="bi bi-check-lg text-success"></i></i></div>
+               <div class="check"><i class="bi bi-cart-plus-fill text-success"></i></div>
             </div>
             <div class="content">
                <h1>Thank you for shopping with us!</h1>

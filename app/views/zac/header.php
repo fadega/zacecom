@@ -163,8 +163,11 @@
       <div class="container">
         <!-- <a class="navbar-brand pt-0" href="#"><img src="<?=ASSETS?>zac/images/header-logo.png" alt=""></a> -->
         <a class="navbar-brand pt-3 fw-bold display-3" id="logo-brand" href="<?=ROOT?>">
-            <h1>The Smart Community Podcast </h1>
-            <h2 class="" >Merch Shop </h2 class="mb-3">
+           <div id="head1andtwo">
+           <h1>The Smart Community Podcast </h1>
+            <h2>Merch Shop </h2 class="mb-3">
+           </div>
+            
            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

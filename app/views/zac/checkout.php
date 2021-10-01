@@ -73,7 +73,7 @@
 ?>
 
 
-<div class="container">
+<div class="container" style="max-width: 1000px;">
     <!-- if items in cart show checkout form if not -->
   <?php if(isset($_SESSION['CART_ITEMS']) && $_SESSION['CART_ITEMS'] !="" && count($cart_items)>0):?>
    
@@ -83,7 +83,7 @@
         <p class="lead">Fill the form to proceed with checkout.</p>
     </div>
     <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
+        <div class="col-md-6 order-md-2 mb-4">
        
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">On your cart</span>
@@ -120,9 +120,9 @@
             </ul>
          
         </div>
-        <div class="col-md-8 order-md-1">
+        <div class="col-md-6 order-md-1">
             <h4 class="mb-3">Billing Details</h4>
-            <form method = "post" class="needs-validation">
+            <!-- <form method = "post" class="needs-validation ">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -137,8 +137,8 @@
                 </div>
                
                 <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" name="email" class="form-control border border-bottom-3" id="email" placeholder="you@somedomain.com">
+                    <label for="email">Email <span class="text-muted"></span></label>
+                    <input type="email" name="email" class="form-control border border-bottom-3" id="email" placeholder="you@somedomain.com" required>
                     <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                 </div>
                 <div class="mb-3">
@@ -148,11 +148,11 @@
                 </div>
                
               
-                <hr class="mb-4">
+                <!-- <hr class="mb-4"> -->
                 <!-- <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> -->
-                <div id="paypal-payment-button" onclick="validate(event)"></div>
-            </form>
-            <!-- <div id="paypal-payment-button" onclick="validate(event)"></div> -->
+                <!--div id="paypal-payment-button" onclick="validate(event)"></div>
+            </form> -->
+            <div id="paypal-payment-button" onclick="validate(event)"></div>
         </div>
     </div>
     <?php else:?>
@@ -204,7 +204,7 @@ paypal.Buttons({
         return actions.order.capture().then(function (details) {
             txn_details = details
             // console.log(txn_details)
-            <?php unset($_SESSION['CART']); ?>
+            <?php //unset($_SESSION['CART']); ?>
             
             window.location.replace("<?=ROOT?>success")
             handle_results(txn_details);
