@@ -11,9 +11,14 @@ class Ajax_products extends  Controller{
       // show($_POST);  //this is array
       // show($_FILES);
       // die;
+      if(count($_POST) > 0){
+        $data = (object)$_POST;
+      }else{
+        $data = file_get_contents("php://input");
+      }
 
       //convert POST data to an object
-      $data = (object)$_POST;
+      // $data = (object)$_POST;
     
       
       if(is_object($data) && isset($data->data_type)){

@@ -1,10 +1,4 @@
-<?php
- 
-   $this->view("zac/header",$data);
-?>
-
-    <!-- Shop page starts here -->
-    <div class="featured-page">
+<div class="featured-page">
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-sm-12">
@@ -19,12 +13,12 @@
           </div>
           <div class="col-md-8 col-sm-12">
             <div id="filters" class="button-group">
-              <button class="btn btn-primary active" data-filter="*">All Products</button>
+              <a href="<?=ROOT?>shop" class="btn btn-primary active" data-filter="*">All Products</a>
               <?php if(is_array($categories)):?>
                   <?php foreach($categories as $category): ?>
-                   <!-- <button class="btn btn-primary" data-filter=".clothes"><?=$category['categoryName']?></button> -->
-                   <!-- <a href="<?=ROOT.$filter?>" class="btn btn-primary" > <?=$category['categoryName']?> </a> -->
-                   <a href="<?=ROOT . $category['categoryName']?>" class="btn btn-primary" > <?=$category['categoryName']?> </a>
+                                  
+                      <a href="<?=ROOT . $category['categoryName']?>" class="btn btn-primary"> <?=$category['categoryName']?> </a>
+ 
                     <?php endforeach;?>
                 <?php endif;?>
             </div>
@@ -66,13 +60,3 @@
       </div>
       <?php endif;?>
     <?php endif;?>
-    
-    <!-- Shop page starts here -->
-
-    <?php $this->view("zac/subscribe",$data);?>
-
-
-    <?php
- 
-   $this->view("zac/footer",$data);
-?>

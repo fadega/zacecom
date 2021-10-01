@@ -5,6 +5,14 @@ class Home extends  Controller{
 
     //defualt method
     function index(){
+
+         //check if search was made 
+         $search = false;
+         $find = '';
+         if(isset($_GET['find'])){
+             $find = addslashes($_GET['find']);
+             $search = true;
+         }
         
         // check if user is logged in
         $user = $this->loadModel('user');
@@ -23,13 +31,22 @@ class Home extends  Controller{
         //read products to display in home
 
         $conn = Database::newInstance();
-        $ROWS = $conn->read("SELECT *FROM product limit 10");
-       
-        $data['ROWS'] =$ROWS;
+        if($search){
+         
+            $arr['slug'] = "%".$find."%"; 
+            $query = "SELECT *FROM product WHERE slug like :slug";
+            $ROWS = $conn->read($query,$arr);
+            $data['item_searched'] = true;
+        }else{
+            $ROWS = $conn->read("SELECT *FROM product"); //limit stuff
+        }
+
+
+        $data['ROWS'] = $ROWS;
 
 
        $data["Page_title"] = "Home page";
-        
+       $data['search'] = true; //search box will show
        //load the home view - > index.php
         $this->view("zac/index",$data);
 

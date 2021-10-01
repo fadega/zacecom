@@ -2,7 +2,7 @@
 
 
 
-class Shop extends Controller{
+class Stationery extends Controller{
 
       function index(){
 
@@ -41,7 +41,19 @@ class Shop extends Controller{
             $items_inshop = $conn->read($query,$arr);
             $data['item_searched'] = true;
         }else{
-            $items_inshop = $conn->read("SELECT *FROM product");
+            $db = Database::newInstance();
+            $arr['catname'] = "stationery";
+            $cats = $db->read("SELECT *FROM category WHERE categoryName =:catname limit 1",$arr);
+            if($cats){
+         
+                $catid['category'] = (int)$cats[0]['id'];
+                $sql = "SELECT *FROM product WHERE category =:category";
+                $items_inshop = $conn->read($sql, $catid);
+              
+            }
+           
+
+           
         }
        
         
@@ -50,10 +62,11 @@ class Shop extends Controller{
 
         
         //pass data to view
-        $data["Page_title"] = "Products";
+        $data["Page_title"] = "Prouduts | Clothing";
+        $data['filter'] ="clothing";
         $data['search'] = true; //search box will show
-        // load view - product.php
-        $this->view("zac/shop",$data);
+        // load view - clothing.php
+        $this->view("zac/clothing",$data);
         
     }
 

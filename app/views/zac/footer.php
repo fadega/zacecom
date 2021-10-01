@@ -55,6 +55,9 @@
     </div>
     <!-- End sSub footer section starts here -->
 
+    <!-- Stripe Payment gateway Script -->    
+    <script src="https://js.stripe.com/v3/"></script>
+
 
     <!-- Bootstrap Local  JavaScript Libraries-->
     <script src="<?=ASSETS?>zac/vendor/jquery/jquery.min.js"></script>

@@ -32,7 +32,12 @@
           <div class="col-md-12">
             <div class="section-heading">
               <div class="line-dec"></div>
-              <h1>Featured Merches</h1>
+              <?php //if(isset($data['item_searched'])):?> 
+              <?php if(isset($item_searched)):?> 
+                 <h1>Search Results </h1>
+              <?php else:?>
+                <h1>Featured Merches</h1>
+              <?php endif;?>
             </div>
           </div>
           <div class="col-md-12">

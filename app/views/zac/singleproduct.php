@@ -68,15 +68,16 @@
               <?php if($singlerow[0]['quantity'] < 5):?>
               <span><?=$singlerow[0]['quantity']?> left in stock</span>
               <?php endif;?>
-              <form action="" method="get">
+              <!-- <form>
                 <label for="quantity">Quantity:</label>
                 <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
                 	onfocus="if(this.value == '1') { this.value = ''; }" 
                     onBlur="if(this.value == '') { this.value = '1';}"
-                    value="1">
+                    value="1"> -->
                 <!-- <input type="submit" class="button btn-order "  value="Add to cart"> -->
-                <a  class="btn btn-order text-light p-2" style="font-size:16px;font-weight: lighter" href="<?=ROOT?>cart/<?=$singlerow[0]['id']?>">ADD TO CART</a>
-              </form>
+                <a  class="btn btn-order text-light p-2" style="font-size:16px;" href="<?=ROOT?>cart/<?=$singlerow[0]['id']?>">ADD TO CART</a>
+   
+              <!-- </form> -->
               <div class="down-content">
                 <div class="categories">
                   <h6>Category: <span><a href="#"><?=$categoryName[0]['categoryName']?></a></span></h6>

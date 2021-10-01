@@ -96,7 +96,7 @@ a {
 #navbarResponsive li a {
   font-size: 16px !important;
   font-weight: 400 !important;
-  /* text-transform: capitalize !important; */
+  text-transform: capitalize !important;
 }
 
 .navbar-dark .navbar-nav .nav-item {
@@ -990,3 +990,11 @@ input:focus::placeholder {
 .login {
   color: white;
 }
+#menu li a {
+  color: #1e1e1e !important;
+}
+#menu li a:hover {
+  color: var(--lightgreen) !important;
+}
+
+/* Merging Regina's code */

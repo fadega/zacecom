@@ -6,12 +6,26 @@
 define("WEBSITE","Zac Commerce");
 
 // Database details
-define("DB_TYPE",'mysql');
-define("DB_HOST","localhost");
-define("DB_USER","root");
-define("DB_PASS","passme2020");
-define("DB_NAME","cmszac");
+if($_SERVER['SERVER_NAME'] == 'localhost'){
+    
+    define("DB_TYPE",'mysql');
+    define("DB_HOST","localhost");
+    define("DB_USER","root");
+    define("DB_PASS","passme2020");
+    define("DB_NAME","cmszac");
 
+}else{  //hosted live  000webhost details
+    define("DB_TYPE",'mysql');
+    define("DB_HOST","localhost");
+    define("DB_USER","id17670815_abun");
+    define("DB_PASS","gY^<m/o5{u2!t30R");
+    define("DB_NAME","id17670815_zacecom");
+
+  
+
+}
+// host = "gabe.securecloud2.com";
+  
 
 define("PROTOCOL","http");
 

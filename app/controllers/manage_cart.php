@@ -1,10 +1,9 @@
 <?php
 
 //This is not considered a proper documentation
-class Cart extends Controller{
+class Manage_Cart extends Controller{
 
  private $redirect_to ="";
-    // private $data ;
     //defualt method
     function index($id = ''){
         $this->set_redicrect();
@@ -59,7 +58,7 @@ class Cart extends Controller{
 
             $str_ids = "'" . implode("','", $product_ids) ."'";
             $CARTROWS = $conn->read("SELECT *FROM product WHERE id in ($str_ids)");
-      
+            
             
         }
        
@@ -81,16 +80,14 @@ class Cart extends Controller{
       
     //    show($ROWS);//modified with the above code to hold how many of each are there
        $data["Page_title"] = "Shopping Cart";
-       $data['CARTROWS'] =  $CARTROWS;
+       $data['CARTROWS'] = $CARTROWS;
 
     //    $data['CART_ROWS'] = $CARTROWS;
-        // show($CARTROWS);
+
        $_SESSION['CART_ITEMS'] = $CARTROWS;
     //    show(  $_SESSION['CART_ITEMS']);
-    
-     $this->view("zac/cart",$data);
-    //  $this->view("zac/cart",$data);
-     
+    $this->redirect();
+         
    
     
         
@@ -103,8 +100,6 @@ class Cart extends Controller{
            foreach($_SESSION['CART'] as $key =>$item){
             if($item['id'] == $id){ // if item is found (matching id)
                 $_SESSION['CART'][$key]['qty']+= 1;   // add to it
-                
-                // $_SESSION['CART'] = array_values($_SESSION['CART']);
                 break;
             }
            }
@@ -120,20 +115,8 @@ class Cart extends Controller{
        if(isset($_SESSION['CART'])){
            foreach($_SESSION['CART'] as $key =>$item){
             if($item['id'] == $id){ // if item is found (matching id)
-                if( $_SESSION['CART'][$key]['qty']>1){
-                    $_SESSION['CART'][$key]['qty']-= 1;
-                     // subtract from it
-                    //  $_SESSION['CART'] = array_values($_SESSION['CART']);
-                    break;
-                }else if($_SESSION['CART'][$key]['qty'] == 1){
-                    echo 'script> if(alert("Are you sure to remove the last item?")){
-                        return
-                         }</script>';
-                        // $this->remove($id); //call the delete method
-                        // break;
-                }
+                $_SESSION['CART'][$key]['qty']-= 1;   // subtract from it
                 break;
-                 
             }
            }
        }
@@ -155,13 +138,13 @@ class Cart extends Controller{
         }
         $this->redirect();
     }
-    
-       
+
+        //load view -> cart.php
+       //$this->view("zac/cart",$data);
  private function redirect(){
-     
-        
-    header("location:" .ROOT.'cart');
-    //  header("location:" . $this->redirect_to);
+    // echo '<script>window.location="../app/views/cart "  </script>';
+    
+     header("location:" . $this->redirect_to);
   
  }
 
