@@ -126,11 +126,11 @@ class Cart extends Controller{
                     //  $_SESSION['CART'] = array_values($_SESSION['CART']);
                     break;
                 }else if($_SESSION['CART'][$key]['qty'] == 1){
-                    echo 'script> if(alert("Are you sure to remove the last item?")){
-                        return
-                         }</script>';
+                    // echo 'script> if(alert("Are you sure to remove the last item?")){
+                    //     return
+                    //      }</script>';
                         // $this->remove($id); //call the delete method
-                        // break;
+                        break;
                 }
                 break;
                  

@@ -12,11 +12,6 @@ class Failed extends  Controller{
         
        //load the home view - > index.php
         $this->view("zac/failed",$data);
-
-
-
-
-
       
     }
 

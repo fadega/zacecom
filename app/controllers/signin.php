@@ -15,6 +15,8 @@ class Signin extends Controller{
             //echo "I am signin controller <br />";
             // show($_POST);
             $user = $this->loadModel("User");
+            // show($_POST);
+            // die;
             $user->signin($_POST);
             
         }

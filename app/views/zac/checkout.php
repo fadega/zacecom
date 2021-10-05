@@ -83,7 +83,7 @@
         <p class="lead">Fill the form to proceed with checkout.</p>
     </div>
     <div class="row">
-        <div class="col-md-6 order-md-2 mb-4">
+        <div class="col-md-6 order-md-1 mb-4">
        
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">On your cart</span>
@@ -120,8 +120,9 @@
             </ul>
          
         </div>
-        <div class="col-md-6 order-md-1">
-            <h4 class="mb-3">Billing Details</h4>
+        <div class="col-md-6 order-md-2 mb-5" >
+            <h4 class="mb-3" style="margin-bottom: 100px;" >Checkout with Paypal</h4> 
+            <p class="mb-3 text-muted fst-italic" style="margin-bottom: 100px;">Card | Bank</p>
             <!-- <form method = "post" class="needs-validation ">
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -148,11 +149,11 @@
                 </div>
                
               
-                <!-- <hr class="mb-4"> -->
-                <!-- <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> -->
+                 <hr class="mb-4"> 
+               <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> -->
                 <!--div id="paypal-payment-button" onclick="validate(event)"></div>
             </form> -->
-            <div id="paypal-payment-button" onclick="validate(event)"></div>
+            <div id="paypal-payment-button"></div>
         </div>
     </div>
     <?php else:?>
@@ -169,26 +170,23 @@
 
 <script>
 
-function validate(e){
-    let name = document.querySelector('#name').value.trim();
-    if(name == "" && !isNaN(name)){
-      alert("invalid name");
-      return;
-    }
 
-}
+
+//Get total amount to be paid
 var total=0;
- let amount  = document.querySelector("#amount").value.trim();
+let amount  = document.querySelector("#amount").value.trim();
 if(amount != "" && !isNaN(amount)){
     total = amount;
     console.log(total);
 }
 
-txn_details = {};
+//Payapl Button Starts here ==================
+
+// txn_details = {};
 paypal.Buttons({
     style : {
-        color: 'gold'
-        // shape: 'pill'
+        color: 'gold',
+        shape: 'pill'
     },
     createOrder: function (data, actions) {
         
@@ -202,12 +200,13 @@ paypal.Buttons({
     },
     onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
-            txn_details = details
-            // console.log(txn_details)
-            <?php //unset($_SESSION['CART']); ?>
-            
-            window.location.replace("<?=ROOT?>success")
-            handle_results(txn_details);
+            //if successful transaction
+             window.location.replace("<?=ROOT?>success")
+            process_data(details);
+
+            if(details !=null){ //clear after checkout success
+                <?php unset($_SESSION['CART']); ?>
+            }
             
         })
         
@@ -217,143 +216,69 @@ paypal.Buttons({
     }
 }).render('#paypal-payment-button');
 
-function handle_results(results){
-    // console.log("These are keys")
-    // console.log(results)
-    // console.log(Object.keys(results))
-
-    // console.log("These are values")
-    //   console.log(Object.values(results))
-
-    // for(const key of Object.keys(results)){
-    //     console.log(`${key} => ${results[key]}`)
-    // }
-
-    // //USING ENTRIES
-    // console.log(Object.entries(results)); //produces arrays
-
-    // //loop using entry
-    // for(const entry of Object.entries(results)){
-    //     console.log(`${entry[0]}=>${entry[1]}`)
-    // }
-
-    // console.log(results);
-    let txnInfo = [];
-
-    const isObject = function(val){
-        if(val === null){
-            return false;
-        }
-        return (typeof val === 'object')
-    };
-
-    const objProps = function(obj){
-        for (let val in obj){
-            if(isObject(obj[val])){
-                objProps(obj[val]);
-            }else{
-                // console.log(val, obj[val])
-                txnInfo.push(`${val} => ${obj[val]}`);
-            }
-    }
+// Paypal button ends here   -==========
 
 
-    }
-    objProps(results)
-    console.log(txnInfo);
-    
- 
-  let data = [];
- let keyentries = ['id', 'full_name','currency_code','value','full_name','status','email_address','create_time' ]
+let customerdetails = [];
+let orderdetails = [];
+var final = [];
 
-    // for(const key of Object.keys(txnInfo)){
-    //     if(key === key in keyentries){
-    //         data[key] = txnInfo[key];
-    //         // data.push(`${key}`, `${txnInfo[key]}`)
-    //     }
 
-    // }
-    console.log("zegedsssss")
-
-    for (const [key, value] of Object.entries(txnInfo)) {
-             if(key in keyentries){
-                 data[key] = `${txnInfo[key]}`;
+function  process_data(results){
+       
+       
+       //function getObjectProps
+        function getObjectProps(obj){
+            for (let val in obj){
+                if(isObject(obj[val])){
+                    getObjectProps(obj[val]);
+                }else{
+                    final[`${val}`] = `${obj[val]}`
+                
+                }
              }
-            
+        }
+
+        const isObject = (val)=>{
+            if(val === null){
+                return false;
             }
+         return (typeof val === 'object')
+        };
+
+         
+        getObjectProps(results)
+        console.log("Final")  
+        console.log(final)
+                
+ 
+     } //end handle_results   
+    
+
+  
+    
+        
+
+        // const sendData = (data=[]) => {
+        // $.post('<?=ROOT?>ajax_checkout', {
+        //     data: data
+        // }, function(response) {
+        //     console.log("we got a response");
+        //     console.log(response);
+        // });
+        // }
+
+      
+        
 
 
-    console.log(data);
+
+
+
+
+
+
      
-
-
-}
-/*
-this is txnInfo
-
-0: "id => 5LB6878092149254T"
-​
-1: "intent => CAPTURE"
-​
-2: "status => COMPLETED"
-​
-3: "reference_id => default"
-​
-4: "currency_code => USD"
-​
-5: "value => 21.89"
-​
-6: "email_address => afa@business.example.com"
-​
-7: "merchant_id => AKE947Q3R5K86"
-​
-8: "full_name => Habtat Zerezghi"
-​
-9: "address_line_1 => 1 Cheeseman Ave Brighton East"
-​
-10: "admin_area_2 => Melbourne"
-​
-11: "admin_area_1 => Victoria"
-​
-12: "postal_code => 3001"
-​
-13: "country_code => AU"
-​
-14: "id => 1H437226MJ1369422"
-​
-15: "status => COMPLETED"
-​
-16: "currency_code => USD"
-​
-17: "value => 21.89"
-​
-18: "final_capture => true"
-​
-19: "status => ELIGIBLE"
-​
-20: "0 => ITEM_NOT_RECEIVED"
-​
-21: "1 => UNAUTHORIZED_TRANSACTION"
-​
-22: "create_time => 2021-09-30T16:07:14Z"
-​
-23: "update_time => 2021-09-30T16:07:14Z"
-​
-24: "given_name => Habtat"
-​
-25: "surname => Zerezghi"
-​
-26: "email_address => habtat@personal.example.com"
-​
-27: "payer_id => JW99MTEPFWFWE"
-​
-28: "country_code => AU"
-​
-29: "create_time => 2021-09-30T16:07:00Z"
-​
-30: "update_time => 2021-09-30T16:07:14Z"
-
-*/
 
 
 
@@ -362,10 +287,4 @@ this is txnInfo
 
 <!-- checkout ends here -->
 
-
-
-<?php
- 
-   $this->view("zac/footer",$data);
- 
-?>
+<?php  $this->view("zac/footer",$data); ?>

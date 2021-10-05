@@ -94,12 +94,12 @@ class User{
        $instance = Database::db_connect();
         //Get POST data from user
         
-     
+       $error = "";
        $data['email']       = trim($POST['email']);
        $data['password']  = trim($POST['password']);
       //$data['keepmesigned']  = trim($POST['keepmesigned']);
      
-       $error = "";
+      
        if(empty($data['email']) || !preg_match("/^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$/",$data['email'])){
                $error.= 'Wrong eamil or password<br />';
    

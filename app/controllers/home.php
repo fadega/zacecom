@@ -51,9 +51,6 @@ class Home extends  Controller{
         $this->view("zac/index",$data);
 
 
-
-
-
       
     }
 

@@ -43,7 +43,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="submit" name="signin" class="btn btn-lg px-5 " style="background:#06d6a0;">Login</button>
+                  <button type="submit"  class="btn btn-lg px-5 " style="background:#06d6a0;">Login</button>
+                  <!-- <button type="submit" name="signin" class="btn btn-lg px-5 " style="background:#06d6a0;">Login</button> -->
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? <a href="<?=ROOT?>signup" class="fw-bold text-body"><u>Register here</u></a></p>

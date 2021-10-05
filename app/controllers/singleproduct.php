@@ -6,6 +6,7 @@ class Singleproduct extends Controller{
     function index($slug){
            // check if user is logged in
           
+           
            $user = $this->loadModel('user');
            $user_info = $user->checkLogin();
            if(is_array($user_info)){
@@ -34,9 +35,9 @@ class Singleproduct extends Controller{
           
           
           //passing data to views
-          $data['singlerow'] = $singlerow;
+          $data['singlerow']    = $singlerow;
           $data['categoryName'] = $categoryname;    
-          $data['products'] = $products;    
+          $data['products']     = $products;    
           
           
           $data["Page_title"] = "Product";

@@ -34,7 +34,7 @@
                                 </dl>
                              
                                 <div class="m-t-sm">
-                                    <a href="<?=ROOT?>cart/remove/<?=$row['id']?> " class="text-muted"><i class="fa fa-trash" style="color:#e63946;"></i> Remove item</a>
+                                    <a href="<?=ROOT?>cart/remove/<?=$row['id']?> " class=" text-danger"><i class="fa fa-trash" style="color:#e63946;"></i> Remove item</a>
                                 </div>
                                 
                             </td>
@@ -44,14 +44,14 @@
                                 <div class="row">
                                     <div class="col-md-4 ">
                                     <a href="<?=ROOT?>cart/add_quantity/<?=$row['id']?> " style="float:right; font-size:26px;color:#06d6a0;">+</a>
-                                    <script>window.load.href = "<?php echo ROOT.'shop' ?>"</script>    
+                                    <!-- <script>window.load.href = "<?php //echo ROOT.'shop' ?>"</script>     -->
                                 </div>
                                     <div class="col-md-3">
-                                    <input  oninput = "edit_quantity(this.value); alert('alerteddd')" type="text"  class="form-control" readonly  value="<?=$row['cart_qty']?>"/>
+                                    <input  oninput = "edit_quantity(this.value); alert('alerteddd')" type="text"  class="form-control p-0 text-center" readonly  value="<?=$row['cart_qty']?>"/>
                                     </div>
                                     <div class="col-md-4 ">
                                     <a href="<?=ROOT?>cart/subtract_quantity/<?=$row['id']?>"  style="float:left; font-size:26px;color:#e63946;" >—</i></a>
-                                     <script>window.load.href = "<?php echo ROOT.'shop' ?>"</script>
+                                     <!-- <script>window.load.href = "<?php //echo ROOT.'shop' ?>"</script> -->
                                     </div>
                                 </div>
                
