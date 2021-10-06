@@ -78,15 +78,7 @@ $this->view("zac/adminheader",$data);
                                     echo $tbl_rows;
                                     // echo  $data['tbl_rows'];
                                 ?>
-                              <!-- <tr>
-                                  <td><a href="basic_table.html#" class="text-dark">Clothing</a></td>
-                                  <td class="hidden-phone">Cloth items (T-shirts, Cap/Hat)</td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr> -->
+                        
 
                               </tbody>
                           </table>
@@ -250,46 +242,6 @@ $this->view("zac/adminheader",$data);
  </script>
 
 
-
- <!-- Table backup -->
-
-
-<!-- div class="row mt">
-                  <div class="col-md-12">
-                      <div class="content-panel">
-                          <table class="table table-striped table-advance table-hover">
-	                  	  	  <h4><i class="fa fa-angle-right"></i>Product Categories</h4> -->
-	                  	  	  <!-- <h4> Product Categories <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i>Add New</button></h4>
-
-                            <hr>
-                              <thead>
-                              <tr>
-                                  <th><i class="fa faa-bullhorn"></i> Category</th>
-                                  <th class="hidden-phone"><i class="fa faa-question-circle"></i> Descrpition</th>
-                                   <th><i class=" fa faa-edit"></i> Status</th>
-                                   <th><i class=" fa faa-edit"></i>Action</th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                  <td><a href="basic_table.html#" class="text-dark">Clothing</a></td>
-                                  <td class="hidden-phone">Cloth items (T-shirts, Cap/Hat)</td>
-
-                                  <td><span class="label label-info label-mini">1</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-
-                              </tbody>
-                          </table>
-
-                      </div><!-- End content-panel -->
-                  <!--/div><!-- End col-md-12 -->
-              <!--/div> <!-- row -->
- <!-- End Table backup -->
 
 
 

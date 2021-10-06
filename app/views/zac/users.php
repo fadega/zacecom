@@ -6,123 +6,312 @@ $this->view("zac/adminheader",$data);
 
 
 
-
-<!-- User section starts here-->
+<!-- Dashboard right side section-->
 <section class="mt-5 p-4 bg-light" id="display-area">
-      <h3>Users</h3>
-      <ul class="nav  nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link  " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Add user</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Update</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Delete</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        
-      <div class="tab-pane fade show bg-light" id="pills-home" role="tabpanel" style ="border:none;" aria-labelledby="pills-home-tab">
-        <section class=" mt-5 mb-5 text-center justifiy-content-center" style="background-image: #eee; ">
-       
-          <div class="mask d-flex align-items-center  gradient-custom-3">
-            <div class="container mt-5" >
-              <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                  <div class="card shadow rounded" >
-                    <div class="card-body p-5">
-                      <h2 class="text-uppercase text-center mb-5">Add User</h2>
 
-                      <form action="#" method="post">
+<h3 class="my-4">Admin</h3>
 
-                        <div class="form-outline mb-5">
+
+<div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <table class="table table-striped table-advance table-hover">
+	         
+	                  	  	  <h4> Users <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa fa-plus"></i>Add User</button></h4>
+
+
+                              <!-- Add User Modal -->
+                                  <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUser" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="addUserModal">Add User</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                                                                                                                     
+                                          <input type="text" name="name" id ="name" class="form-control form-control-lg my-2" placeholder="Enter Name" >
+                                          <input type="email" name="email" id ="useremail" class="form-control form-control-lg my-2" placeholder="Enter Email" >
+                                          <input type="tel" name="phone" id ="userphone" class="form-control form-control-lg my-1" placeholder="Enter Phone" >
+                                          <input type="text" name="address" id ="useraddress" class="form-control form-control-lg my-2" placeholder="Enter Address" >
+                                          <!-- <input type="text" name="date" id ="userdate" class="form-control form-control-lg my-2" placeholder="Enter Date" > -->
+                                          <!-- <input type="text" name="role" id ="custrole" class="form-control form-control-lg mb-1" placeholder="Enter Role" > -->
+             
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary" id="saveuser" onclick="collect_data(event)">Save </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              <!-- END Add customer Modal -->
+
+                               <!-- EDIT customer Modal -->
+                              <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModal" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="edittitle">Edit User</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <input type="text" name="editname" id ="editname" class="form-control form-control-lg my-2" placeholder="Enter Name" >
+                                          <input type="email" name="editemail" id ="edituseremail" class="form-control form-control-lg my-2" placeholder="Enter Email" >
+                                          <input type="tel" name="editphone" id ="edituserphone" class="form-control form-control-lg my-1" placeholder="Enter Phone" >
+                                          <input type="text" name="editaddress" id ="edituseraddress" class="form-control form-control-lg my-2" placeholder="Enter Address" >
+                                          <!-- <input type="text" name="editdate" id ="edituserdate" class="form-control form-control-lg my-2" placeholder="Enter Date" > -->
+                                        
+                                         </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                          <button type="button" class="btn btn-primary" id="btnupdate" onclick="update_user_data(event)">Update </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                               <!-- END EDIT User Modal -->
+
+
+                            <!-- <hr> -->
+                              <thead>
+                              <tr>
+                                  <th> ID #</th>
+                                  <th> Name</th>
+                                  <th> Email</th>
+                                  <th> Phone</th>
+                                  <th> Address</th>
+                                  <th> Date Joined</th>
+                                  <!-- <th> Role</th> -->
+                                  
+                                  <th><i class=" fa faa-edit"></i>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody class="table_body">
+                                  <?php
+
+                                    //this line prints table [check full code on admin.php]
+                                    // if($results){
+                                    //   echo $tbl_rows;
+                                    // }
+                                   
+                                    echo  $data['tbl_rows'];
+                                ?>
                         
-                          <input type="text" id="form3Example1cg" class="my-2 form-control form-control-lg" placeholder="Name.." />
-                          
-                        </div>
 
-                        <div class="form-outline mb-5">
-                          <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="user Email.."/>
-                        </div>
+                              </tbody>
+                          </table>
 
-                        <div class="form-outline mb-5">
-                          <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="user Password" />
-                        </div>
-
-                        <div class="form-outline mb-5">
-                          <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat password" />
-                        </div>
-                        <p>Send credential to the new user <a href="#">Email</a>  </p>
-                
-                        <div class="d-flex justify-content-center">
-                          <button type="button" id="register" class="btn btn-lg btn-lg px-5  " style="background:#06d6a0;">Add user</button>
-                        </div>
-
-                      </form>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-       </section>  
-      </div>
-
-        <div class="tab-pane fade bg-light" id="pills-profile" role="tabpanel" style ="border:none;" aria-labelledby="pills-profile-tab">
-        <section class=" mt-5 mb-5 text-center justifiy-content-center" style="background-image: #eee; ">
-        <div class="mask d-flex align-items-center  gradient-custom-3">
-          <div class="container mt-5" >
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div class="card shadow rounded" >
-                  <div class="card-body p-5">
-                    <h2 class="text-uppercase text-center mb-5">Update User</h2>
-
-                    <form action="#" method="post">
-
-                      <div class="form-outline mb-5">
-                      
-                        <input type="text" id="form3Example1cg" class="my-2 form-control form-control-lg" placeholder="Abun A." />
-                        
-                      </div>
-
-                      <div class="form-outline mb-5">
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="abun@whatever.com"/>
-                      </div>
-
-                      <div class="form-outline mb-5">
-                        <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="abun's password" />
-                      </div>
-                      <p>Send update confirmation email <a href="#">Email</a>  </p>
-                      <div class="d-flex justify-content-center">
-                        <button type="button" id="register" class="btn btn-lg btn-lg px-5  " style="background:#06d6a0;">Add user</button>
-                      </div>
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-</section> 
-    
-    </div>
-  <div class="tab-pane fade bg-light" id="pills-contact" role="tabpanel" style ="border:none;" aria-labelledby="pills-contact-tab">
-      Delete user from database
-    </div>
-</div>
+                      </div><!-- /content-panel -->
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
 
 
-</section> 
-<!-- End User section -->
+              <!-- Javascript code to handle  -->
+
+ 
+<script>
+
+    var EDIT_ID =0;
+    function collect_data(e){
+
+      let data        = new FormData()
+      let name        = document.querySelector("#name").value.trim()
+      let useremail   = document.querySelector("#useremail").value.trim()
+      let userphone   = document.querySelector("#userphone").value.trim()
+      let useraddress = document.querySelector("#useraddress").value.trim()
+      
+
+     
+      if(name == "" || !isNaN(name)){
+          alert("please enter a valid name name");
+          return
+      }
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if(!useremail.match(mailformat)){
+        alert("please enter a valid email")
+        return
+      }
+      if(isNaN(userphone)){
+        alert("Please enter a valid phone number")
+        return
+      }
+ 
+        data.append("name",name)
+        data.append("useremail",useremail)
+        data.append("userphone",userphone)
+        data.append("useraddress",useraddress)
+        data.append("data_type","add_user")
+
+        //call function and pass data
+        send_data(data)
+
+    }
+
+
+    // function send_data(data ={}){
+    function send_data(data){
+
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener('readystatechange', function(){
+            //check if there is response
+             if(ajax.readyState == 4 && ajax.status == 200){
+                 //handle the response
+                handle_results(ajax.responseText);
+
+            }
+        });
+        //send data
+        ajax.open("POST","<?=ROOT?>ajax_user", true);
+        ajax.send(data);
+        // ajax.send(JSON.stringify(data));
+
+
+    }
+
+    /**
+     * This is a complex function that handles ajax response
+     * New line braces { } are used to make where each condition ends - this style isn't followed in the rest of the code
+     * @param mixed result - ajax response data
+     * @return void - prints table and error messages
+     */
+    function  handle_results(result)
+    {
+          // console.log(typeof result);
+          // console.log(result);
+          if(result!=="")
+          {
+
+            let obj= JSON.parse(result);
+            // alert("Obje alert ", obj);
+            // console.log("data type", obj.data_type);
+            if(typeof obj.data_type!=='undefined')
+            {
+                if(obj.data_type == "add_user")
+                {
+                    // alert("add reached");
+                    if(obj.message_type=="info")
+                    {
+
+                        document.querySelector("#name").value= "";
+                        document.querySelector("#useremail").value= "";
+                        document.querySelector("#userphone").value= "";
+                        document.querySelector("#useraddress").value= "";
+
+                        let table_body = document.querySelector(".table_body");
+                        table_body.innerHTML = obj.data;
+                      //  alert(obj.message);
+                    }else
+                    {
+                        // alert("Error adding category");
+
+                        alert(obj.message);
+                    }
+
+                }else if(obj.data_type == "delete_user")
+                {
+
+                    let table_body = document.querySelector(".table_body");
+                    table_body.innerHTML=obj.data;
+                   // alert(obj.message);
+
+                }else if(obj.data_type == "edit_row")
+                {
+                    let table_body = document.querySelector(".table_body");
+                    table_body.innerHTML=obj.data;
+                    document.getElementById("editcatname").value="";
+
+                    // document.querySelector("#name").value= "";
+                    // document.querySelector("#useremail").value= "";
+                    // document.querySelector("#userphone").value= "";
+                    // document.querySelector("#useraddress").value= "";
+                   // alert(obj.message);
+
+                }
+
+            }
+        }
+     }
+
+
+    /**
+     * Function to bring data to be edited
+     * @param event e
+     * @param number id
+     * @returnvoid
+     */
+    function edit_record(id, category){
+        let txt_category = document.getElementById("editcatname");
+        txt_category.value = category;
+
+        EDIT_ID =id;
+
+    }
+
+    /**
+     * Function to actually send data to pushed to database
+     * @param event e
+     * @return void
+     */
+    function update_category_data(e){
+        let category = document.getElementById("editcatname").value.trim();
+        if (category == "" || !isNaN(category)) {
+            alert("Check if characteres entered are valid");
+        }
+
+        send_data({
+            id:EDIT_ID,
+            category:category,
+            data_type: "edit_row"
+        });
+
+    }
+
+    /**
+     * Function to delete a record
+     * @param event e
+     * @param number id
+     * @return void
+     */
+    function delete_record(e,id){
+      var data = new FormData();
+
+        if(!confirm("Are you sure to delete the record?")){
+            return; //exit
+        }
+
+        data.append("id",id)
+        data.append("data_type","delete_user")
+        send_data(data)
+        // send_data({
+        //     id:id,
+        //     data_type: "delete_row"
+        // });
+
+    }
 
 
 
-<!-- Admin assets and scripts are called by this line -->
-<?php $this->view("zac/adminassets",$data); 
+
+ </script>
+
+
+
+
+
+
+
+
+</section>
+<!-- End Dashboard right side section-->
+
+
+
+
+
+
+
+<!-- Admin footer and  assets  -->
+<?php $this->view("zac/adminassets",$data);
 
 // $this->view("zac/adminfooter",$data);
 

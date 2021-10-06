@@ -220,6 +220,110 @@ class User{
  
      }    
 
+    
+
+     function creatUser($data){
+        
+        $_SESSION['error'] = "";
+        
+        $conn              = Database::db_connect();
+        $arr['userid']     = $this->generate_random_userid(6);
+        $arr['name']       = ucwords($data->name);
+        $arr['email']      = $data->useremail;
+        $arr['phone']      = $data->userphone;
+        $arr['password']   = ucwords($data->name) .'@'. "zaceom2021";
+        $arr['role']       = "admin";
+        $arr['address']    = $data->useraddress;
+        $arr['date']       =  date("Y-m-d H:i:s");
+
+
+      $error = validateInput($arr['name'], $arr['email'], $arr['password'],$arr['password'], $arr['phone'], $arr['address']);
+        if($error != ""){
+            $_SESSION['error'] = $error;
+        }
+      
+       if (!isset($_SESSION['error']) || $_SESSION['error']=="") {
+
+                //check if email already exists
+            $query = "SELECT * FROM user WHERE email = :email limit 1";
+            $email['email'] = $data->useremail;
+            $result = $conn->read($query,$email);
+
+            if(is_array($result)){
+                $_SESSION['error'] = "User with this email already exists";
+               return false;
+
+            }else{
+
+                //userid name email phone password role address date
+
+                $query = "INSERT INTO user (userid, name, email, phone, password, role, address, date) values(:userid, :name, :email, :phone, :password, :role, :address, :date)";
+                $check = $conn->write($query,$arr);
+                if ($check) {
+                    // echo "got here";
+                    return true;
+                }
+
+            }
+
+       }
+
+    
+
+     }
+
+
+     public function getUsers(){
+        $conn =  Database::newInstance();
+       
+        return $conn->read('SELECT *FROM user WHERE role ="admin" ORDER BY id asc');        
+    }
+
+
+    public function deleteUser($id){
+        $conn =  Database::newInstance();
+        $id = (int)$id;
+        $query = "DELETE FROM user WHERE id ='$id' limit 1 ";
+        $conn->write($query); 
+          
+      }
+
+     
+    function make_table($users){
+        $result ="";
+
+        if(is_array($users)){
+          foreach ($users as $user_row) {
+       
+            $user_row = (object) $user_row;
+            $args = $user_row->id. ",'". $user_row->email."'";
+         
+            $result .= "<tr>";
+           //userid name email phone password role address date
+              $result.='                    
+                   <td><a href="#" class="text-dark">'.$user_row->id.'</a></td>
+                   <td><a href="#" class="text-dark">'.$user_row->name .'</a></td>
+                   <td><a href="#" class="text-dark">'.$user_row->email .'</a></td>
+                   <td><a href="#" class="text-dark">'.$user_row->phone .'</a></td>
+                   <td><a href="#" class="text-dark">'.$user_row->address .'</a></td>
+                   <td><a href="#" class="text-dark">'.$user_row->date .'</a></td>
+                  
+                   <td>
+                       <button class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="edit_record('.$args.')"><i class="fa fa-pencil"></i></button>
+                       <button class="btn btn-danger btn-xs"  onclick="delete_record(event,'.$user_row->id.')"><i class="fa fa-trash-o "></i></button>
+                   </td>';
+         
+            $result.= "</tr>";
+  
+          }
+    
+  
+        }
+        return $result;
+  
+      }
+
+
 
     
     

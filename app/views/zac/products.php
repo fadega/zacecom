@@ -102,7 +102,7 @@ $result= $conn->read($query);
                                 <button type="button" class="btn btn-primary" id="savepro" onclick=" collect_data(event)">Save </button>
                                 
                             </div>
-                            <p class="form-text ms-2 text-warning">  * Mandatory fields</p>
+                            <p class="form-text ms-2 text-danger">  * All fields are mandatory</p>
                             </div>
                          </div>
                         </div>
@@ -171,7 +171,7 @@ $result= $conn->read($query);
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary" id="btnupdate" onclick="update_product_data(event)">update </button>
                             </div>
-                            <p class="form-text ms-2 text-warning">* Mandatory fields</p>
+                            <p class="form-text ms-2 text-danger">* All fields are mandatory</p>
                             </div>
                          </div>
                         </div>
@@ -289,7 +289,7 @@ $result= $conn->read($query);
         data.append("price",price);
         data.append("category",category);
         data.append("quantity",quantity);
-        data.append("image1",image1.files[0]);
+        data.append("image1",image1.files[0]); //old line
         data.append("data_type","add_product");
 
         //call function and pass data
@@ -334,8 +334,8 @@ $result= $conn->read($query);
      */
     function  handle_results(result)
     {
-        //   console.log(typeof result);
-        //   console.log(result);
+          console.log(typeof result);
+          console.log(result);
           if(result!=="")
           {
             // console.log(result);
@@ -358,7 +358,7 @@ $result= $conn->read($query);
                     
                         let table_body = document.getElementById("product_table_body");
                         table_body.innerHTML=obj.data;
-                        alert(obj.message);
+                        // alert(obj.message);
                     }else
                     {
                            alert(obj.message);

@@ -26,13 +26,15 @@ class Ajax_products extends  Controller{
 
         //create instance of product Model to access methods like create, editProduct, deleteproduct etc ..
         $product = $this->loadModel('Product');
+       
 
         if($data->data_type == "add_product"){
          
-                
+              
               //add new product  - $_FILES is always present by default
               // $check = $product->create($data, $_FILES);
               $product->create($data, $_FILES);
+              
         
               if(isset($_SESSION['error']) && $_SESSION['error']!=""){
                 

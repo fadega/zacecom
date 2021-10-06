@@ -6,7 +6,7 @@ class Users extends Controller{
 
     function index(){
            // check if user is logged in
-           $user = $this->loadModel('user');
+           $user = $this->loadModel('User');
            $user_info = $user->checkLogin();
            if(is_array($user_info)){
                 $data['user_email'] = $user_info['email'];
@@ -27,6 +27,7 @@ class Users extends Controller{
         if(isset($_SESSION['logged'])){
 
             if($_SESSION['logged']['role']=="admin"){
+                // show($data);die;
                 $this->view("zac/users",$data);
             }else if($_SESSION['logged']['role']=="customer"){
                 $this->view("zac/profile",$data);

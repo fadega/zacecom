@@ -24,7 +24,7 @@ class Admin extends Controller{
 
         //check if a session for login is set and if it is set, and user is admin, get them to the dashboard
         //otherwise, get them to signin 
-        $data["Page_title"] = "admin";
+        $data["Page_title"] = "Admin";
         if(isset($_SESSION['logged'])){
 
             if($_SESSION['logged']['role']=="admin"){
@@ -80,7 +80,7 @@ class Admin extends Controller{
         // }
 
 
-        $data["Page_title"] = "admin";
+        $data["Page_title"] = "Categories";
         //check loggin and credential status
         if(isset($_SESSION['logged'])){
 
@@ -105,7 +105,7 @@ class Admin extends Controller{
      function products(){
       
         // check if user is logged in
-        $user = $this->loadModel('user');
+        $user = $this->loadModel('User');
         $user_info = $user->checkLogin();
         if(is_array($user_info)){
             $data['user_email']    = $user_info['email'];
@@ -145,7 +145,7 @@ class Admin extends Controller{
         // }
 
 
-        $data["Page_title"] = "admin";
+        $data["Page_title"] = "Products";
         if(isset($_SESSION['logged'])){
 
             if($_SESSION['logged']['role']=="admin"){
@@ -161,5 +161,63 @@ class Admin extends Controller{
        
   
     }
+
+
+     //Users
+     function users(){
+      
+        // check if user is logged in
+        $user = $this->loadModel('User');
+        $user_info = $user->checkLogin();
+        if(is_array($user_info)){
+            $data['user_email'] = $user_info['email'];
+            $data['name'] = $user_info['name'];
+            $data['role'] = $user_info['role'];
+            $data['userid'] = $user_info['userid'];
+
+            $data['user_email']  = $user_info['email'];
+            $data['name']        = $user_info['name'];
+            $data['role']        = $user_info['role'];
+            $data['userid']      = $user_info['userid'];
+            $data['phone']       = $user_info['phone'];
+            $data['address']     = $user_info['address'];
+            
+    
+        }
+      
+      
+        //get table displayed in the user area
+        $conn =  Database::newInstance();
+        $sql= 'SELECT *FROM user WHERE role = "admin"  ORDER BY id ';
+        $users = $conn->read($sql,[]); 
+       
+    
+        // $user = $this->loadModel('User');
+        $tbl_rows = $user->make_table($users);
+        $data["tbl_rows"] = $tbl_rows;
+     
+
+        $data["Page_title"] = "Users";
+        //check loggin and credential status
+        if(isset($_SESSION['logged'])){
+
+            if($_SESSION['logged']['role']=="admin"){
+                $this->view("zac/users",$data);
+            } else if($_SESSION['logged']['role']=="customer"){
+                $this->view("zac/home",$data); //will take non admin to 404 page
+            }
+            
+        }else{
+            //intentionally lead them to 404
+            $this->view("zac/home",$data);
+        }
+       
+  
+    }
+
+
+    
+
+
 
 }

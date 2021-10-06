@@ -141,7 +141,7 @@ $conn = $db->db_connect();
         <ul class="navbar-nav" id="dashboardlinks">
           <!-- Product NEW -->
           <?php if($data['role']=='customer'){ ?>
-              <div class="d-none"> <!--blocker -->
+              <div class="d-none"> <!--block admin menu parts -->
           <?php } ?>
             <li>
             <a href="<?=ROOT?>admin/categories/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#category-collapse" role="button" aria-expanded="false" aria-controls="category-collapse">
@@ -153,15 +153,7 @@ $conn = $db->db_connect();
             <li>
                   <a href="<?=ROOT?>admin/categories" class="nav-link">View Categories</a>
                 </li>
-                <!-- <li>
-                  <a href="<?=ROOT?>admin/categories/add" class="nav-link">Add New Category</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/categories/edit" class="nav-link">Edit Category details</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/categories/delete" class="nav-link">Delete Category</a>
-                </li> -->
+             
             </ul>
              
          </li>
@@ -175,42 +167,27 @@ $conn = $db->db_connect();
                 <li>
                   <a href="<?=ROOT?>admin/products" class="nav-link">View Products</a>
                 </li>
-                <!-- <li>
-                  <a href="<?=ROOT?>admin/products/add" class="nav-link">Add New Product</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/products/edit" class="nav-link">Edit Product details</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/products/delete" class="nav-link">Delete Product</a>
-                </li> -->
+               
             </ul>
              
         </li>
 
         <li>
-            <a href="<?=ROOT?>admin/Customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
-              <span class="me-2"><i class="bi bi-people-fill"></i></span>  
-              <span>Customer</span> 
+            <a href="<?=ROOT?>admin/customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
+                <span class="me-2"><i class="bi bi-box-seam"></i></span>  
+              <span>Customers</span> 
               <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
             </a>
             <ul class="navbar-nav ms-5 collapse" id="customer-collapse">
-               <li>
+                <li>
                   <a href="<?=ROOT?>admin/customers" class="nav-link">View Customers</a>
                 </li>
-                <!-- <li>
-                  <a href="<?=ROOT?>admin/customer/add" class="nav-link">Add New Customer</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/customer/edit" class="nav-link">Edit Customer details</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/customer/delete" class="nav-link">Delete Customer</a>
-                </li> -->
+               
             </ul>
              
         </li>
 
+     
 
         <li>
             <a href="<?=ROOT?>admin/users/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#user-collapse" role="button" aria-expanded="false" aria-controls="user-collapse">
@@ -220,17 +197,9 @@ $conn = $db->db_connect();
             </a>
             <ul class="navbar-nav ms-5 collapse" id="user-collapse">
                 <li>
-                  <a href="<?=ROOT?>admin/user" class="nav-link">View Users</a>
+                  <a href="<?=ROOT?>admin/users" class="nav-link">View Users</a>
                 </li>
-                <!-- <li>
-                  <a href="<?=ROOT?>admin/user/add" class="nav-link">Add New User</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/user/edit" class="nav-link">Edit User details</a>
-                </li>
-                <li>
-                  <a href="<?=ROOT?>admin/user/delete" class="nav-link">Delete User</a>
-                </li> -->
+              
             </ul>
              
         </li>
@@ -243,7 +212,7 @@ $conn = $db->db_connect();
           </li>
 
           <?php if($data['role']=='customer'){ ?>
-          </div> <!--blocker -->
+          </div> <!--block admin menu parts -->
           <?php } ?>
 
           
