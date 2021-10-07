@@ -44,14 +44,15 @@ $this->view("zac/adminheader",$data);
                                       </div>
                                     </div>
                                   </div>
-                              <!-- END Add customer Modal -->
+                                </div>
+                              <!-- END Add user Modal -->
 
-                               <!-- EDIT customer Modal -->
-                              <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModal" aria-hidden="true">
-                                    <div class="modal-dialog">
+                               <!-- EDIT user Modal -->
+                               <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="addProductsModal" aria-hidden="true">
+                                  <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="edittitle">Edit User</h5>
+                                          <h5 class="modal-title" id="editusertitle">Edit User</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -64,7 +65,7 @@ $this->view("zac/adminheader",$data);
                                          </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                          <button type="button" class="btn btn-primary" id="btnupdate" onclick="update_user_data(event)">Update </button>
+                                          <button type="button" class="btn btn-primary" id="btnuserupdate" onclick="update_user_data(event)">Update </button>
                                         </div>
                                       </div>
                                     </div>
@@ -86,14 +87,11 @@ $this->view("zac/adminheader",$data);
                                   <th><i class=" fa faa-edit"></i>Action</th>
                               </tr>
                               </thead>
+
                               <tbody class="table_body">
                                   <?php
 
-                                    //this line prints table [check full code on admin.php]
-                                    // if($results){
-                                    //   echo $tbl_rows;
-                                    // }
-                                   
+                                                                 
                                     echo  $data['tbl_rows'];
                                 ?>
                         
@@ -212,19 +210,21 @@ $this->view("zac/adminheader",$data);
 
                     let table_body = document.querySelector(".table_body");
                     table_body.innerHTML=obj.data;
-                   // alert(obj.message);
+                  //  alert(obj.message);
 
-                }else if(obj.data_type == "edit_row")
+                }else if(obj.data_type == "edit_user")
                 {
-                    let table_body = document.querySelector(".table_body");
-                    table_body.innerHTML=obj.data;
-                    document.getElementById("editcatname").value="";
+                  
 
-                    // document.querySelector("#name").value= "";
-                    // document.querySelector("#useremail").value= "";
-                    // document.querySelector("#userphone").value= "";
-                    // document.querySelector("#useraddress").value= "";
-                   // alert(obj.message);
+                    let table_body = document.querySelector(".table_body");
+                    table_body.innerHTML= obj.data;
+                    // document.getElementById("editcatname").value="";
+
+                    document.querySelector("#editname").value= "";
+                    document.querySelector("#edituseremail").value= "";
+                    document.querySelector("#edituserphone").value= "";
+                    document.querySelector("#edituseraddress").value= "";
+                    alert(obj.message);
 
                 }
 
@@ -239,11 +239,26 @@ $this->view("zac/adminheader",$data);
      * @param number id
      * @returnvoid
      */
-    function edit_record(id, category){
-        let txt_category = document.getElementById("editcatname");
-        txt_category.value = category;
+    // function edit_record(id, name, email,phone,address){
+    function edit_record(id, e){
+    
 
-        EDIT_ID =id;
+       var info = e.currentTarget.getAttribute("info");
+       info     = JSON.parse(info.replaceAll("'",'"'))
+       info     = JSON.parse(info)
+       console.log("Infooooo", info)
+
+      let txt_name          = document.querySelector("#editname")
+      let txt_useremail     = document.querySelector("#edituseremail")
+      let txt_userphone     = document.querySelector("#edituserphone")
+      let txt_useraddress   = document.querySelector("#edituseraddress")
+
+      EDIT_ID               = info.id;
+      txt_name.value        = info.name 
+      txt_useremail.value   = info.email
+      txt_userphone.value   = info.phone
+      txt_useraddress.value = info.address 
+     
 
     }
 
@@ -252,17 +267,25 @@ $this->view("zac/adminheader",$data);
      * @param event e
      * @return void
      */
-    function update_category_data(e){
-        let category = document.getElementById("editcatname").value.trim();
-        if (category == "" || !isNaN(category)) {
-            alert("Check if characteres entered are valid");
-        }
+    function update_user_data(e){
+      
+      let userdata    = new FormData()
+      let name        = document.querySelector("#editname").value.trim()
+      let useremail   = document.querySelector("#edituseremail").value.trim()
+      let userphone   = document.querySelector("#edituserphone").value.trim()
+      let useraddress = document.querySelector("#edituseraddress").value.trim()
+      
+      userdata.append("id",EDIT_ID)
+      userdata.append("name",name)
+      userdata.append("useremail",useremail)
+      userdata.append("userphone",userphone)
+      userdata.append("useraddress",useraddress)
+      userdata.append("data_type","edit_user")
 
-        send_data({
-            id:EDIT_ID,
-            category:category,
-            data_type: "edit_row"
-        });
+      //call function and pass data
+      // console.log("to be passed ")
+      // console.log(userdata)
+      send_data(userdata)
 
     }
 
@@ -282,10 +305,7 @@ $this->view("zac/adminheader",$data);
         data.append("id",id)
         data.append("data_type","delete_user")
         send_data(data)
-        // send_data({
-        //     id:id,
-        //     data_type: "delete_row"
-        // });
+        
 
     }
 
@@ -313,6 +333,6 @@ $this->view("zac/adminheader",$data);
 <!-- Admin footer and  assets  -->
 <?php $this->view("zac/adminassets",$data);
 
-// $this->view("zac/adminfooter",$data);
+$this->view("zac/adminfooter",$data);
 
 ?>

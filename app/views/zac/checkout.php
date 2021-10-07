@@ -83,7 +83,7 @@
         <p class="lead">Fill the form to proceed with checkout.</p>
     </div>
     <div class="row">
-        <div class="col-md-6 order-md-1 mb-4">
+        <div class="col-md-8 order-md-1 mb-4">
        
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">On your cart</span>
@@ -120,9 +120,9 @@
             </ul>
          
         </div>
-        <div class="col-md-6 order-md-2 mb-5" >
+        <div class="col-md-4 order-md-2 mb-5" >
             <h4 class="mb-3" style="margin-bottom: 100px;" >Checkout with Paypal</h4> 
-            <p class="mb-3 text-muted fst-italic" style="margin-bottom: 100px;">Card | Bank</p>
+            <p class="mb-3 text-muted fst-italic" style="margin-bottom: 100px;"> Card | Bank</p>
             <!-- <form method = "post" class="needs-validation ">
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -150,9 +150,9 @@
                
               
                  <hr class="mb-4"> 
-               <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> -->
-                <!--div id="paypal-payment-button" onclick="validate(event)"></div>
-            </form> -->
+               <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> 
+              
+            </form>  -->
             <div id="paypal-payment-button"></div>
         </div>
     </div>

@@ -31,7 +31,6 @@ $result= $conn->read($query);
                     <!-- <h4><i class="fa fa-angle-right"></i>Product Categories</h4> -->
                     <h4> Products  <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addProductsModal"><i class="fa fa-plus"></i>Add Product</button></h4>
 
-
                     <!-- Add Product Modal -->
                         <div class="modal fade" id="addProductsModal" tabindex="-1" aria-labelledby="addProductsModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -50,7 +49,7 @@ $result= $conn->read($query);
                                         <input type="number" step="0.01" value ="0.00" name="price" id ="price" class="form-control form-control-lg mb-3" placeholder="0.00"  >
                                         <label for="quantity">Quantity*</label>
                                         <input type="number"value="5" name="quantity" id ="quantity" class="form-control form-control-lg mb-3"  placeholder="5" >
-                                        
+
 
                                         <select  id="category" class="form-select form-select-lg mb-3" aria-label=".form-select ">
                                             <option selected>Select Category*</option>
@@ -59,11 +58,11 @@ $result= $conn->read($query);
                                             // if(is_array($categories)):?>
                                             //    <?php // foreach($categories as $cat):?>
                                                <!-- option value="<?//=$cat['id']?>"><?//=$cat['categoryName']?></option -->
-                                                                         
-                                                 <?php //endforeach; 
-                                                                         
+
+                                                 <?php //endforeach;
+
                                             // endif;
-                                        
+
                                             if($result){
                                                for($count =0; $count < count($result); $count++){?>
                                                      <option value="<?php echo (int)$result[$count]['id'];?>"><?php echo $result[$count]['categoryName'];?></option>
@@ -97,10 +96,10 @@ $result= $conn->read($query);
                                 </div> <!--Row inside card-->
                              </div>
                             <div class="modal-footer">
-                            
+
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary" id="savepro" onclick=" collect_data(event)">Save </button>
-                                
+
                             </div>
                             <p class="form-text ms-2 text-danger">  * All fields are mandatory</p>
                             </div>
@@ -126,7 +125,7 @@ $result= $conn->read($query);
                                         <input type="text" name="price" id ="updateprice" class="form-control form-control-lg mb-3" >
                                         <label for="name">Quantity*</label>
                                         <input type="text" name="quantity" id ="updatequantity" class="form-control form-control-lg mb-3" >
-                                       
+
                                          <select  id="updatecategory" class="form-select form-select-lg mb-3" aria-label=".form-select ">
                                             <option selected>Select Category*</option>
                                             <?php
@@ -166,7 +165,7 @@ $result= $conn->read($query);
                                  <div class="col-md-3 js-image2"></div>
                                  <div class="col-md-3 js-image3"></div>
                              </div>
-                             
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary" id="btnupdate" onclick="update_product_data(event)">update </button>
@@ -222,9 +221,9 @@ $result= $conn->read($query);
 <script>
 
     var EDIT_ID =0;
-  
+
     function collect_data(e){
-        
+
         //creating a form to get data through post
         let data = new FormData();
 
@@ -232,7 +231,7 @@ $result= $conn->read($query);
         let description = document.getElementById("description").value.trim();
         let price = document.getElementById("price").value.trim();
         let quantity = document.getElementById("quantity").value.trim();
-       
+
         let selectElement = document.querySelector('#category');
         let category  = selectElement.options[selectElement.selectedIndex].value;
 
@@ -263,27 +262,27 @@ $result= $conn->read($query);
 
 
         //get images
-        
+
         let image1 = document.querySelector("#image1");
         if(image1.files.length == 0 ){
             alert("Please select an image");
             return ;
         }
-        
+
         //for optional images,  get them they exist
         let image2 = document.querySelector("#image2");
         if(image2.files.length > 0 ){
-            
+
             data.append("image2",image2.files[0]);
         }
 
         let image3 = document.querySelector("#image3");
         if(image3.files.length > 0 ){
-            
+
             data.append("image3",image3.files[0]);
         }
 
-  
+
         data.append("name",name);
         data.append("description",description);
         data.append("price",price);
@@ -300,13 +299,13 @@ $result= $conn->read($query);
 
 
     /**
-     * Function passes data collected from forms  to ajax handling class 
+     * Function passes data collected from forms  to ajax handling class
      * @param mixed formdata
      * @return void
      */
     function send_data_files(data){
 
-        
+
         var ajax = new XMLHttpRequest();
         ajax.addEventListener('readystatechange', function(){
             //check if there is response
@@ -349,13 +348,13 @@ $result= $conn->read($query);
                     //alert("add reached");
                     if(obj.message_type=="info")
                     {
-                      
+
                         document.getElementById("productname").value = "";
                         document.getElementById("price").value = "";
                         document.getElementById("description").value = "";
                         document.getElementById("quantity").value = "";
                         document.querySelector('#category').text="Select Category";
-                    
+
                         let table_body = document.getElementById("product_table_body");
                         table_body.innerHTML=obj.data;
                         // alert(obj.message);
@@ -371,7 +370,7 @@ $result= $conn->read($query);
                     // alert(obj.message);
 
                 }else if(obj.data_type == "edit_product")
-                {   
+                {
                     let table_body = document.getElementById("product_table_body");
                     table_body.innerHTML=obj.data;
                     alert(obj.message);
@@ -397,14 +396,14 @@ $result= $conn->read($query);
         info = JSON.parse(info);
         console.log(info);
         EDIT_ID = info.id;
-    
+
 
         let txt_product      = document.querySelector("#updatename");
         let txt_description  = document.querySelector("#updatedescription");
         let txt_price        = document.querySelector("#updateprice");
-        let txt_quantity     = document.querySelector("#updatequantity");        
-        let category    = document.querySelector('#updatecategory');
-        
+        let txt_quantity     = document.querySelector("#updatequantity");
+        let category         = document.querySelector('#updatecategory');
+
         //view what images were uploaded in the past
         let js_image1= document.querySelector(".js-image1");
         js_image1.innerHTML = `<img src="<?=ROOT?>${info.image1}" />` ;
@@ -415,7 +414,7 @@ $result= $conn->read($query);
         let js_image3= document.querySelector(".js-image3");
         js_image3.innerHTML = `<img src="<?=ROOT?>${info.image3}" />` ;
 
-     
+
         txt_product.value      = info.name;
         txt_description.value  = info.description;
         txt_price.value        = info.price;
@@ -429,11 +428,11 @@ $result= $conn->read($query);
         image2.files[0]        = info.image2;
         image3.files[0]        = info.image3;
 
-        
 
-     
 
-       
+
+
+
 
     }
 
@@ -451,8 +450,8 @@ $result= $conn->read($query);
         let name          = document.querySelector("#updatename").value.trim();;
         let description   = document.querySelector("#updatedescription").value.trim();
         let price         = document.querySelector("#updateprice").value.trim();
-        let quantity      = document.querySelector("#updatequantity").value.trim();        
-     
+        let quantity      = document.querySelector("#updatequantity").value.trim();
+
         let selectElement = document.querySelector('#updatecategory');
         let category      = selectElement.options[selectElement.selectedIndex].value;
 
@@ -479,29 +478,29 @@ $result= $conn->read($query);
             return ;
         }
 
-     
-        
+
+
         //while updating even image 1 is optiona
         let image1 = document.querySelector("#updateimage1");
         if(image1.files.length > 0 ){
-            
+
             data.append("image1",image1.files[0]);
         }
 
         let image2 = document.querySelector("#updateimage2");
         if(image2.files.length > 0 ){
-            
+
             data.append("image2",image2.files[0]);
         }
 
         let image3 = document.querySelector("#updateimage3");
         if(image3.files.length > 0 ){
-            
+
             data.append("image3",image3.files[0]);
         }
 
 
-        
+
         data.append("name",name);
         data.append("description",description);
         data.append("price",price);

@@ -48,5 +48,42 @@ class Profile extends Controller{
         
     }
 
+    function deleteAccount(){
+
+        $user = $this->loadModel('user');
+        $user_info = $user->checkLogin();
+        if(is_array($user_info)){
+             $data['user_email'] = $user_info['email'];
+             $data['name']       = $user_info['name'];
+             $data['role']       = $user_info['role'];
+             $data['userid']     = $user_info['userid'];
+
+             $data['user_email']  = $user_info['email'];
+             $data['name']        = $user_info['name'];
+             $data['role']        = $user_info['role'];
+             $data['userid']      = $user_info['userid'];
+             $data['phone']       = $user_info['phone'];
+             $data['address']     = $user_info['address'];
+              
+        }
+
+        $data["Page_title"] = "Profile";
+        // $this->view("zac/profile",$data);
+
+
+        if(isset($_SESSION['logged'])){
+
+            if($_SESSION['logged']['role']=="customer"){
+
+               $user->deleteProfile($data['user_email']);
+                    
+            }
+            
+        }
+
+    }
+
+
+
 
 }

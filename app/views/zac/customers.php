@@ -16,55 +16,34 @@ $this->view("zac/adminheader",$data);
                   <div class="col-md-12">
                       <div class="content-panel">
                           <table class="table table-striped table-advance table-hover">
-	                  	  	  <!-- <h4><i class="fa fa-angle-right"></i>Product Categories</h4> -->
-	                  	  	  <h4> Customers <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#addCustomer"><i class="fa fa-plus"></i>Add Customer</button></h4>
-
-
-                              <!-- Add Category Modal -->
-                                  <div class="modal fade" id="addCustomer" tabindex="-1" aria-labelledby="addCustomer" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="addCustomerModal">Add Customer</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                                                                                                                     
-                                          <input type="text" name="name" id ="custname" class="form-control form-control-lg my-2" placeholder="Enter Name" >
-                                          <input type="email" name="email" id ="custemail" class="form-control form-control-lg my-2" placeholder="Enter Email" >
-                                          <input type="text" name="phone" id ="custphone" class="form-control form-control-lg my-1" placeholder="Enter Phone" >
-                                          <input type="text" name="address" id ="custaddress" class="form-control form-control-lg my-2" placeholder="Enter Address" >
-                                          <input type="text" name="date" id ="custdate" class="form-control form-control-lg my-2" placeholder="Enter Date" >
-                                          <!-- <input type="text" name="role" id ="custrole" class="form-control form-control-lg mb-1" placeholder="Enter Role" > -->
-             
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary" id="btnsave" onclick="collect_data(event)">Save </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                              <!-- END Add customer Modal -->
+	         
+	                  	  	  <h4> Customers</h4>
+                               
 
                                <!-- EDIT customer Modal -->
-                              <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="addCategoryModal" aria-hidden="true">
-                                    <div class="modal-dialog">
+                               <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="addProductsModal" aria-hidden="true">
+                                  <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="edittitle">Edit Category</h5>
+                                          <h5 class="modal-title" id="editusertitle">Edit User</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                          <input type="text" name="catname" id ="editcatname" class="form-control form-control-lg"  >
+                                          <input type="text" name="editname" id ="editname" class="form-control form-control-lg my-2" placeholder="Enter Name" >
+                                          <input type="email" name="editemail" id ="edituseremail" class="form-control form-control-lg my-2" placeholder="Enter Email" >
+                                          <input type="tel" name="editphone" id ="edituserphone" class="form-control form-control-lg my-1" placeholder="Enter Phone" >
+                                          <input type="text" name="editaddress" id ="edituseraddress" class="form-control form-control-lg my-2" placeholder="Enter Address" >
+                                          <!-- <input type="text" name="editdate" id ="edituserdate" class="form-control form-control-lg my-2" placeholder="Enter Date" > -->
+                                        
                                          </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                          <button type="button" class="btn btn-primary" id="btnupdate" onclick="update_category_data(event)">Update </button>
+                                          <button type="button" class="btn btn-primary" id="btnuserupdate" onclick="update_user_data(event)">Update </button>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                               <!-- END EDIT category Modal -->
+                               <!-- END EDIT customer Modal -->
 
 
                             <!-- <hr> -->
@@ -81,15 +60,12 @@ $this->view("zac/adminheader",$data);
                                   <th><i class=" fa faa-edit"></i>Action</th>
                               </tr>
                               </thead>
-                              <tbody id="table_body">
+
+                              <tbody class="table_body">
                                   <?php
 
-                                    //this line prints table [check full code on admin.php]
-                                    if($results){
-                                      echo $tbl_rows;
-                                    }
-                                   
-                                    // echo  $data['tbl_rows'];
+                                                                 
+                                    echo  $data['tbl_rows'];
                                 ?>
                         
 
@@ -103,32 +79,48 @@ $this->view("zac/adminheader",$data);
 
               <!-- Javascript code to handle  -->
 
-
-
+ 
 <script>
 
     var EDIT_ID =0;
     function collect_data(e){
-      let custname    = document.querySelector("#custname").value.trim()
-      let custemail   = document.querySelector("#custemail").value.trim()
-      let custphone   = document.querySelector("#custphone").value.trim()
-      let custaddress = document.querySelector("#custaddress").value.trim()
-      let custdate    = document.querySelector("#custdate").value.trim()
 
-        var category = document.getElementById("catname").value.trim();
-        if(category == "" || !isNaN(category)){
-            alert("please enter a valid category name");
-        }
-    // catetory = category.trim();
-        send_data({
-            category:category,
-            data_type:"add_new"
-            });
+      let data        = new FormData()
+      let name        = document.querySelector("#name").value.trim()
+      let useremail   = document.querySelector("#useremail").value.trim()
+      let userphone   = document.querySelector("#userphone").value.trim()
+      let useraddress = document.querySelector("#useraddress").value.trim()
+      
+
+     
+      if(name == "" || !isNaN(name)){
+          alert("please enter a valid name name");
+          return
+      }
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if(!useremail.match(mailformat)){
+        alert("please enter a valid email")
+        return
+      }
+      if(isNaN(userphone)){
+        alert("Please enter a valid phone number")
+        return
+      }
+ 
+        data.append("name",name)
+        data.append("useremail",useremail)
+        data.append("userphone",userphone)
+        data.append("useraddress",useraddress)
+        data.append("data_type","add_user")
+
+        //call function and pass data
+        send_data(data)
 
     }
 
 
-    function send_data(data ={}){
+    // function send_data(data ={}){
+    function send_data(data){
 
         var ajax = new XMLHttpRequest();
         ajax.addEventListener('readystatechange', function(){
@@ -140,8 +132,9 @@ $this->view("zac/adminheader",$data);
             }
         });
         //send data
-        ajax.open("POST","<?=ROOT?>ajax_category", true);
-        ajax.send(JSON.stringify(data));
+        ajax.open("POST","<?=ROOT?>ajax_customer", true);
+        ajax.send(data);
+        // ajax.send(JSON.stringify(data));
 
 
     }
@@ -154,52 +147,52 @@ $this->view("zac/adminheader",$data);
      */
     function  handle_results(result)
     {
-        console.log(typeof result);
-          console.log(result);
+          // console.log(typeof result);
+          // console.log(result);
           if(result!=="")
           {
 
             let obj= JSON.parse(result);
             // alert("Obje alert ", obj);
-            // alert(obj.data_type);
+            // console.log("data type", obj.data_type);
             if(typeof obj.data_type!=='undefined')
-            {
-                if(obj.data_type == "add_new")
-                {
-                    // alert("add reached");
-                    if(obj.message_type=="info")
-                    {
+            { 
+              
+              
+              if(obj.message_type=="info"){
 
-                        document.getElementById("catname").value = "";
-
-                        let table_body = document.getElementById("table_body");
-                        table_body.innerHTML=obj.data;
-                       // alert(obj.message);
-                    }else
-                    {
-                        // alert("Error adding category");
-
-                        alert(obj.message);
-                    }
-
-                }else if(obj.data_type == "delete_row")
+                if(obj.data_type == "delete_customer")
                 {
 
-                    let table_body = document.getElementById("table_body");
-                    table_body.innerHTML=obj.data;
-                   // alert(obj.message);
+                    let table_body = document.querySelector(".table_body");
+                    table_body.innerHTML = obj.data;
+                   alert(obj.message);
 
-                }else if(obj.data_type == "edit_row")
+                }else if(obj.data_type == "edit_customer")
                 {
-                    let table_body = document.getElementById("table_body");
-                    table_body.innerHTML=obj.data;
-                    document.getElementById("editcatname").value="";
-                   // alert(obj.message);
+                  
+                    document.querySelector("#editname").value= "";
+                    document.querySelector("#edituseremail").value= "";
+                    document.querySelector("#edituserphone").value= "";
+                    document.querySelector("#edituseraddress").value= "";
+                    // alert(obj.message);
+
+                    let table_body = document.querySelector(".table_body");
+                    table_body.innerHTML= obj.data;
+                    // document.getElementById("editcatname").value="";
+
+                    
 
                 }
 
+             }
+               
+
+            }else{
+              alert("No results returns to the front end ")
             }
         }
+
      }
 
 
@@ -209,11 +202,26 @@ $this->view("zac/adminheader",$data);
      * @param number id
      * @returnvoid
      */
-    function edit_record(id, category){
-        let txt_category = document.getElementById("editcatname");
-        txt_category.value = category;
+    // function edit_record(id, name, email,phone,address){
+    function edit_record(id, e){
+    
 
-        EDIT_ID =id;
+       var info = e.currentTarget.getAttribute("info");
+       info     = JSON.parse(info.replaceAll("'",'"'))
+       info     = JSON.parse(info)
+       console.log("Infooooo", info)
+
+      let txt_name          = document.querySelector("#editname")
+      let txt_useremail     = document.querySelector("#edituseremail")
+      let txt_userphone     = document.querySelector("#edituserphone")
+      let txt_useraddress   = document.querySelector("#edituseraddress")
+
+      EDIT_ID               = info.id;
+      txt_name.value        = info.name 
+      txt_useremail.value   = info.email
+      txt_userphone.value   = info.phone
+      txt_useraddress.value = info.address 
+     
 
     }
 
@@ -222,17 +230,23 @@ $this->view("zac/adminheader",$data);
      * @param event e
      * @return void
      */
-    function update_category_data(e){
-        let category = document.getElementById("editcatname").value.trim();
-        if (category == "" || !isNaN(category)) {
-            alert("Check if characteres entered are valid");
-        }
+    function update_user_data(e){
+      
+      let userdata    = new FormData()
+      let name        = document.querySelector("#editname").value.trim()
+      let useremail   = document.querySelector("#edituseremail").value.trim()
+      let userphone   = document.querySelector("#edituserphone").value.trim()
+      let useraddress = document.querySelector("#edituseraddress").value.trim()
+      
+      userdata.append("id",EDIT_ID)
+      userdata.append("name",name)
+      userdata.append("useremail",useremail)
+      userdata.append("userphone",userphone)
+      userdata.append("useraddress",useraddress)
+      userdata.append("data_type","edit_customer")
 
-        send_data({
-            id:EDIT_ID,
-            category:category,
-            data_type: "edit_row"
-        });
+     
+      send_data(userdata)
 
     }
 
@@ -243,14 +257,16 @@ $this->view("zac/adminheader",$data);
      * @return void
      */
     function delete_record(e,id){
+      var data = new FormData();
 
         if(!confirm("Are you sure to delete the record?")){
             return; //exit
         }
-        send_data({
-            id:id,
-            data_type: "delete_row"
-        });
+
+        data.append("id",id)
+        data.append("data_type","delete_customer")
+        send_data(data)
+        
 
     }
 
@@ -278,6 +294,6 @@ $this->view("zac/adminheader",$data);
 <!-- Admin footer and  assets  -->
 <?php $this->view("zac/adminassets",$data);
 
-// $this->view("zac/adminfooter",$data);
+$this->view("zac/adminfooter",$data);
 
 ?>

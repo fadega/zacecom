@@ -216,6 +216,60 @@ class Admin extends Controller{
     }
 
 
+
+    //Users
+    function customers(){
+      
+        // check if user is logged in
+        $customer = $this->loadModel('User');
+        $user_info = $customer->checkLogin();
+        if(is_array($user_info)){
+            $data['user_email'] = $user_info['email'];
+            $data['name'] = $user_info['name'];
+            $data['role'] = $user_info['role'];
+            $data['userid'] = $user_info['userid'];
+
+            $data['user_email']  = $user_info['email'];
+            $data['name']        = $user_info['name'];
+            $data['role']        = $user_info['role'];
+            $data['userid']      = $user_info['userid'];
+            $data['phone']       = $user_info['phone'];
+            $data['address']     = $user_info['address'];
+            
+    
+        }
+      
+      
+        //get table displayed in the user area
+        $db =  Database::newInstance();
+        $sql= 'SELECT *FROM user WHERE role = "customer"  ORDER BY id ';
+        $customers = $db->read($sql,[]); 
+       
+    
+        // $user = $this->loadModel('User');
+        $tbl_rows = $customer->make_table($customers);
+        $data["tbl_rows"] = $tbl_rows;
+     
+
+        $data["Page_title"] = "Customesrs";
+        //check loggin and credential status
+        if(isset($_SESSION['logged'])){
+
+            if($_SESSION['logged']['role']=="admin"){
+                $this->view("zac/customers",$data);
+            } else if($_SESSION['logged']['role']=="customer"){
+                $this->view("zac/home",$data); //will take non admin to 404 page
+            }
+            
+        }else{
+            //intentionally lead them to 404
+            $this->view("zac/home",$data);
+        }
+       
+  
+    }
+
+
     
 
 

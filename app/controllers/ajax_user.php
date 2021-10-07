@@ -15,7 +15,7 @@ class Ajax_user extends  Controller{
     //   $data = file_get_contents("php://input");
     //   $data = json_decode($data); 
       
-    //   show($data);die;
+      // show($data);die;
       if(is_object($data) && isset($data->data_type)){
 
         //create instance of Category Model to access methods like create, editCategory, deleteCategory etc ..
@@ -57,24 +57,25 @@ class Ajax_user extends  Controller{
           $_SESSION['error']=""; //unset session error
           $arr['message_type'] = 'info';
           $arr['data_type'] = "delete_user";
-          $cats = $user->getUsers();
-          $arr['data'] = $user->make_table($cats);
+          $users = $user->getUsers();
+          $arr['data'] = $user->make_table($users);
           
  
            echo json_encode($arr);
 
-       }elseif($data->data_type == "edit_row"){
-        // $arr = [];
-        $user->editCategory($data->id,$data->category);
+       }elseif($data->data_type == "edit_user"){
+        // // $arr = [];
+       
+        // show($data);die;
+        $user->editUser($data);
+        // $user->editCategory($data->id,$data->category);
         $arr['message'] = "Record updated successfully!";
         $_SESSION['error']=""; //unset session error
         $arr['message_type'] = 'info';
-        $arr['data_type'] = "edit_row";
-        $cats = $user->getCategories();
-        $arr['data'] = $user->make_table($cats);
-        
-
-         echo json_encode($arr);
+        $arr['data_type'] = "edit_user";
+        $users = $user->getUsers();
+        $arr['data'] = $user->make_table($users);
+        echo json_encode($arr);
 
      }
   

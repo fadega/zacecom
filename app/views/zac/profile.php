@@ -67,19 +67,20 @@ $this->view("zac/adminheader",$data);
  <div class="row mt-5">
      <div class="col-md-5">
          
-         <div class="row shadow-sm">
+         <div class="row shadow-sm p-3">
              <div class="col-md-8">
-             <h5 class="mb-3">Profile Details</h5>
-             <p class="mt-2">Name  <span class="text-secondary ms-5"><?=$data['name']?></span></p>
-             <p>Email  <span class="text-secondary ms-5"><?=$data['user_email']?> </span></p>
-             <p>Phone <span class="text-secondary ms-5"><?=$data['phone']?>4</span></p>
-             <p>Address <span class="text-secondary ms-4"><?=$data['address']?></span></p>
-             <p>Role <span class="text-secondary ms-4"><?=$data['role']?></span></p>
-
+                <h5 class="mb-3">Profile Details</h5>
+                <p class="mt-2">Name  <span class="text-secondary ms-5"><?=$data['name']?></span></p>
+                <p>Email  <span class="text-secondary ms-5"><?=$data['user_email']?> </span></p>
+                <p>Phone <span class="text-secondary ms-5"><?=$data['phone']?>4</span></p>
+                <p>Address <span class="text-secondary ms-4"><?=$data['address']?></span></p>
+                <p>Role <span class="text-secondary ms-4"><?=$data['role']?></span></p>
+                <div class="mt-3"> <a href="<?=ROOT?>profile/deleteAccount" class="text-danger"><i class="bi bi-trash-fill text-danger"></i>Delete Account </a> </div>
              </div>
              <div class="col-md-4">
-             <i class="bi bi-pencil-square edit-profile-icon"></i>
-             <span> <a href="#" class="text-dark">Edit Details</a> </span>
+                <i class="bi bi-pencil-square edit-profile-icon"></i>
+                <span> <a href="<?=ROOT?>editprofile" class="text-dark">Edit Details</a> </span>
+               
              </div>
 
          </div>

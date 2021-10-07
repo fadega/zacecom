@@ -11,6 +11,7 @@ class User{
  * @param array $POST
  * @return void
  */
+
    public function signup($POST){
 
         //create instance to establish connection to the databse
@@ -268,36 +269,136 @@ class User{
 
        }
 
-    
-
      }
+
+
+
 
 
      public function getUsers(){
         $conn =  Database::newInstance();
        
         return $conn->read('SELECT *FROM user WHERE role ="admin" ORDER BY id asc');        
-    }
+     }
+
+     public function getCustomers(){
+      $conn =  Database::newInstance();
+     
+      return $conn->read('SELECT *FROM user WHERE role ="customer" ORDER BY id asc');        
+   }
 
 
-    public function deleteUser($id){
-        $conn =  Database::newInstance();
-        $id = (int)$id;
-        $query = "DELETE FROM user WHERE id ='$id' limit 1 ";
-        $conn->write($query); 
+
+
+    public function editUser($data){
+        // echo "I Data passed";
+        // show($data);
+    
+        $conn           =  Database::newInstance();
+        $id             = (int)$data->id;
+        $userdata['id'] = $id;
+    
+     
+        $sql = 'SELECT *FROM user WHERE id =:id limit 1';
+        $existing_details = $conn->read($sql,$userdata);
+    
+          //get the data which will not need update or can't be updated and push it back
+        if(is_array($existing_details)){
+            $userdata['userid']   = $existing_details[0]['userid'];
+            $userdata['date']     = $existing_details[0]['date'];
+            $userdata['role']     = $existing_details[0]['role'];
+            $userdata['password'] = $existing_details[0]['password'];
+
+        }
+        $userdata['name']    = ucwords($data->name);
+        $userdata['email']   = $data->useremail;
+        $userdata['phone']   = $data->userphone;
+        $userdata['address'] = $data->useraddress;
+     
+     
+  
+        if(!isset($_SESSION['error']) || $_SESSION['error']==""){
+          $query = "UPDATE user SET userid=:userid, name=:name, email=:email, phone=:phone, password=:password, role=:role, address=:address, date=:date  WHERE id =:id limit 1 ";
+          $conn->write($query,$userdata); 
+        }else{
+            $_SESSION['error'] = "Error Updating user, user.class.php ";
+          //  die;
+        }
+        
+  
           
       }
 
+
+
+
+      public function editCustomer($data){
+        // echo "I Data passed";
+        // show($data);
+    
+        $conn           =  Database::newInstance();
+        $id             = (int)$data->id;
+        $userdata['id'] = $id;
+    
      
+        $sql = 'SELECT *FROM user WHERE id =:id limit 1';
+        $existing_details = $conn->read($sql,$userdata);
+    
+          //get the data which will not need update or can't be updated and push it back
+        if(is_array($existing_details)){
+            $userdata['userid']   = $existing_details[0]['userid'];
+            $userdata['date']     = $existing_details[0]['date'];
+            $userdata['role']     = $existing_details[0]['role'];
+            $userdata['password'] = $existing_details[0]['password'];
+
+        }
+        $userdata['name']    = ucwords($data->name);
+        $userdata['email']   = $data->useremail;
+        $userdata['phone']   = $data->userphone;
+        $userdata['address'] = $data->useraddress;
+     
+     
+  
+        if(!isset($_SESSION['error']) || $_SESSION['error']==""){
+          $query = "UPDATE user SET userid=:userid, name=:name, email=:email, phone=:phone, password=:password, role=:role, address=:address, date=:date  WHERE id =:id limit 1 ";
+          $conn->write($query,$userdata); 
+        }else{
+            $_SESSION['error'] = "Error Updating user, user.class.php ";
+          //  die;
+        }
+        
+  
+          
+      }
+
+
+
+
+
+
+    
     function make_table($users){
+        //  echo "make table from user class";
+        //  show($users);die;
         $result ="";
 
         if(is_array($users)){
           foreach ($users as $user_row) {
-       
-            $user_row = (object) $user_row;
-            $args = $user_row->id. ",'". $user_row->email."'";
-         
+
+           $user_row = (object) $user_row;
+          $args = $user_row->id;
+          $info            = array();
+        
+           $info["id"]      = $user_row->id;
+           $info["name"]    = ucwords($user_row->name);
+           $info["email"]   = $user_row->email;
+           $info["phone"]   = $user_row->phone;
+           $info["address"] = $user_row->address;
+  
+            //conver json to string
+           $info = json_encode($info);
+           $info =  str_replace('"',"'",json_encode($info));
+
             $result .= "<tr>";
            //userid name email phone password role address date
               $result.='                    
@@ -309,7 +410,8 @@ class User{
                    <td><a href="#" class="text-dark">'.$user_row->date .'</a></td>
                   
                    <td>
-                       <button class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="edit_record('.$args.')"><i class="fa fa-pencil"></i></button>
+
+                       <button info = "'.$info.'"  onclick="edit_record('.$args.', event)" class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#editUserModal" ><i class="fa fa-pencil"></i></button>
                        <button class="btn btn-danger btn-xs"  onclick="delete_record(event,'.$user_row->id.')"><i class="fa fa-trash-o "></i></button>
                    </td>';
          
@@ -322,6 +424,45 @@ class User{
         return $result;
   
       }
+
+      public function deleteUser($id){
+        $conn =  Database::newInstance();
+        $id = (int)$id;
+        $query = "DELETE FROM user WHERE id ='$id' limit 1 ";
+        $conn->write($query);
+      }
+
+      public function deleteCustomer($id){
+        $conn =  Database::newInstance();
+        $id = (int)$id;
+        $query = "DELETE FROM user WHERE id ='$id' limit 1 ";
+        $conn->write($query);
+      }
+
+
+     public function deleteProfile($email){
+        $conn =  Database::newInstance();
+        $query = "DELETE FROM user WHERE email ='$email' limit 1 ";
+        $res = $conn->write($query);
+        if($res){
+          unset($_SESSION['logged']);
+          header("location:" .ROOT);
+        }
+
+      }
+     
+
+
+
+
+
+      
+
+
+
+
+
+
 
 
 

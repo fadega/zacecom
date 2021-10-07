@@ -83,7 +83,7 @@ $conn = $db->db_connect();
           <!-- Logout/profile dropdown  -->
           <ul class="navbar-nav d-flex ms-auto">
             <!-- put something if some is loggedin -->
-            <a class="text-light mt-2 pt-1" href=""><?=$data['user_email']?>  </a>
+            <a class="text-light mt-2 pt-1" href=""><?=ucwords($data['name'])?>  </a>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle ms-2 btn"
                  href="#" role="button"
@@ -123,11 +123,13 @@ $conn = $db->db_connect();
             <span><i class="bi bi-speedometer"></i></span>
             Dashboard
         </a>
+        <p class="m-3"><?=$data['user_email'];?></p>
       <?php else:?>
         <a href="<?=ROOT?>admin" class="text-muted fw-bold  px-3">
             <span><i class="bi bi-speedometer"></i></span>
             Dashboard
         </a>
+        <p class="m-3"><?=$data['user_email'];?></p>
 
         <?php endif;?>
     
@@ -173,23 +175,6 @@ $conn = $db->db_connect();
         </li>
 
         <li>
-            <a href="<?=ROOT?>admin/customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
-                <span class="me-2"><i class="bi bi-box-seam"></i></span>  
-              <span>Customers</span> 
-              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
-            </a>
-            <ul class="navbar-nav ms-5 collapse" id="customer-collapse">
-                <li>
-                  <a href="<?=ROOT?>admin/customers" class="nav-link">View Customers</a>
-                </li>
-               
-            </ul>
-             
-        </li>
-
-     
-
-        <li>
             <a href="<?=ROOT?>admin/users/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#user-collapse" role="button" aria-expanded="false" aria-controls="user-collapse">
               <span class="me-2"><i class="bi bi-person-badge-fill"></i></span> 
               <span>Users</span> 
@@ -199,10 +184,21 @@ $conn = $db->db_connect();
                 <li>
                   <a href="<?=ROOT?>admin/users" class="nav-link">View Users</a>
                 </li>
-              
             </ul>
-             
-        </li>
+         </li>
+
+        <li>
+            <a href="<?=ROOT?>admin/customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
+                <span class="me-2"><i class="bi bi-box-seam"></i></span>  
+              <span>Customers</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="customer-collapse">
+                <li>
+                  <a href="<?=ROOT?>admin/customers" class="nav-link">View Customers</a>
+                </li>
+           </ul>
+       </li>
 
         <li>
             <a href="<?=ROOT?>orders" class="nav-link ps-3 me-lg-5">
@@ -222,12 +218,14 @@ $conn = $db->db_connect();
                   Profile
               </a>
           </li>
+
           <li>
              <a href="<?=ROOT?>settings" class="nav-link ps-3 mb-1 me-lg-5 ">
                <span><i class="bi bi-gear"></i> </span>
                   Settings
              </a>
           </li>
+          
           <li>
              <a href="<?=ROOT?>signout" class="nav-link ps-3  me-lg-5 ">
              <i class="bi bi-power mt-1"></i> 

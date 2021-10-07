@@ -4,8 +4,8 @@
  */
 class Product{
 
-    
- 
+
+
     public function create($data, $files){ //I am not using $files because I am using function(uploadimages) to access the global $_FILES
        $_SESSION['error']="";
        $conn =  Database::db_connect();
@@ -13,25 +13,25 @@ class Product{
 
        $pro_data    = [];
        $images = uploadImages(); //custom function in function.pho
-      
+
        foreach($images as $key =>$value){
          $pro_data[$key] = $value;     //keys are image1 image2 image 2 and values are whatever images added
- 
+
        }
-        
-       $pro_data['name']        = $data->name;   
-       $pro_data['description'] = $data->description;                
-       $pro_data['price']       = $data->price;                            
-       $pro_data['category']    = (int)$data->category;                    
-       $pro_data['quantity']    = $data->quantity;      
+
+       $pro_data['name']        = $data->name;
+       $pro_data['description'] = $data->description;
+       $pro_data['price']       = $data->price;
+       $pro_data['category']    = (int)$data->category;
+       $pro_data['quantity']    = $data->quantity;
       //  $pro_data['image1']      = NULL;
-      //  $pro_data['image2']      = NULL;                
-      //  $pro_data['image3']      = NULL;                
-       $pro_data['date']        = date("Y-m-d H:i:s"); 
+      //  $pro_data['image2']      = NULL;
+      //  $pro_data['image3']      = NULL;
+       $pro_data['date']        = date("Y-m-d H:i:s");
        $pro_data['slug']        = $this->strtoslug($data->name);
 
-      
-     
+
+
       /*
       Converted the code block below to a function(uploadImage  in functions.php)
 
@@ -47,7 +47,7 @@ class Product{
       // //setting allowed uplpoad size and converting default byte size to megabytes
       // $size = 25; // allowed file size 10 megabytes
       // $size =($size *1024 *1024); //conver
-      
+
       // //create directory where your images will be uploaded to - should be in public to be accessible
       // $dir = "uploads/";
 
@@ -72,8 +72,8 @@ class Product{
 
       //  }
 
-      
-      
+
+
        //validate in backend
        if(!preg_match("/^[a-zA-Z 0-9]+$/",trim($pro_data['name']))){
               $_SESSION['error'] .= "Please enter valid product name <br/>";
@@ -103,125 +103,80 @@ class Product{
            if (is_array($check1) && count($check1) >=1) {
                $_SESSION['error']="ERROR: Duplicate Product";
                return false;
-           } 
+           }
 
            $query = "INSERT INTO product (name, description, price, category, quantity, image1,image2,image3,date, slug) VALUES (:name, :description, :price, :category, :quantity, :image1,:image2,:image3,:date, :slug)";
-     
+
            $check = $conn->write($query,$pro_data);
             if ($check) {
                  return true;
             }
             $_SESSION['error'] = "Problem with write - insertion query";
-          
+
        }
 
-        
+
 
     }
 
     public function editProduct($data){
-
       $conn   =  Database::newInstance();
       $arr    = [];
-      
       $images = uploadImages();
-     
       foreach($images as $key =>$value){
         $arr[$key] = $value;
 
       }
-
-      //
-      //   $size = 10;
-      //   $size =($size *1024 *1024);
-      //   $allowed[] = "image/jpeg";
-      //   $allowed[] = "image/png";
-      //   $arr = array();
-
-      //   $dir = "uploads/";
-
-      //   //if folder doesn't exist create it
-      //   if(!file_exists($dir)){
-      //     mkdir($dir,0777,true);
-      //   }
-
-      
-      // foreach($files as $key => $img_row){
-      //   if($img_row['error']=="" && in_array($img_row['type'], $allowed) ){
-      //     if($img_row['size'] < $size){
-      //       //upload image to folder
-      //       $destination = $dir.$img_row['name'];
-      //       move_uploaded_file($img_row['tmp_name'], $destination);
-      //       $arr[$key] = $destination;
-
-      //     }else{
-      //       $_SESSION['error'] .= $key ."is larger than xax upload size (5 megabyte) <br/>";
-      //     }
-
-      //   }
-
-      //  }
-
-
      $id = (int)$data->id;
-
-     
       $arr['id']          = $id;
       $arr['name']        = $data->name;
       $arr['description'] = $data->description;
       $arr['price']       = $data->price;
       $arr['category']    = $data->category;
       $arr['quantity']    = $data->quantity;
-      $arr['date']        = date("Y-m-d H:i:s"); 
-   
+      $arr['date']        = date("Y-m-d H:i:s");
+
 
       if(!isset($_SESSION['error']) || $_SESSION['error']==""){
         $query = "UPDATE product SET name = :name,description = :description,price = :price,category = :category,quantity = :quantity,image1 = :image1, image2 = :image2, image3 = :image3, date = :date WHERE id = :id limit 1 ";
-        $conn->write($query,$arr); 
+        $conn->write($query,$arr);
       }
-      
 
-        
+
+
     }
 
     /**
      * Function to delete category
      * @param int $id
-     * 
+     *
      * @return void
      */
     public function deleteProduct($id){
-    
+
       $conn =  Database::newInstance();
       $id = (int)$id;
       $query = "DELETE FROM product WHERE id ='$id' limit 1 ";
-      $conn->write($query); 
-        
+      $conn->write($query);
+
     }
 
     public function getProducts(){
         $conn =  Database::newInstance();
-       
-        return $conn->read("SELECT *FROM product order by name asc");        
+
+        return $conn->read("SELECT *FROM product order by name asc");
     }
 
-    
+
     function make_table($products){
       $db =  Database::newInstance();
-
       $result="";
-
         if(is_array($products)){
           $products = (object)$products; // this is not object
-              
           $counter = 0;
           foreach ($products as $product) {
-          
-            
-     
-            // $args = $product["id"]. ",'". $product["name"]."'";
+          // $args = $product["id"]. ",'". $product["name"]."'";
             $args = $product["id"];
-         
             //From the category table get the categoryname  associated with this product
             $catarr['id']= $product['category'];
             $sql = "SELECT categoryName FROM category where id =:id";
@@ -231,7 +186,7 @@ class Product{
                $category = $response[$counter]["categoryName"];
              }
 
-             $info = array();
+            $info = array();
             $info["id"]           = $product["id"];
             $info["name"]         = $product["name"];
             $info["description"]  = $product["description"];
@@ -247,40 +202,41 @@ class Product{
             $info =  str_replace('"',"'",json_encode($info));
 
 
-         
+
             $result .= "<tr>";
 
-             
-              $result.='                    
-                   
+
+              $result.='
+
               <td>'.$product["name"].'</td>
               <td>'.$product["description"].'</td>
               <td>'.$product["price"].'</td>
               <td>'.$product["quantity"] .'</td>
-              <td>'.$category .'</td>              
+              <td>'.$category .'</td>
               <td><img src ="'.ROOT.$product["image1"] .'" style="width:70px;height:70px;"/></td>
                <td>'.date("jS M Y H:i:s", strtotime($product["date"])) .'</td>
-            
-          
-                  
+
+
+
                    <td>
                        <button info = "'.$info.'"  onclick="edit_record('.$args.', event)" class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#editProductsModal"><i class="fa fa-pencil"></i></button>
                        <button class="btn btn-danger btn-xs"  onclick="delete_record(event,'.$product["id"].')"><i class="fa fa-trash-o "></i></button>
                    </td>';
-         
+
             $result.= "</tr>";
-            
+
+
           }
           $counter++;
-    
-  
+
+
         }
         return $result;
-  
+
       }
 
 
-      
+
   public function strtoslug($url){
     $url = preg_replace('~[^\\pL0-9_]+~u', '-',$url);
     $url = trim($url, '-');
@@ -291,10 +247,9 @@ class Product{
     return $url;
 
   }
-    
-   
+
+
 
 
 
 } //end of class
-
