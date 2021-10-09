@@ -123,7 +123,7 @@
         <div class="col-md-4 order-md-2 mb-5" >
             <h4 class="mb-3" style="margin-bottom: 100px;" >Checkout with Paypal</h4> 
             <p class="mb-3 text-muted fst-italic" style="margin-bottom: 100px;"> Card | Bank</p>
-            <!-- <form method = "post" class="needs-validation ">
+            <form method = "post" class="needs-validation ">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -151,8 +151,8 @@
               
                  <hr class="mb-4"> 
                <button class="btn btn-primary btn-lg btn-block" style="background-color:#06d6a0;" type="submit">Make Payment</button> 
-              
-            </form>  -->
+               <!-- <div id="paypal-payment-button"></div> -->
+            </form>  
             <div id="paypal-payment-button"></div>
         </div>
     </div>
@@ -182,7 +182,7 @@ if(amount != "" && !isNaN(amount)){
 
 //Payapl Button Starts here ==================
 
-// txn_details = {};
+txn_details = {};
 paypal.Buttons({
     style : {
         color: 'gold',
@@ -201,12 +201,48 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
             //if successful transaction
-             window.location.replace("<?=ROOT?>success")
-            process_data(details);
+            
+            
+            console.log("details")
+            const isObject = function(val){
+                if(val === null){
+                    return false
+                }
+                    return (typeof val==='object')
+                            
+            }
 
+            const getObjProps = function(obj){
+
+                for(let prop in obj){
+                    if(isObject(obj[prop])){
+                    getObjProps(obj[prop])
+                    }else{
+                        // console.log(prop,obj[prop])
+                        // txn_details[`${prop}`] = `${obj[prop]}`
+                        txn_details[prop] = obj[prop]
+                     
+
+                    }
+                    
+                };//forloop end
+
+            };//function getObjProps end
+
+            getObjProps(details)
+            console.log("Transaction details details")
+            console.log(typeof txn_details)
+            console.log(txn_details)
+            send_data(txn_details)
+
+
+            
+            
             if(details !=null){ //clear after checkout success
                 <?php unset($_SESSION['CART']); ?>
             }
+           
+            window.location.replace("<?=ROOT?>success")
             
         })
         
@@ -218,67 +254,57 @@ paypal.Buttons({
 
 // Paypal button ends here   -==========
 
+function send_data(tdetails){
+    console.log("==========Below this line===========")
+    for (const [key, value] of Object.entries(tdetails)) {
+        console.log(`${key}: ${value}`);
+}
+}
 
-let customerdetails = [];
-let orderdetails = [];
-var final = [];
 
 
-function  process_data(results){
-       
-       
-       //function getObjectProps
-        function getObjectProps(obj){
-            for (let val in obj){
-                if(isObject(obj[val])){
-                    getObjectProps(obj[val]);
-                }else{
-                    final[`${val}`] = `${obj[val]}`
-                
-                }
-             }
-        }
 
-        const isObject = (val)=>{
-            if(val === null){
-                return false;
-            }
-         return (typeof val === 'object')
-        };
 
-         
-        getObjectProps(results)
-        console.log("Final")  
-        console.log(final)
-                
+
+ /*
  
-     } //end handle_results   
-    
-
-  
-    
-        
-
-        // const sendData = (data=[]) => {
-        // $.post('<?=ROOT?>ajax_checkout', {
-        //     data: data
-        // }, function(response) {
-        //     console.log("we got a response");
-        //     console.log(response);
-        // });
-        // }
-
-      
-        
+full_name: Regina Lou
+given_name: Regina
+surname: Lou
+payer_id: JW99MTEPFWFWE
+email_address: regina@personal.example.com
+address_line_1: 1 Cheeseman Ave Brighton East
+admin_area_2: Melbourne
+admin_area_1: Victoria
+postal_code: 3001
+country_code: AU
 
 
+id: 8DJ612347V537194G
+currency_code: USD
+
+
+final_capture: true
+create_time: 2021-10-08T10:39:08Z
+update_time: 2021-10-08T10:39:28Z
+
+
+merchant_id: AKE947Q3R5K86
+
+
+intent: CAPTURE
+status: ELIGIBLE
+reference_id: default
 
 
 
 
+href: https://api.sandbox.paypal.com/v2/checkout/orders/77V66843JG373713B
+rel: self
+method: GET
 
 
-     
+ */
 
 
 

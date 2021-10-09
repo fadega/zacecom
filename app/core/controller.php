@@ -31,7 +31,7 @@ class Controller{
  */
 protected function loadModel($model){
   if(file_exists("../app/models/". strtolower($model) . ".class.php")){
-      include "../app/models/".$model.".class.php";
+      include "../app/models/".strtolower($model).".class.php";
             
       return $model = new $model();
 

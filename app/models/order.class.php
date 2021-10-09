@@ -5,16 +5,16 @@
 class Order{
     
 
-    public function addOrder(){
+    public function addOrder($data){
 
     }
 
-    public function editOrder(){
+    public function editOrder($id){
 
         
     }
 
-    public function deleteOrder(){
+    public function deleteOrder($id){
         
     }
 
