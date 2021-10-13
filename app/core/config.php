@@ -35,6 +35,7 @@ $path = str_replace($_SERVER['DOCUMENT_ROOT'],"",$path);
 define('ROOT',str_replace("app/core","public", $path));//http://localhost/zacecom/public/
 define("ASSETS", str_replace("app/core","public/assets",$path)); //http://localhost/zacecom/public/assets/
 
+// echo $path; die;
 //This is for debuggin purposes, will be set false on live server
 define('DEBUG',true);
 if(DEBUG){

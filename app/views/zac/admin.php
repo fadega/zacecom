@@ -58,7 +58,7 @@ $this->view("zac/adminheader",$data);
                   <div class="col-md-4 col-sm-4 mb">
                     <div class="white-panel pn donut-chart">
                       <div class="white-header">
-                         <h5>MARCH SALES</h5>
+                         <h5>MERCH SALES</h5>
                       </div>
                       <div class="row">
                         <!-- <div class="col-sm-6 col-xs-6 goleft">
@@ -70,20 +70,20 @@ $this->view("zac/adminheader",$data);
                       </div>
                       
                        
-                      <!-- <canvas id="serverstatus01" height="120" width="120"></canvas> -->
+                      <!-- <canvas id="serverstatus01" height="120" width="120"></canvas>
                       <script>
-                      //   var doughnutData = [
-                      //       {
-                      //         value: 70,
-                      //         color:"#68dff0"
-                      //       },
-                      //       {
-                      //         value : 30,
-                      //         color : "#fdfdfd"
-                      //       }
-                      //     ];
-                      //     var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                      // </script>
+                        var doughnutData = [
+                            {
+                              value: 70,
+                              color:"#68dff0"
+                            },
+                            {
+                              value : 30,
+                              color : "#fdfdfd"
+                            }
+                          ];
+                          var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                      </script> -->
                     </div><!--/grey-panel -->
                   </div><!-- /col-md-4-->
                   

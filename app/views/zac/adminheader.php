@@ -189,7 +189,7 @@ $conn = $db->db_connect();
 
         <li>
             <a href="<?=ROOT?>admin/customers/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#customer-collapse" role="button" aria-expanded="false" aria-controls="customer-collapse">
-                <span class="me-2"><i class="bi bi-box-seam"></i></span>  
+                <span class="me-2"><i class="bi bi-person-lines-fill"></i></span>  
               <span>Customers</span> 
               <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
             </a>
@@ -199,18 +199,39 @@ $conn = $db->db_connect();
                 </li>
            </ul>
        </li>
-
-        <li>
-            <a href="<?=ROOT?>orders" class="nav-link ps-3 me-lg-5">
-              <span><i class="bi bi-table"></i></span>
-              Orders
-            </a>
+       <li>
+             <a href="<?=ROOT?>admin/sendmail" class="nav-link ps-3 me-lg-5 ">
+             <span><i class="bi bi-envelope"></i></span>
+                  Compose Message
+              </a>
           </li>
+
+
+       <li class="mt-3">
+            <a href="<?=ROOT?>admin/orders/view" class="nav-link px-3 sidebar-item-toggler " data-bs-toggle="collapse"  data-bs-target="#order-collapse" role="button" aria-expanded="false" aria-controls="order-collapse">
+                <span class="me-2"><i class="bi bi-person-lines-fill"></i></span>  
+              <span>Future Enhancement</span> 
+              <span class="right-icon ms-auto"><i class="bi bi-chevron-down "></i></span>
+            </a>
+            <ul class="navbar-nav ms-5 collapse" id="order-collapse">
+                <li>
+                  <a href="<?=ROOT?>admin/orders" class="nav-link">Orders</a>
+                </li>
+                <li>
+                  <a href="<?=ROOT?>admin/orders" class="nav-link">Summary Report</a>
+                </li>
+           </ul>
+       </li>
+
+       
+
+         
 
           <?php if($data['role']=='customer'){ ?>
           </div> <!--block admin menu parts -->
           <?php } ?>
 
+        
           
           <li>
              <a href="<?=ROOT?>profile" class="nav-link ps-3 me-lg-5 ">

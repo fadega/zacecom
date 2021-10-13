@@ -7,7 +7,7 @@
         <h4><?=$data['name']?></h4>
         <h6>$<?=$data['price']?></h6>
         <p><?=$data['description']?></p>
-        <?php if($data['quantity']<10):?>
+        <?php if($data['quantity']<=1):?>
         <p class="form-text text-danger fw-bold" ><?=$data['quantity']?> in stock</p>
 
         <?php endif;?>

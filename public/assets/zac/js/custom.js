@@ -154,77 +154,77 @@ function showCategory(){
 
 //example from chart.js 
 
-// var ctx = document.getElementById('sales').getContext('2d');
-// var ch = new Chart(ctx, {
-//     type: 'line',
-//     data: {
-//         lab: ['Jan', 'Feb', 'March', 'April', 'May', 'July'],
-//         datasets: [{
-//             label: 'Sales trend Jan - July 2021',
-//             data: [120, 75, 150, 600, 450, 1800],
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             },
-// 			label:{
-// 				display:false
-// 			}
-//         }
-//     }
-// });
+var ctx = document.getElementById('sales').getContext('2d');
+var ch = new Chart(ctx, {
+    type: 'line',
+    data: {
+        lab: ['Jan', 'Feb', 'March', 'April', 'May', 'July'],
+        datasets: [{
+            label: 'Sales trend Jan - July 2021',
+            data: [120, 75, 150, 600, 450, 1800],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            },
+			label:{
+				display:false
+			}
+        }
+    }
+});
 
 
 
-// var ctx = document.getElementById('customervisitor').getContext('2d');
-// var chart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Buyers', 'Visitors',],
-//         datasets: [{
-//             label: '# of buyers',
-//             data: [200, 2000],
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)'
+var ctx = document.getElementById('customervisitor').getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Buyers', 'Visitors',],
+        datasets: [{
+            label: '# of buyers',
+            data: [200, 2000],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
                 
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
                
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
+            ],
+            borderWidth: 1
+        }]
+    },
 	
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
 
 
