@@ -2,7 +2,7 @@
  
    $this->view("zac/header",$data);
 ?>
-
+  
     <!-- Shop page starts here -->
     <div class="featured-page">
       <div class="container">
@@ -12,8 +12,12 @@
               <div class="line-dec"></div>
               <?php if(isset($item_searched)):?>
                  <h1>Search Results </h1>
+                 <?php if(!is_array($items_inshop) ):?>
+                  <h6 class="text-danger py-3">Oops! The product you searched for is not found!</h6>
+                  <?php endif;?>
               <?php else:?>
                 <h1>Featured Merches</h1>
+
               <?php endif;?>
             </div>
           </div>
@@ -47,6 +51,7 @@
 
        </div>
     </div>
+    
     <!-- show pagination if products exist and they are more than 9 -->
     <?php if($data['items_inshop']>0):?>
       <?php if(count($items_inshop)>9):?>

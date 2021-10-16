@@ -35,6 +35,9 @@
               <?php //if(isset($data['item_searched'])):?> 
               <?php if(isset($item_searched)):?> 
                  <h1>Search Results </h1>
+                 <?php if(!is_array($ROWS)):?>
+                  <h6 class="text-danger py-3">Oops! The product you searched for is not found!</h6>
+                  <?php endif;?>
               <?php else:?>
                 <h1>Featured Merches</h1>
               <?php endif;?>

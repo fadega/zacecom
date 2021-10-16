@@ -62,7 +62,7 @@
 
 
 
-    <nav class="navbar navbar-light py-0 " style="background-color: #ead150;">
+    <!-- <nav class="navbar navbar-light py-0 " style="background-color: #ead150;">
       <ul class="nav justify-content-center" id="menu">
         <?php if(isset($data['user_email'])):?>
           <li class="nav-item">
@@ -92,7 +92,7 @@
         </button>        
         </form>
         <?php endif;?>
-      </nav>
+      </nav> -->
     <!-- </div> -->
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <!-- <header class="section-header ">
+ <header class="section-header ">
     <section class="header-main border-bottom">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -122,9 +122,9 @@
                  <span class="logo">SMART-COM</span> </a> </div>
                 <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
                   <?php if(isset($search)):?>
-                    <form  class="search-wrap" method="get">
-                        <div class="input-group w-100 ">
-                           <input type="text"  name="find" class="form-control search-form rounded-left" id="search-field"  placeholder=" Search">
+                    <form  class="search-wrap d-none " method="get">
+                        <div class="input-group w-100 d-flex justify-content-right">
+                           <input type="text"  name="finddd" class="form-control search-form rounded-left pull-right" id="search-field"  placeholder=" Search" style="max-width:300px;">
                             <div class="input-group-append "> <button class="btn btn-primary rounded-right search-button" type="submit"> <i class="fa fa-search"></i> </button> </div>
                         </div>
                    </form>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-lg-5 col-xl-4 col-sm-8 col-md-4 col-7">
                     <div class="d-flex justify-content-end"> 
-                      <a class="nav-link text-light" href="<?=ROOT?>cart" >
+                      <a class="nav-link text-dark" href="<?=ROOT?>cart" >
                       <span><i class="bi bi-cart4"></i></span></a>
                       <?php if(isset($_SESSION['CART']) && count($_SESSION['CART'])>0){?>
                         <span class="text-warning " style="margin-top:-3px;margin-left:-20px;"><i class="bi bi-bell " ></i>1</span>  
@@ -141,20 +141,20 @@
                     
                     
                       <?php if(isset($data['user_email'])):?>
-                        <a class="nav-link text-light" href="<?=ROOT?>profile">Account</i>  </a>
-                      <a class="nav-link text-light" href="<?=ROOT?>signout">Logout<i class="bi bi-box-arrow-in-right mt-0"></i>  </a>
+                        <a class="nav-link text-dark" href="<?=ROOT?>profile">Account</i>  </a>
+                      <a class="nav-link text-dark" href="<?=ROOT?>signout">Logout<i class="bi bi-box-arrow-in-right mt-0"></i>  </a>
                       
                       
                       <?php else:?>
-                      <a class="nav-link text-light" href="<?=ROOT?>signup" ><span>Signup</span></a>
-                      <a class="nav-link text-light" href="<?=ROOT?>signin" ><span>Login</span></a>
+                      <a class="nav-link text-dark" href="<?=ROOT?>signup" ><span>Signup</span></a>
+                      <a class="nav-link text-dark" href="<?=ROOT?>signin" ><span>Login</span></a>
                       <?php endif;?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</header> -->
+</header> 
 <!-- END NEW TOP STRIP NAVBAR -->
  
 
@@ -188,6 +188,19 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=ROOT?>contact">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                  <?php if(isset($search)):?>
+                      <form  class="search-wrap " method="get">
+                          <div class="input-group w-100 d-flex justify-content-right">
+                            <input type="text"  name="find" class="form-control search-form rounded-left border border-warning" id="search-field"  placeholder=" Search" style="max-width:300px;">
+                              <div class="input-group-append "> <button class="border border-warning btn btn-primary rounded-right search-button" type="submit"> <i class="fa fa-search"></i> </button> </div>
+                          </div>
+                    </form>
+                    <?php else:
+                      $_SESSION['search_results']= "none";
+                     endif;?>
                 </li>
                 
                 
