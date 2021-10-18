@@ -1,4 +1,4 @@
-# Project 8600
+# Ecommerce Website - PHP 7.4 | CUSTOM FRAMEWORK
 
 #### <span style="color:#f77f00">Project Directory Structure:</span>
 
