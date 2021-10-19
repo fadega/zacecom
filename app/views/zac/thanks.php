@@ -84,9 +84,9 @@ $this->view("zac/header",$data);
                <div class="check"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
             </div>
             <div class="content">
-               <h1>Shame ! Something Went Wrong</h1>
-               <p class="mb-2">The transaction has been cancelled. Go to checkout page </p>
-               <a class="p-2 m-3" href="<?=ROOT?>checkout">GET ME BACKk</a>
+               <h1>Thank you!</h1>
+               <p class="mb-2">We have recieved your emaail! </p>
+               <a class="p-2 m-3" href="<?=ROOT?>home">Get Back Home</a>
             </div>
             
          </div>

@@ -1,6 +1,8 @@
 <?php
-
-//This is not considered a proper documentation
+/**
+ *  Enables adding and removing items to/from the cart  and adding quantity 
+ *  Also redirects to proper pages 
+ */
 class Cart extends Controller{
 
  private $redirect_to ="";

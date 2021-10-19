@@ -7,7 +7,7 @@ class User{
 /**
  * We accept user signup input and we validate the input.
  * No need to sanitize the input because we are using prepared statements, we just validate if the inputs 
- * are in a correct for using REGEX.
+ * are in a correct form using REGEX.
  * @param array $POST
  * @return void
  */
@@ -45,9 +45,9 @@ class User{
            $data['role'] = "customer";
 
             //Before pushing data to database, check if there is a user with the same email already in the database
-            $query = "SELECT email FROM user WHERE email = :email limit 1";
+            $query        = "SELECT email FROM user WHERE email = :email limit 1";
             $arr['email'] = $data['email'];
-            $check = $instance->read($query,$arr);
+            $check        = $instance->read($query,$arr);
             if(is_array($check) && count($check)>0){
                 $message ='<a href="'.ROOT.'signin">Login</a> instead';
                 $_SESSION['duplicateemail'] = "User already exists, ".$message;
@@ -55,10 +55,10 @@ class User{
             }
             
             //One last check for userid before pushing data to database
-            $arr =[]; //unset the array from previous value
-            $sql = "SELECT userid FROM user WHERE userid = :userid limit 1";
+            $arr           = []; //unset the array from previous value
+            $sql           = "SELECT userid FROM user WHERE userid = :userid limit 1";
             $arr['userid'] = $data['userid'];
-            $check = $instance->read($sql,$arr);
+            $check         = $instance->read($sql,$arr);
             if(is_array($check)){
                 //generate another random userid
                 $data['userid']   = $this->generate_random_userid(60);
@@ -97,7 +97,7 @@ class User{
         
        $error = "";
        $data['email']       = trim($POST['email']);
-       $data['password']  = trim($POST['password']);
+       $data['password']    = trim($POST['password']);
       //$data['keepmesigned']  = trim($POST['keepmesigned']);
      
       
@@ -105,9 +105,9 @@ class User{
                $error.= 'Wrong eamil or password<br />';
    
         }
-        $uppercase = preg_match('@[A-Z]@', $data['password']);
-        $lowercase = preg_match('@[a-z]@', $data['password']);
-        $number    = preg_match('@[0-9]@', $data['password']);
+        $uppercase    = preg_match('@[A-Z]@', $data['password']);
+        $lowercase    = preg_match('@[a-z]@', $data['password']);
+        $number       = preg_match('@[0-9]@', $data['password']);
         $specialChars = preg_match('@[^\w]@', $data['password']);
         
         if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($data['password']) < 8) {
@@ -166,7 +166,7 @@ class User{
 
       
     /**
-     * Checks if user is logged
+     * Checks if user is loggedin
      * @return array
      */
     public function checkLogin(){
@@ -186,6 +186,7 @@ class User{
 
 
     /**
+     * unsets the session for loggin, and signs out a user
      * Log user out 
      * @return void
      */
@@ -202,7 +203,7 @@ class User{
 
 
       /**
-     * Generatea random user id for new user
+     * Generates a random user id for new user
      * @param integer $length
      * @return string
      */
@@ -223,7 +224,12 @@ class User{
 
     
 
-     function creatUser($data){
+     /**
+      * Creates a user if it doesn't already exist
+      * @param mixed $data
+      * @return boolean 
+      */
+    function creatUser($data){
         
         $_SESSION['error'] = "";
         
@@ -232,7 +238,7 @@ class User{
         $arr['name']       = ucwords($data->name);
         $arr['email']      = $data->useremail;
         $arr['phone']      = $data->userphone;
-        $arr['password']   = ucwords($data->name) .'@'. "zaceom2021";
+        $arr['password']   = ucwords($data->name) .'@'. "zacecom2021";
         $arr['role']       = "admin";
         $arr['address']    = $data->useraddress;
         $arr['date']       =  date("Y-m-d H:i:s");
@@ -242,6 +248,8 @@ class User{
         if($error != ""){
             $_SESSION['error'] = $error;
         }
+        //hash password - replacing the text password with hashed password
+       $arr['password']   = hash('sha1', $arr['password']);
       
        if (!isset($_SESSION['error']) || $_SESSION['error']=="") {
 
@@ -275,12 +283,20 @@ class User{
 
 
 
+     /**
+      * Gets users(identified as admins) from the database
+      * @return array if data
+      */
      public function getUsers(){
         $conn =  Database::newInstance();
        
         return $conn->read('SELECT *FROM user WHERE role ="admin" ORDER BY id asc');        
      }
 
+     /**
+      * Returns customs(users identified as customers)
+      * @return array of data
+      */
      public function getCustomers(){
       $conn =  Database::newInstance();
      
@@ -290,6 +306,11 @@ class User{
 
 
 
+    /**
+     * Function edits user(admin user) data
+     * @param mixed $data
+     * @return none
+     */
     public function editUser($data){
         // echo "I Data passed";
         // show($data);
@@ -332,6 +353,11 @@ class User{
 
 
 
+      /**
+     * Function edits user(customer user) data
+     * @param mixed $data
+     * @return none
+     */
       public function editCustomer($data){
         // echo "I Data passed";
         // show($data);
@@ -372,11 +398,12 @@ class User{
       }
 
 
-
-
-
-
     
+    /**
+     * creates the table of users
+     * @param mixed $array objects
+     *  @return [string]
+     */
     function make_table($users){
         //  echo "make table from user class";
         //  show($users);die;
@@ -425,6 +452,11 @@ class User{
   
       }
 
+      /**
+       * deletes a admin user identified by id
+       * @param int $id
+       * @return [boolean]
+       */
       public function deleteUser($id){
         $conn =  Database::newInstance();
         $id = (int)$id;
@@ -432,6 +464,11 @@ class User{
         $conn->write($query);
       }
 
+       /**
+       * deletes a customer identified by id
+       * @param int $id
+       * @return [boolean]
+       */
       public function deleteCustomer($id){
         $conn =  Database::newInstance();
         $id = (int)$id;
@@ -440,6 +477,11 @@ class User{
       }
 
 
+     /**
+      * Deletes a profile of a user/customer
+      * @param mixed $email
+      * @return none
+      */
      public function deleteProfile($email){
         $conn =  Database::newInstance();
         $query = "DELETE FROM user WHERE email ='$email' limit 1 ";

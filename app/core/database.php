@@ -8,6 +8,9 @@ class Database{
     
 
     public static $conn;
+    /**
+     *A constructor the initially connects to db
+     */
     public function __construct()
     {
         try{

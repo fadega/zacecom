@@ -18,15 +18,17 @@
         <div class="col-md-8">
           <div class="form h-100">
             <h3 class="send">Send us a message</h3>
-            <form class="mb-5" method="post" id="contactForm" name="contactForm">
+            <form class="mb-5" method="post" action="https://formsubmit.co/fadega.afa@gmail.com" id="contactForm" name="contactForm">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="<?=ROOT?>thanks">
               <div class="row">
                 <div class="col-md-6 form-group mb-5">
                   <label for="" class="col-form-label">Name *</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
                 </div>
                 <div class="col-md-6 form-group mb-5">
                   <label for="" class="col-form-label">Email *</label>
-                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your email">
+                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your email" required>
                 </div>
               </div>
 
@@ -44,7 +46,7 @@
               <div class="row">
                 <div class="col-md-12 form-group mb-5">
                   <label for="message" class="col-form-label">Message *</label>
-                  <textarea class="form-control" name="message" id="message" cols="30" rows="4"  placeholder="Write your message"></textarea>
+                  <textarea class="form-control" name="message" id="message" cols="30" rows="4"  placeholder="Write your message" required></textarea>
                 </div>
               </div>
               <div class="row">
@@ -83,6 +85,8 @@
     </div>
 
   </div>
+
+
       <!-- End contact page here -->
 
 

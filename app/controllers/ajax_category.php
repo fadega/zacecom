@@ -1,9 +1,16 @@
 <?php
 
  
+/**
+ * Accepts ajax data to perform the proper database operations(create, delete, edit)
+ */
 class Ajax_category extends  Controller{
 
-    //defualt method
+   
+    /**
+     *  defualt method - gets the categories from the input fields and passes them to a proper model
+     * to execute the required operation (create, delete, edit )
+     */
     function index(){
 
       $data = file_get_contents("php://input");

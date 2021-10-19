@@ -1,10 +1,15 @@
 <?php
 
-//This is not considered a proper documentation
-//This class not client facing  - admin section only
+
+/**
+ * Admin controller class loads home, categories, products, and users/customers if data exist
+ * otherwise, it loads empty interface in the dashboard
+ * Categories, products, users are all methods in admin controller cat call the proper/corresponding 
+ * models
+ */
 class Admin extends Controller{
 
-    //defualt method
+    //defualt method - the feeds the home page
     function index(){
       
         // check if user is logged in
@@ -41,7 +46,11 @@ class Admin extends Controller{
     }
 
 
-     //Categories Method
+     
+     /**
+      * categories is admin facing method, checks if user is logged in and loads the categories
+      * if user has the required level of access
+      */
      function categories(){
       
         // check if user is logged in
@@ -101,7 +110,10 @@ class Admin extends Controller{
 
 
 
-    //Products  Method
+    /**
+      * products is admin facing method, checks if user is logged in and loads the products
+      * if user has the required level of access
+      */
      function products(){
       
         // check if user is logged in
@@ -163,7 +175,10 @@ class Admin extends Controller{
     }
 
 
-     //Users
+     /**
+      * users is admin facing method, checks if user is logged in and loads the admin users
+      * if user has the required level of access
+      */
      function users(){
       
         // check if user is logged in
@@ -217,7 +232,10 @@ class Admin extends Controller{
 
 
 
-    //customers
+    /**
+      * customers is admin facing method, checks if user is logged in and loads the users/customers
+      * if user has the required level of access
+      */
     function customers(){
       
         // check if user is logged in
@@ -274,8 +292,10 @@ class Admin extends Controller{
 
 
 
-    
-    //customers
+   /**
+      * sendMail is admin facing method, checks if user is logged in and loads the loads the mail interface
+      * if user has the required level of access
+      */
     function sendMail(){
       
         // check if user is logged in

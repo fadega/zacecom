@@ -1,6 +1,9 @@
 <?php
 
-//this controller class calls the view method of the main "Controller" class to see if corresponding view exists 
+
+/**
+ * Routes the user to checkout page
+ */
 class Checkout extends  Controller{
 
     //defualt method
@@ -8,18 +11,6 @@ class Checkout extends  Controller{
         
         // checkout custom form
         $conn = Database::newInstance();
-
-
-        //load checkout model
-        // $checkout = $this->loadModel('Checkout');
-        // $check = $checkout->savecheckout($_POST,$_SESSION['checkout']);
-
-        // $ROWS = $conn->read("SELECT *FROM product limit 10");
-        // $data['ROWS'] = $ROWS;
-
-        // if(count($_POST)>0){
-        //     show($_POST);
-        // }
 
 
 

@@ -1,6 +1,10 @@
 <?php
 
  
+/**
+ * Accepts data from the interface in dashboard and calls the  user fuctions in the backend to perform
+ * the crud operation(create, read, update and delete)
+ */
 class Ajax_user extends  Controller{
 
     //defualt method
@@ -25,7 +29,7 @@ class Ajax_user extends  Controller{
          
                 
           //add new user
-          // $check = $category->create($data);
+         
            $user->creatUser($data);
     
           if(isset($_SESSION['error']) && $_SESSION['error']!=""){
@@ -68,7 +72,6 @@ class Ajax_user extends  Controller{
        
         // show($data);die;
         $user->editUser($data);
-        // $user->editCategory($data->id,$data->category);
         $arr['message'] = "Record updated successfully!";
         $_SESSION['error']=""; //unset session error
         $arr['message_type'] = 'info';

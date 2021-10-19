@@ -1,6 +1,10 @@
 <?php
 
  
+/**
+ * This controller gets customer input data through ajax and enables the index method
+ * to call edit and delete functions of the user model depending of the data_type recieved
+ */
 class Ajax_customer extends  Controller{
 
     //defualt method

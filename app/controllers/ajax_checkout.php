@@ -1,7 +1,9 @@
 <?php
 
-//This is not considered a proper documentation
-//This class not client facing  - admin section only
+
+/**
+ * gets data from AJAX but lets Paypal to handle orders
+ */
 class Ajax_checkout extends Controller
 {
 
@@ -15,12 +17,12 @@ class Ajax_checkout extends Controller
             $data = file_get_contents("php://input");
           }
 
-          if($data){
-              echo "yes, there is data";
-              show($data);
-          }else{
-            echo "No, there is data";
-          }
+          // if($data){
+          //     echo "yes, there is data";
+          //     show($data);
+          // }else{
+          //   echo "No, there is data";
+          // }
          
 
 

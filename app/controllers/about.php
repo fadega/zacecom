@@ -1,16 +1,15 @@
 <?php
 /**
- * Sample documentation 
- * About class makes use of the contrller's view method and feeds the about view  to the url if it exists
+ *  About class makes use of the contrller's view method and feeds the about view  to the url if it exists
  * 
  */
 
 class About extends Controller{
 
-    //defualt method
+    //defualt method - just feeds the about page
     function index(){
 
-         // check if user is logged in
+         // we  don't necessarily need to check for login status but we just keep it here - incase we need it
          $user = $this->loadModel('user');
          $user_info = $user->checkLogin();
          if(is_array($user_info)){

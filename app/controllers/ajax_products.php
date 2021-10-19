@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This controller gets product  input data through ajax and enables the index method
+ * to call all crud functions of the user model
+ */
  
 class Ajax_products extends  Controller{
 
