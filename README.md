@@ -30,3 +30,25 @@
     - index.php  <= [index.php]
     - README.md
 </pre>
+
+#### <span style="color:#f77f00">How to execute/use this code:</span>
+
+The configuration of your system and the system in which this project is written is different.
+
+### Step 1
+
+Create a database in PhpMyAdmin or MySQL workbench
+
+### Step 2
+
+Head to the project folder, then do the app directory, and open the config folder
+
+### Step 3
+
+Under config folder, find the dbsql.sql file, and execute it where you created the database in step 1.
+
+### Step 4
+
+Head to the app folder again, under Core directory, find config.php. Replace the database name, username, and password for your database.
+
+Start xampp/wamp/mamp server and access the project from the htdocs directory.
