@@ -10,9 +10,9 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     
     define("DB_TYPE",'mysql');
     define("DB_HOST","localhost");
-    define("DB_USER","yourusernamehere");
-    define("DB_PASS","yourpasswordhere");
-    define("DB_NAME","yeardatabasehere");
+    define("DB_USER","root");
+    define("DB_PASS","passme2020");
+    define("DB_NAME","cmszac");
 
 }else{  //hosted live  000webhost details
     define("DB_TYPE",'mysql');
