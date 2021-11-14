@@ -18,6 +18,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define("DB_TYPE",'mysql');
     define("DB_HOST","localhost");
     define("DB_USER","id17670815_abun");
+    // define("DB_PASS","gY^<m/o5{u2!t30R"); temporarly commented to check github
     define("DB_PASS","gY^<m/o5{u2!t30R");
     define("DB_NAME","id17670815_zacecom");
 
