@@ -54,4 +54,4 @@ Head to the app folder again, under Core directory, find config.php. Replace the
 Start xampp/wamp/mamp server and access the project from the htdocs directory.
 
 #Update: 
-Mailing feature added ~ author Abun code
+Mailing feature added ~ author Abun code | Another acc
