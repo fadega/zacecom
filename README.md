@@ -52,3 +52,6 @@ Under config folder, find the dbsql.sql file, and execute it where you created t
 Head to the app folder again, under Core directory, find config.php. Replace the database name, username, and password for your database.
 
 Start xampp/wamp/mamp server and access the project from the htdocs directory.
+
+#Update: 
+Mailing feature added ~ author Abun code
