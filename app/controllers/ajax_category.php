@@ -77,7 +77,7 @@ class Ajax_category extends  Controller{
 
      }
   
-      }
+    }
 
 
    

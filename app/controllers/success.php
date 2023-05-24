@@ -13,11 +13,6 @@ class Success extends  Controller{
        //load the home view - > index.php
         $this->view("zac/success",$data);
 
-
-
-
-
-      
     }
 
    
